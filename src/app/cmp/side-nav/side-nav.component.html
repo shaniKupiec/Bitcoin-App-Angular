@@ -1,0 +1,24 @@
+<nav>
+  <!-- <a (click)="changePage.emit(0)">home</a>
+  <a (click)="changePage.emit(1)">Contacts</a>
+  <a (click)="changePage.emit(3)">Charts</a> -->
+  <a routerLink="home" routerLinkActive="active">
+    <i class="fa-regular fa-user"></i>
+    Home
+  </a>
+  <a routerLink="contact" routerLinkActive="active">
+    <i class="fa-regular fa-address-book"></i>
+    Contacts
+  </a>
+  <a routerLink="chart" routerLinkActive="active">
+    <i class="fa-solid fa-chart-simple"></i>
+    Charts
+  </a>
+</nav>
+
+<!-- <a
+  routerLink=""
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+  >Home</a
+> -->

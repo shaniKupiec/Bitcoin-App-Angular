@@ -1,0 +1,27 @@
+@import "../../../assets/styles/mixins";
+@import "../../../assets/styles/functions";
+@import "../../../assets/styles/variables";
+
+nav {
+    @include flex(column, center, start);
+    position: absolute;
+    left: -25%;
+    width: 20%;
+    font-size: rem(20px);
+    gap: 20px;
+
+    a {
+        padding: 10px;
+        border-radius: 10px;
+        width: 100%;
+
+        &.active {
+            box-shadow: 0px 0px 4px 1px #323232;
+            background: linear-gradient(17deg, $clr3 0%, $clr2 6%, $clr1 40%);
+        }
+
+        i {
+            padding-inline-end: 5px;
+        }
+    }
+}
