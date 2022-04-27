@@ -5,19 +5,20 @@ import { ContactService } from 'src/app/services/contact.service';
 @Component({
   selector: 'contact-filter',
   templateUrl: './contact-filter.component.html',
-  styleUrls: ['./contact-filter.component.scss']
+  styleUrls: ['./contact-filter.component.scss'],
 })
 export class ContactFilterComponent implements OnInit {
+  constructor(private contactService: ContactService) {}
 
-  constructor(private contactService: ContactService) { }
-  filterBy: ContactFilter
+  filterBy!: ContactFilter
 
   ngOnInit(): void {
-    this.contactService.query(this.filterBy);
+    this.contactService.contactFilter$.subscribe((filterBy) => {
+      this.filterBy = filterBy;
+    });
   }
 
   onChangeFilter() {
     this.contactService.query(this.filterBy);
   }
-
 }

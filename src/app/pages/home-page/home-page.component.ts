@@ -14,7 +14,7 @@ export class HomePageComponent implements OnInit {
     private userService: UserService,
     private bitcoinService: BitcoinService
   ) {}
-  loggedInUser$: Observable<User>;
+  loggedInUser$!: Observable<User>;
   rate: any;
 
   ngOnInit(): void {

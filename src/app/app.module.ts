@@ -15,7 +15,7 @@ import { ContactFilterComponent } from './cmp/contact-filter/contact-filter.comp
 import { CartComponent } from './cmp/cart/cart.component';
 import { AppHeaderComponent } from './cmp/app-header/app-header.component';
 import { SideNavComponent } from './cmp/side-nav/side-nav.component';
-import { EditContactComponent } from './pages/edit-contact/edit-contact.component';
+import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { EditContactComponent } from './pages/edit-contact/edit-contact.componen
     CartComponent,
     AppHeaderComponent,
     SideNavComponent,
-    EditContactComponent,
+    ContactEditComponent,
   ],
   imports: [
     BrowserModule,

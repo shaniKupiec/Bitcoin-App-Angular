@@ -9,7 +9,7 @@ import { Contact } from 'src/app/models/contact.model';
 export class ContactListComponent implements OnInit {
 
   constructor() { }
-  @Input() contacts!: Contact[]
+  @Input() contacts!: Contact[] | null
   ngOnInit(): void {
   }
 

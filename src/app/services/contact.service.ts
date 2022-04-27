@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
+import { ContactFilter } from '../models/contact-filter.model';
 import { Contact } from '../models/contact.model';
 
 const CONTACTS = [
@@ -126,16 +127,20 @@ const CONTACTS = [
 export class ContactService {
   //mock the server
   private _contactsDb: Contact[] = CONTACTS;
+  // filterBy!: ContactFilter
 
   private _contacts$ = new BehaviorSubject<Contact[]>([]);
   public contacts$ = this._contacts$.asObservable();
 
+  private _contactFilter$ = new BehaviorSubject<ContactFilter>({term: ''});
+  public contactFilter$ = this._contactFilter$.asObservable();
+
   constructor() {}
 
-  public query(filterBy = null): void {
+  public query(filterBy: ContactFilter | null = null): void {
     let contacts = this._contactsDb;
-    if (filterBy && filterBy.term) {
-      contacts = this._filter(contacts, filterBy.term);
+    if (filterBy && filterBy?.term) {
+      contacts = this._filter(contacts, filterBy?.term);
     }
     this._contacts$.next(this._sort(contacts));
   }
