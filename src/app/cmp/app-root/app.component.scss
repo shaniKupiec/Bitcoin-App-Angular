@@ -1,9 +1,13 @@
+@import "../../../assets/styles/functions";
+
+.app-header-cmp{
+    width: 100%;
+}
+
 .side-nav-cmp {
-    position: relative;
+    width: rem(43px);
 }
 
 .main-page {
-    background-color: #1111115c;
-    border-radius: 25px;
-    min-height: 80vh;
+    width: calc(100% - rem(43px));
 }

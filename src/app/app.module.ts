@@ -16,6 +16,7 @@ import { CartComponent } from './cmp/cart/cart.component';
 import { AppHeaderComponent } from './cmp/app-header/app-header.component';
 import { SideNavComponent } from './cmp/side-nav/side-nav.component';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
+import { TransferFundComponent } from './cmp/transfer-fund/transfer-fund.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ContactEditComponent } from './pages/contact-edit/contact-edit.componen
     AppHeaderComponent,
     SideNavComponent,
     ContactEditComponent,
+    TransferFundComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,11 @@
-<p>contact-edit works!</p>
+<form (ngSubmit)="onSubmit()">
+    <input [(ngModel)]="contact.name" type="text" id="name" name="name">
+    <input [(ngModel)]="contact.email" type="email" id="email" name="email">
+    <input [(ngModel)]="contact.phone" type="tel" id="phone" name="phone">
+
+    <button>SAVE</button>
+
+</form>
 
 <button (click)="onBack()">Back</button>
-
+<button (click)="onDelete()">Delete</button>

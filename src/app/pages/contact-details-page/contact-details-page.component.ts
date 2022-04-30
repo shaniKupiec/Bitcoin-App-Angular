@@ -18,14 +18,18 @@ export class ContactDetailsPageComponent implements OnInit {
   contact!: Contact;
 
   async ngOnInit() {
-
     this.route.data.subscribe((data) => {
       this.contact = data['contact'];
     });
   }
 
-  onBack() {
-    // this.router.navigateByUrl('');
-    this.router.navigate(['contact'])
+  onBack(): void {
+    this.router.navigate(['contact']);
+  }
+
+  onDelete(): void {
+    this.contactService.deleteContact(this.contact._id);
+
+    this.onBack();
   }
 }

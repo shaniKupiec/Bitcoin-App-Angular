@@ -155,7 +155,7 @@ export class ContactService {
       : Observable.throw(`Contact id ${id} not found!`);
   }
 
-  public deleteContact(id: string) {
+  public deleteContact(id: string | undefined) {
     //mock the server work
     this._contactsDb = this._contactsDb.filter((contact) => contact._id !== id);
 

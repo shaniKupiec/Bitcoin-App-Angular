@@ -4,11 +4,11 @@
 
 nav {
     @include flex(column, center, start);
-    position: absolute;
-    left: -25%;
-    width: 20%;
     font-size: rem(20px);
     gap: 20px;
+    // position: absolute;
+    // left: -25%;
+    // width: 20%;
 
     a {
         padding: 10px;
@@ -16,8 +16,9 @@ nav {
         width: 100%;
 
         &.active {
-            box-shadow: 0px 0px 4px 1px #323232;
-            background: linear-gradient(17deg, $clr3 0%, $clr2 6%, $clr1 40%);
+            // box-shadow: 0px 0px 4px 1px #323232;
+            // background: linear-gradient(17deg, $clr3 0%, $clr2 6%, $clr1 40%);
+            color: $clr2;
         }
 
         i {

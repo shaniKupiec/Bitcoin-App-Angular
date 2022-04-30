@@ -2,18 +2,22 @@
 @import "./mixins";
 
 .main-layout {
-    display: grid;
-    grid-template-columns: $layoutPadding 1fr $layoutPadding;
+    // display: grid;
+    // grid-template-columns: $layoutPadding 1fr $layoutPadding;
 
-    > * {
-        grid-column: 2;
-        width: 80%;
-        justify-self: flex-end;
+    // > * {
+    //     grid-column: 2;
+    //     width: 80%;
+    //     justify-self: flex-end;
 
-        &:first-child{
-            width: 100%
-        }
-    }
+    //     &:first-child{
+    //         width: 100%
+    //     }
+    // }
+
+    display: flex;
+    flex-wrap: wrap;
+    // flex-direction: column;
 
     @include for-narrow-layout {
         @include layoutGTC($break-narrow);
@@ -29,15 +33,7 @@
 }
 
 @media (max-width: $break-narrow) {
-    .main-layout {
-        display: grid;
-        grid-template-columns: $layoutPadding 1fr $layoutPadding;
 
-        > * {
-            grid-column: 2;
-            width: 100%;
-        }
-    }
 }
 
 @media (min-width: $break-normal) {
