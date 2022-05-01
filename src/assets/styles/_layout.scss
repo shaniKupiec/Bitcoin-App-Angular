@@ -2,42 +2,7 @@
 @import "./mixins";
 
 .main-layout {
-    // display: grid;
-    // grid-template-columns: $layoutPadding 1fr $layoutPadding;
-
-    // > * {
-    //     grid-column: 2;
-    //     width: 80%;
-    //     justify-self: flex-end;
-
-    //     &:first-child{
-    //         width: 100%
-    //     }
-    // }
-
     display: flex;
     flex-wrap: wrap;
-    // flex-direction: column;
-
-    @include for-narrow-layout {
-        @include layoutGTC($break-narrow);
-    }
-
-    @include for-normal-layout {
-        @include layoutGTC($break-normal);
-    }
-
-    @include for-wide-layout {
-        @include layoutGTC($break-wide);
-    }
-}
-
-@media (max-width: $break-narrow) {
-
-}
-
-@media (min-width: $break-normal) {
-}
-
-@media (min-width: $break-wide) {
+    min-height: 100vh;
 }

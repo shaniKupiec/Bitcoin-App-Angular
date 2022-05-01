@@ -14,14 +14,17 @@ export class HomePageComponent implements OnInit {
     private userService: UserService,
     private bitcoinService: BitcoinService
   ) {}
+  loggedInUser!: User;
   loggedInUser$!: Observable<User>;
   rate: any;
 
   ngOnInit(): void {
     this.userService.getLoggedInUser();
-    this.loggedInUser$ = this.userService.loggedInUser$;
+    this.userService.loggedInUser$.subscribe(data =>{
+      this.loggedInUser = data
+    });
+
     this.bitcoinService.getRate().subscribe((res) => {
-      console.log('res', res);
       this.rate = res;
     });
   }

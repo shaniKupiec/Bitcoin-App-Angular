@@ -9,14 +9,17 @@ import { ContactDetailsPageComponent } from './pages/contact-details-page/contac
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
 import { AppComponent } from './cmp/app-root/app.component';
-import { ContactPreviewComponent } from './cmp/contact-preview/contact-preview.component';
-import { ContactListComponent } from './cmp/contact-list/contact-list.component';
-import { ContactFilterComponent } from './cmp/contact-filter/contact-filter.component';
+import { ContactPreviewComponent } from './cmp/contact/contact-preview/contact-preview.component';
+import { ContactListComponent } from './cmp/contact/contact-list/contact-list.component';
+import { ContactFilterComponent } from './cmp/contact/contact-filter/contact-filter.component';
 import { CartComponent } from './cmp/cart/cart.component';
 import { AppHeaderComponent } from './cmp/app-header/app-header.component';
 import { SideNavComponent } from './cmp/side-nav/side-nav.component';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
-import { TransferFundComponent } from './cmp/transfer-fund/transfer-fund.component';
+import { TransferFundComponent } from './cmp/contact/transfer-fund/transfer-fund.component';
+import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
+import { TransactionListComponent } from './cmp/transactions/transaction-list/transaction-list.component';
+import { TransactionPreviewComponent } from './cmp/transactions/transaction-preview/transaction-preview.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { TransferFundComponent } from './cmp/transfer-fund/transfer-fund.compone
     SideNavComponent,
     ContactEditComponent,
     TransferFundComponent,
+    TransactionsPageComponent,
+    TransactionListComponent,
+    TransactionPreviewComponent,
   ],
   imports: [
     BrowserModule,

@@ -29,7 +29,6 @@ export class ContactDetailsPageComponent implements OnInit {
 
   onDelete(): void {
     this.contactService.deleteContact(this.contact._id);
-
     this.onBack();
   }
 }

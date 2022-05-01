@@ -1,4 +1,6 @@
 <!-- {{ loggedInUser$ | json }} -->
-<div>{{ (loggedInUser$ | async)?.name }}</div>
-<div>{{ (loggedInUser$ | async)?.coins }} coins</div>
+<div>{{ loggedInUser.name }}</div>
+<div>{{ loggedInUser.coins }} coins</div>
 <div>{{ rate }} </div>
+
+<div>moves: {{ (loggedInUser$ | async)?.moves }}</div>

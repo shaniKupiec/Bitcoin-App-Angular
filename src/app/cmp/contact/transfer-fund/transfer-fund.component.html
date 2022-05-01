@@ -1,0 +1,9 @@
+<section>
+  <input
+    type="number"
+    min="0"
+    max="{loggedInUser.coins}"
+    [(ngModel)]="amount"
+  />
+  <button (click)="transfer()">send</button>
+</section>

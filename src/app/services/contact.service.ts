@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { ContactFilter } from '../models/contact-filter.model';
 import { Contact } from '../models/contact.model';
+import { HttpClient } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 
 const CONTACTS = [
   {
@@ -121,46 +123,43 @@ const CONTACTS = [
   },
 ];
 
+const dev = true;
+const BASE_URL = dev ? 'http://localhost:3030/api/contact/' : 'api/contact';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ContactService {
   //mock the server
   private _contactsDb: Contact[] = CONTACTS;
-  // filterBy!: ContactFilter
+  // filterBy!: ContactFilter;
 
   private _contacts$ = new BehaviorSubject<Contact[]>([]);
   public contacts$ = this._contacts$.asObservable();
 
-  private _contactFilter$ = new BehaviorSubject<ContactFilter>({term: ''});
+  private _contactFilter$ = new BehaviorSubject<ContactFilter>({ term: '' });
   public contactFilter$ = this._contactFilter$.asObservable();
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  public query(filterBy: ContactFilter | null = null): void {
-    let contacts = this._contactsDb;
-    if (filterBy && filterBy?.term) {
-      contacts = this._filter(contacts, filterBy?.term);
-    }
-    this._contacts$.next(this._sort(contacts));
+  public async query() {
+    const filterBy: ContactFilter = this._contactFilter$.getValue();
+    const options = filterBy.term
+      ? { params: new HttpParams().set('term', filterBy.term) }
+      : {};
+    const contacts = await this.http
+      .get<Contact[]>(BASE_URL, options)
+      .toPromise();
+    this._contacts$.next(contacts);
   }
 
   public getContactById(id: string): Observable<Contact> {
-    //mock the server work
-    const contact = this._contactsDb.find((contact) => contact._id === id);
-
-    //return an observable
-    return contact
-      ? of(contact)
-      : Observable.throw(`Contact id ${id} not found!`);
+    return this.http.get<Contact>(BASE_URL + id);
   }
 
-  public deleteContact(id: string | undefined) {
-    //mock the server work
-    this._contactsDb = this._contactsDb.filter((contact) => contact._id !== id);
-
-    // change the observable data in the service - let all the subscribers know
-    this._contacts$.next(this._contactsDb);
+  public async deleteContact(id: string | undefined) {
+    await this.http.delete(BASE_URL + id).toPromise();
+    this.query();
   }
 
   public saveContact(contact: Contact) {
@@ -169,55 +168,26 @@ export class ContactService {
       : this._addContact(contact);
   }
 
-  private _updateContact(contact: Contact) {
-    //mock the server work
-    this._contactsDb = this._contactsDb.map((c) =>
-      contact._id === c._id ? contact : c
-    );
-    // change the observable data in the service - let all the subscribers know
-    this._contacts$.next(this._sort(this._contactsDb));
+  public setFilterBy(filterBy: ContactFilter) {
+    this._contactFilter$.next({ ...filterBy });
+    this.query();
   }
 
-  private _addContact(contact: Contact) {
-    //mock the server work
-    const newContact = new Contact(contact.name, contact.email, contact.phone);
-    if (newContact.setId) newContact.setId(this._makeId());
-    this._contactsDb.push(newContact);
-    this._contacts$.next(this._sort(this._contactsDb));
+  public getEmptyContact() {
+    return {
+      name: '',
+      email: '',
+      phone: '',
+    };
   }
 
-  private _sort(contacts: Contact[]): Contact[] {
-    return contacts.sort((a, b) => {
-      if (a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()) {
-        return -1;
-      }
-      if (a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()) {
-        return 1;
-      }
-
-      return 0;
-    });
+  private async _updateContact(contact: Contact) {
+    await this.http.put<Contact>(BASE_URL + contact._id, contact).toPromise();
+    this.query();
   }
 
-  private _makeId(): string {
-    var text = '';
-    var possible =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for (var i = 0; i < length; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
-  }
-
-  private _filter(contacts: Contact[], term: string): Contact[] {
-    term = term.toLocaleLowerCase();
-    return contacts.filter((contact) => {
-      return (
-        contact.name.toLocaleLowerCase().includes(term) ||
-        contact.phone.toLocaleLowerCase().includes(term) ||
-        contact.email.toLocaleLowerCase().includes(term)
-      );
-    });
+  private async _addContact(contact: Contact) {
+    await this.http.post<Contact>(BASE_URL, contact).toPromise();
+    this.query();
   }
 }

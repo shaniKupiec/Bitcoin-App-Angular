@@ -1,0 +1,15 @@
+<section>
+  <section class="head">
+    <div>
+      <span> {{ count }} </span>
+      Transactions
+    </div>
+    <button>Export History</button>
+    <div>
+      <button>All</button>
+      <button>Sent</button>
+      <button>Recent</button>
+    </div>
+  </section>
+  <transaction-list [moves]="moves"></transaction-list>
+</section>

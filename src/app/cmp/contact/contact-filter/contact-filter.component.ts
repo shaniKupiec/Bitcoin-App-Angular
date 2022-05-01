@@ -19,6 +19,6 @@ export class ContactFilterComponent implements OnInit {
   }
 
   onChangeFilter() {
-    this.contactService.query(this.filterBy);
+    this.contactService.setFilterBy(this.filterBy)
   }
 }

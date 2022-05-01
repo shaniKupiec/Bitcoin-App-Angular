@@ -7,6 +7,7 @@ import { StatisticPageComponent } from './pages/statistic-page/statistic-page.co
 import { ContactDetailsPageComponent } from './pages/contact-details-page/contact-details-page.component';
 import { ContactResolverService } from './services/contact-resolver.service';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
+import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactPageComponent,
+  },
+  {
+    path: 'trans',
+    component: TransactionsPageComponent,
   },
   {
     path: 'contact/edit/:id',

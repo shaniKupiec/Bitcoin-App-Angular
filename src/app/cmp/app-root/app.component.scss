@@ -1,13 +1,12 @@
 @import "../../../assets/styles/functions";
+@import "../../../assets/styles/variables";
 
-.app-header-cmp{
-    width: 100%;
+.left {
+    width: rem(90px);
+    background-color: $sClr1;
 }
 
-.side-nav-cmp {
-    width: rem(43px);
-}
-
-.main-page {
-    width: calc(100% - rem(43px));
+.right {
+    width: calc(100% - rem(90px));
+    padding: $layoutPadding;
 }

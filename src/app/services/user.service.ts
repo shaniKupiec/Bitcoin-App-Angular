@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { Contact } from '../models/contact.model';
+import { Move } from '../models/move.model';
 import { User } from '../models/user.model';
-// import storageService from './s'
 
 const USERS = [
   {
@@ -46,9 +46,6 @@ export class UserService {
 
     const idx = this._usersDb.findIndex((u) => u.name === this._loggedInUser.name);
     this._usersDb[idx] = this._loggedInUser;
-
-    // storageService.saveToStorage(USER_KEY, this._usersDb)
-    // storageService.saveToStorage(LOGGEDIN_USER_KEY, this._loggedInUser)
   }
 
 }

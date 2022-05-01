@@ -18,8 +18,8 @@ export class ContactEditComponent implements OnInit {
   contact!: Contact;
 
   ngOnInit(): void {
-    this.route.data.subscribe((data) => {
-      this.contact = data['contact'];
+    this.route.data.subscribe(({ contact }) => {
+      this.contact = contact;
     });
   }
 
