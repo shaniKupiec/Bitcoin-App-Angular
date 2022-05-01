@@ -1,0 +1,30 @@
+@import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/functions";
+
+.trans {
+    @include flex(column, center, stretch);
+    gap: 10px;
+    padding: 10px;
+    input {
+        @include input();
+        background-color: $pClr2;
+        width: 70%;
+        margin: 0 auto;
+        background-color: $sClr3;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+
+    button {
+        @include btn();
+    }
+
+    span {
+        font-size: rem(14px);
+    }
+}

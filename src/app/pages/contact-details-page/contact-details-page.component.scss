@@ -1,3 +1,63 @@
-img{
-    width: 200px;
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+.details-cmp {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .contact {
+        @include flex(column);
+        padding: 40px;
+        gap: 20px;
+        width: fit-content;
+        height: fit-content;
+        background-color: $sClr2;
+
+        &__actions {
+            @include flex(row, space-between);
+            width: 100%;
+            cursor: pointer;
+        }
+
+        &__info {
+            @include flex();
+            gap: 60px;
+
+            &__img {
+                width: 200px;
+            }
+
+            .details {
+                @include flex(column, space-evenly, flex-start);
+                font-size: rem(20px);
+                height: 100%;
+
+                .details__icon {
+                    // color: $hoverClr;
+                    position: absolute;
+                    left: -40px;
+                    top: 3px;
+                    cursor: pointer;
+                }
+
+                .details__name,
+                .details__email,
+                .details__phone {
+                    position: relative;
+                }
+            }
+        }
+    }
+
+    .transfer-cmp {
+        background-color: $sClr2;
+        width: 200px;
+        height: 322px;
+    }
+
+    .more2 {
+        background-color: $sClr2;
+        width: 737px;
+        height: 200px;
+    }
 }

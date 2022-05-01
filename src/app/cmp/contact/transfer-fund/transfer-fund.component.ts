@@ -7,32 +7,30 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'transfer-fund',
   templateUrl: './transfer-fund.component.html',
-  styleUrls: ['./transfer-fund.component.scss']
+  styleUrls: ['./transfer-fund.component.scss'],
 })
 export class TransferFundComponent implements OnInit {
-
   constructor(private userService: UserService) {}
-  @Input() contact!: Contact
+  @Input() contact!: Contact;
   loggedInUser!: User;
   loggedInUser$!: Observable<User>;
-  amount: number = 0
-  showMsg: boolean = false;
-
+  amount: number = 0;
+  transMsg: boolean = false;
+  amountMsg: boolean = false;
 
   ngOnInit(): void {
     this.userService.getLoggedInUser();
-    this.userService.loggedInUser$.subscribe(data =>{
-      this.loggedInUser = data
+    this.userService.loggedInUser$.subscribe((data) => {
+      this.loggedInUser = data;
     });
   }
 
-  transfer(){
-    this.userService.transfer(this.contact, this.amount)
-    this.amount = 0
-    this.showMsg = true;
+  transfer() {
+    this.userService.transfer(this.contact, this.amount);
+    this.amount = 0;
+    this.transMsg = true;
     setTimeout(() => {
-        this.showMsg = false;
-      }, 3000);
+      this.transMsg = false;
+    }, 3000);
   }
-
 }

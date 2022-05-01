@@ -1,15 +1,35 @@
-<section>
-  <img
-    src="https://robohash.org/set_set5/{{ contact._id }}.png"
-    class="contact__img"
-    alt=""
-  />
-  <section class="contact__info">
-    {{ contact.name }}
+<section class="details-cmp">
+  <section class="contact">
+    <div class="contact__actions">
+      <i class="fa-solid fa-arrow-left" title="Back" (click)="onBack()"></i>
+      <a [routerLink]="['/contact', 'edit', contact._id]">
+        <i class="fa-regular fa-pen-to-square" title="Edit"></i>
+      </a>
+      <!-- <button (click)="onDelete()">Delete</button> -->
+    </div>
+    <section class="contact__info">
+      <img
+        src="https://robohash.org/set_set5/{{ contact._id }}.png"
+        class="contact__info__img"
+        alt=""
+      />
+      <section class="details">
+        <div class="details__name">
+          <i class="fa-solid fa-id-card details__icon"></i>
+          {{ contact.name }}
+        </div>
+        <div class="details__email">
+          <i class="fa-solid fa-envelope details__icon"></i>
+          {{ contact.email }}
+        </div>
+        <div class="details__phone">
+          <i class="fa-solid fa-phone details__icon"></i>
+          {{ contact.phone }}
+        </div>
+      </section>
+    </section>
   </section>
-  <a [routerLink]="['/contact', 'edit', contact._id]" class="contact"> edit</a>
-  <button (click)="onBack()">Back</button>
-  <button (click)="onDelete()">Delete</button>
-
-  <transfer-fund [contact]="contact"></transfer-fund>
+  
+  <transfer-fund [contact]="contact" class="transfer-cmp"></transfer-fund>
+  <section class="more2">More info</section>
 </section>

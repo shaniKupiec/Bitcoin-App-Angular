@@ -22,3 +22,15 @@
         color: $sClr1;
     }
 }
+
+@mixin btn($bgColor: $pClr3) {
+    background-color: $bgColor;
+    border: 0;
+    padding: 5px;
+
+    &.disable{
+        cursor: not-allowed;
+        background-color: lighten($bgColor, 5%);
+    }
+    
+}
