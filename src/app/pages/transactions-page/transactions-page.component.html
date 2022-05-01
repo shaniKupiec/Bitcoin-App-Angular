@@ -1,15 +1,15 @@
-<section>
-  <section class="head">
-    <div>
-      <span> {{ count }} </span>
+<section class="trans">
+  <section class="trans__data">
+    <div class="trans__data__count">
+      <span> {{ loggedInUser.moves.length }} </span>
       Transactions
+      <button>Export History</button>
     </div>
-    <button>Export History</button>
     <div>
-      <button>All</button>
-      <button>Sent</button>
-      <button>Recent</button>
+      <button (click)="setFilterBy('all')">All</button>
+      <button (click)="setFilterBy('sent')">Sent</button>
+      <button (click)="setFilterBy('recent')">Recent</button>
     </div>
   </section>
-  <transaction-list [moves]="moves"></transaction-list>
+  <transaction-list [moves]="movesToDisplay"></transaction-list>
 </section>

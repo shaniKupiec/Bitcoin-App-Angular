@@ -1,0 +1,20 @@
+@import "../../../assets/styles/mixins";
+@import "../../../assets/styles/functions";
+
+.trans {
+    &__data {
+        @include flex(row, space-between);
+
+        &__count {
+            @include flex;
+            gap: 5px;
+            span {
+                font-size: rem(50px);
+            }
+
+            button{
+                margin-inline-start: 20px;
+            }
+        }
+    }
+}

@@ -5,25 +5,28 @@
 nav {
     @include flex(column, center, start);
     font-size: rem(15px);
-    padding: $layoutPadding 0;
-    
+    padding: $layoutPadding*2 0;
+
     a {
         height: 60px;
         width: 100%;
         @include flex;
-        color: $sClr2;
-        
+        color: $sClr3;
+
         &.active {
-            background-color: $sClr2;
+            background-color: $sClr3;
             color: $pClr1;
             &.logo {
-                background-color: $sClr1
+                background-color: $sClr1;
             }
         }
-        
+
         &.logo {
-            color: $pClr3;
-            font-size: rem(26px);
+            height: auto;
+            margin-bottom: 20px;
+            img {
+                width: 26px;
+            }
         }
     }
 }

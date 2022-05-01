@@ -1,0 +1,15 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.contact-filter{
+    display: flex;
+    align-items: center;
+    input{
+        @include input()
+    }
+    img{
+        position: relative;
+        width: 18px;
+        left: -28px;
+    }
+}

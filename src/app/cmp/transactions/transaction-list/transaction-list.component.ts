@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Move } from 'src/app/models/move.model';
 
 @Component({
   selector: 'transaction-list',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TransactionListComponent implements OnInit {
 
   constructor() { }
-  @Input() moves!: any
+  @Input() moves!: Move[]
 
   ngOnInit(): void {
   }

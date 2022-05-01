@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Move } from 'src/app/models/move.model';
 
 @Component({
   selector: 'transaction-preview',
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class TransactionPreviewComponent implements OnInit {
 
   constructor() { }
-
+  @Input() move!: Move
+  
   ngOnInit(): void {
   }
 

@@ -1,5 +1,8 @@
 <!-- {{ contacts$ | json }} -->
-<contact-filter></contact-filter>
+<div class="">
+  <contact-filter></contact-filter>
+  <a [routerLink]="['/contact', 'edit']">
+    <i class="fa-regular fa-plus"></i>
+  </a>
+</div>
 <contact-list [contacts]="contacts"></contact-list>
-
-<a [routerLink]="['/contact', 'edit']"> add contact </a>

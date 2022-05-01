@@ -1,6 +1,8 @@
 export interface Move {
-  toId: string;
-  to: string;
-  at: Date;
+  id: string;
+  contactId: string | undefined;
+  contactName: string;
+  at: any;
   amount: Number;
+  isToContact: boolean;
 }

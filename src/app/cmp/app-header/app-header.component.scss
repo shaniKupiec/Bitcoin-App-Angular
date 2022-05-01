@@ -25,6 +25,7 @@ header {
     }
 
     .filter {
+        @include input()
     }
 
     .user {

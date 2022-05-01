@@ -1,1 +1,7 @@
-<p>transaction-list works!</p>
+<ul class="trans-list">
+    <transaction-preview
+      *ngFor="let move of moves"
+      key="move.id"
+      [move]="move"
+    ></transaction-preview>
+  </ul>

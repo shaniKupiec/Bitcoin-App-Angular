@@ -6,4 +6,5 @@
     [(ngModel)]="amount"
   />
   <button (click)="transfer()">send</button>
+  <a [routerLink]="['/trans']" *ngIf="showMsg">Check Transfer</a>
 </section>

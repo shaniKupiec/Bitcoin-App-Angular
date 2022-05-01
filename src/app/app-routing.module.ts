@@ -41,54 +41,12 @@ const routes: Routes = [
     component: ContactDetailsPageComponent,
     resolve: { contact: ContactResolverService },
   },
-
-  // {
-  //   path: 'contact',
-  //   component: ContactPageComponent,
-  //   children: [
-  //     {
-  //       path: ':id',
-  //       component: ContactDetailsPageComponent,
-  //       resolve: { contact: ContactResolverService },
-  //     },
-  //     {
-  //       path: 'edit/:id',
-  //       component: ContactEditComponent,
-  //       // resolve: { contact: ContactResolverService },
-  //     },
-  //     {
-  //       path: 'edit',
-  //       component: ContactEditComponent,
-  //       // resolve: { contact: ContactResolverService },
-  //     },
-  //   ],
-  // },
-
-  // {
-  //   path: 'contact/:id',
-  //   component: ContactDetailsPageComponent,
-  //   resolve: { contact: ContactResolverService },
-  // },
-  // {
-  //   path: '',
-  //   component: ContactPageComponent,
-  //   children: [
-  //     {
-  //       path: 'edit/:id',
-  //       component: ContactEditComponent,
-  //       // resolve: { contact: ContactResolverService },
-  //     },
-  //     {
-  //       path: 'edit',
-  //       component: ContactEditComponent,
-  //       // resolve: { contact: ContactResolverService },
-  //     },
-  //   ],
-  // },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [
+    RouterModule.forRoot(routes, { useHash: true , enableTracing: true}),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

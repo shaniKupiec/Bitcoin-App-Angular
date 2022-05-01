@@ -16,6 +16,7 @@ export class TransferFundComponent implements OnInit {
   loggedInUser!: User;
   loggedInUser$!: Observable<User>;
   amount: number = 0
+  showMsg: boolean = false;
 
 
   ngOnInit(): void {
@@ -28,6 +29,10 @@ export class TransferFundComponent implements OnInit {
   transfer(){
     this.userService.transfer(this.contact, this.amount)
     this.amount = 0
+    this.showMsg = true;
+    setTimeout(() => {
+        this.showMsg = false;
+      }, 3000);
   }
 
 }

@@ -7,3 +7,18 @@
     align-items: $align;
 }
 
+@mixin input {
+    height: 35px;
+    width: 245px;
+    padding-inline-start: 10px;
+    background-color: $sClr2;
+    border: 0;
+    &:focus-visible {
+        outline: none;
+        background-color: $sClr3;
+    }
+
+    &::placeholder {
+        color: $sClr1;
+    }
+}

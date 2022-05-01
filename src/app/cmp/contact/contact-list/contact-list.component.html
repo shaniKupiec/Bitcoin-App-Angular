@@ -1,6 +1,7 @@
 <ul class="contact-list">
   <contact-preview
     *ngFor="let contact of contacts"
+    key="contact._id"
     [contact]="contact"
   ></contact-preview>
 </ul>
