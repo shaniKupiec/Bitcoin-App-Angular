@@ -1,5 +1,6 @@
 @import "../../../assets/styles/mixins";
 @import "../../../assets/styles/functions";
+@import "../../../assets/styles/variables";
 
 .trans {
     &__data {
@@ -12,8 +13,30 @@
                 font-size: rem(50px);
             }
 
-            button{
+            button {
                 margin-inline-start: 20px;
+                @include btn($sClr1);
+            }
+        }
+
+        &__filter {
+            @include flex();
+            li {
+                margin-inline-end: 10px;
+                color: $sClr1;
+                cursor: pointer;
+                
+                &:last-child {
+                    margin: 0;
+                }
+                
+                &:hover{
+                    color: $sClr3;
+                }
+
+                &.active {
+                    color: $pClr1;
+                }
             }
         }
     }

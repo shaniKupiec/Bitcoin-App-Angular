@@ -5,11 +5,11 @@
       Transactions
       <button>Export History</button>
     </div>
-    <div>
-      <button (click)="setFilterBy('all')">All</button>
-      <button (click)="setFilterBy('sent')">Sent</button>
-      <button (click)="setFilterBy('recent')">Recent</button>
-    </div>
+    <ul class="trans__data__filter">
+      <li [class.active]="this.filterBy === 'all'" (click)="this.filterBy = 'all'">All</li>
+      <li [class.active]="this.filterBy === 'sent'" (click)="this.filterBy = 'sent'">Sent</li>
+      <li [class.active]="this.filterBy === 'recent'" (click)="this.filterBy = 'recent'">Recent</li>
+    </ul>
   </section>
   <transaction-list [moves]="movesToDisplay"></transaction-list>
 </section>

@@ -11,9 +11,7 @@ export class ContactResolverService implements Resolve<Promise<Contact>> {
 
   async resolve(router: ActivatedRouteSnapshot) {
     const { id } = router.params;
-    if (id) {
-      return await this.contactService.getContactById(id).toPromise();
-    }
-    return this.contactService.getEmptyContact() as Contact;
+    const contact =  await this.contactService.getContactById(id).toPromise();
+    return contact
   }
 }

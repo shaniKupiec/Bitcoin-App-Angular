@@ -19,7 +19,7 @@ export class ContactEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe(({ contact }) => {
-      this.contact = contact;
+      this.contact = contact.id ? contact : this.contactService.getEmptyContact() as Contact;
     });
   }
 

@@ -25,10 +25,12 @@
     }
 }
 
-@mixin btn($bgColor: $pClr3) {
+@mixin btn($bgColor: $pClr3, $txtColor: $pClr1) {
     background-color: $bgColor;
     border: 0;
-    padding: 5px;
+    padding: 10px 15px;
+    color: $txtColor;
+    font-weight: bold;
 
     &.disable{
         cursor: not-allowed;

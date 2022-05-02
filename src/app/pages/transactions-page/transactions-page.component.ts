@@ -24,10 +24,6 @@ export class TransactionsPageComponent implements OnInit {
     });
   }
 
-  setFilterBy(filterBy: string) {
-    this.filterBy = filterBy;
-  }
-
   get movesToDisplay(): Move[] {
     if (this.filterBy === 'all') {
       return this.loggedInUser.moves;
