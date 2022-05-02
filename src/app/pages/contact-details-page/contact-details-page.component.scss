@@ -1,16 +1,29 @@
 @import "../../../assets/styles/variables";
 @import "../../../assets/styles/mixins";
 .details-cmp {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    // display: flex;
+    // flex-wrap: wrap;
+    // gap: 10px;
+
+    grid-template-areas:
+        "a a b"
+        "a a b"
+        "c c c";
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px 10px;
+    min-height: 80vh;
 
     .contact {
+        grid-area: a;
+        width: 100%;
+        height: 100%;
+
         @include flex(column);
         padding: 40px;
         gap: 20px;
-        width: fit-content;
-        height: fit-content;
         background-color: $sClr2;
 
         &__actions {
@@ -49,15 +62,21 @@
         }
     }
 
-    .transfer-cmp {
+    .transfer-fund {
+        grid-area: b;
+        width: 100%;
+        height: 100%;
+
         background-color: $sClr2;
-        width: 200px;
-        height: 322px;
     }
 
-    .more2 {
+    .transfer-history {
+        grid-area: c;
+        width: 100%;
+        height: 100%;
+
         background-color: $sClr2;
-        width: 737px;
-        height: 200px;
+        height: 227px;
+        overflow-y: auto;
     }
 }

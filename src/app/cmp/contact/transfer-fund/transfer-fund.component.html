@@ -5,7 +5,12 @@
     max="{loggedInUser.coins}"
     [(ngModel)]="amount"
   />
-  <button (click)="transfer()" [class.disable]="this.amount > this.loggedInUser.coins || this.amount <= 0">Transfer</button>
+  <button
+    (click)="transfer()"
+    [class.disable]="this.amount > loggedInUser.coins || this.amount <= 0"
+  >
+    Transfer
+  </button>
   <span>max coins available to transfer: {{ loggedInUser.coins }}</span>
   <a [routerLink]="['/trans']" *ngIf="transMsg">Check Transfer</a>
 </section>

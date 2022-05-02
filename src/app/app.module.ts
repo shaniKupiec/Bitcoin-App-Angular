@@ -20,6 +20,7 @@ import { TransferFundComponent } from './cmp/contact/transfer-fund/transfer-fund
 import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
 import { TransactionListComponent } from './cmp/transactions/transaction-list/transaction-list.component';
 import { TransactionPreviewComponent } from './cmp/transactions/transaction-preview/transaction-preview.component';
+import { TransferHistoryComponent } from './cmp/contact/transfer-history/transfer-history.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TransactionPreviewComponent } from './cmp/transactions/transaction-prev
     TransactionsPageComponent,
     TransactionListComponent,
     TransactionPreviewComponent,
+    TransferHistoryComponent,
   ],
   imports: [
     BrowserModule,

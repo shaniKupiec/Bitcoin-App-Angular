@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Contact } from 'src/app/models/contact.model';
 import { User } from 'src/app/models/user.model';
@@ -12,21 +12,17 @@ import { UserService } from 'src/app/services/user.service';
 export class TransferFundComponent implements OnInit {
   constructor(private userService: UserService) {}
   @Input() contact!: Contact;
-  loggedInUser!: User;
-  loggedInUser$!: Observable<User>;
+  @Input() loggedInUser!: User;
+  @Output() onTransfer = new EventEmitter<number>()
   amount: number = 0;
   transMsg: boolean = false;
   amountMsg: boolean = false;
 
   ngOnInit(): void {
-    this.userService.getLoggedInUser();
-    this.userService.loggedInUser$.subscribe((data) => {
-      this.loggedInUser = data;
-    });
   }
 
   transfer() {
-    this.userService.transfer(this.contact, this.amount);
+    this.onTransfer.emit(this.amount)
     this.amount = 0;
     this.transMsg = true;
     setTimeout(() => {

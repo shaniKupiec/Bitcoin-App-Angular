@@ -3,14 +3,14 @@
 @import "../../../assets/styles/variables";
 
 nav {
-    @include flex(column, center, start);
+    @include flex(column, center, flex-start);
     font-size: rem(15px);
     padding: $layoutPadding*2 0;
 
     a {
         height: 60px;
         width: 100%;
-        @include flex;
+        @include flex();
         color: $sClr3;
 
         &.active {
