@@ -8,11 +8,16 @@ import { ContactDetailsPageComponent } from './pages/contact-details-page/contac
 import { ContactResolverService } from './services/contact-resolver.service';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomePageComponent,
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
   },
   {
     path: 'chart',

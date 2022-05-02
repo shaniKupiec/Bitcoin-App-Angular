@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { User } from 'src/app/models/user.model';
-import { BitcoinService } from 'src/app/services/bitcoin.service';
-import { UserService } from 'src/app/services/user.service';
+import { AnimationItem } from 'lottie-web';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'home-page',
@@ -10,22 +8,11 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  constructor(
-    private userService: UserService,
-    private bitcoinService: BitcoinService
-  ) {}
-  loggedInUser!: User;
-  loggedInUser$!: Observable<User>;
-  rate: any;
+  constructor() {}
 
-  ngOnInit(): void {
-    this.userService.getLoggedInUser();
-    this.userService.loggedInUser$.subscribe(data =>{
-      this.loggedInUser = data
-    });
+  ngOnInit(): void {}
 
-    this.bitcoinService.getRate().subscribe((res) => {
-      this.rate = res;
-    });
-  }
+  options: AnimationOptions = {
+    path: '../../../assets/animations/ani1.json',
+  };
 }

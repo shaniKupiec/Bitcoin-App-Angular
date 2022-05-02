@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { ContactFilter } from '../models/contact-filter.model';
 import { Contact } from '../models/contact.model';
@@ -124,6 +124,8 @@ const CONTACTS = [
 ];
 
 const dev = true;
+// console.log('isDevMode',isDevMode)
+
 const BASE_URL = dev ? 'http://localhost:3030/api/contact/' : 'api/contact';
 
 @Injectable({
@@ -154,7 +156,7 @@ export class ContactService {
   }
 
   public getContactById(id: string): Observable<Contact> {
-    return this.http.get<Contact>(BASE_URL + id);
+    return this.http.get<Contact>(`${BASE_URL}/${id}`);
   }
 
   public async deleteContact(id: string | undefined) {

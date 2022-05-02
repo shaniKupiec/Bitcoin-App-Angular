@@ -15,14 +15,17 @@ export class AppHeaderComponent implements OnInit {
     this.router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationEnd) {
         switch (routerEvent.url.split('/')[1]) {
-          case 'trans':
-            this.currentCmpName = 'Transactions';
+          case '':
+            this.currentCmpName = 'Home';
             break;
-          case 'home':
+          case 'dashboard':
             this.currentCmpName = 'Dashboard';
             break;
           case 'contact':
             this.currentCmpName = 'My Contacts';
+            break;
+          case 'trans':
+            this.currentCmpName = 'Transactions';
             break;
           default:
             this.currentCmpName = 'Unknown';
