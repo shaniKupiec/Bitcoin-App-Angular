@@ -1,11 +1,45 @@
-<form (ngSubmit)="onSubmit()">
-    <input [(ngModel)]="contact.name" type="text" id="name" name="name">
-    <input [(ngModel)]="contact.email" type="email" id="email" name="email">
-    <input [(ngModel)]="contact.phone" type="tel" id="phone" name="phone">
+<section class="edit-cmp">
+  <div class="edit-cmp__btns">
+    <i
+      class="fa-solid fa-arrow-left"
+      title="Back"
+      (click)="onBack()"
+    ></i>
+    <i
+      *ngIf="contact._id"
+      class="fa-solid fa-trash"
+      title="Remove"
+      (click)="onDelete()"
+    ></i>
+  </div>
+  <section class="contact-det">
+    <img
+      src="https://robohash.org/set_set5/{{ contact._id }}.png"
+      alt=""
+      class="contact-det__img"
+    />
+    <form class="edit" (ngSubmit)="onSubmit()">
+      <span class="edit__row">
+        <label htmlFor="name">Name:</label>
+        <input [(ngModel)]="contact.name" type="text" id="name" name="name" />
+      </span>
 
-    <button>SAVE</button>
+      <span class="edit__row">
+        <label htmlFor="email">Email:</label>
+        <input
+          [(ngModel)]="contact.email"
+          type="email"
+          id="email"
+          name="email"
+        />
+      </span>
 
-</form>
+      <span class="edit__row">
+        <label htmlFor="phone">Phone:</label>
+        <input [(ngModel)]="contact.phone" type="tel" id="phone" name="phone" />
+      </span>
 
-<button (click)="onBack()">Back</button>
-<button (click)="onDelete()">Delete</button>
+      <button class="edit__save">Save</button>
+    </form>
+  </section>
+</section>

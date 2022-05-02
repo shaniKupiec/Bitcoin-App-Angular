@@ -13,6 +13,8 @@
     padding-inline-start: 10px;
     background-color: $sClr2;
     border: 0;
+    box-shadow: 0px 0px 2px 1px $sClr1;
+    
     &:focus-visible {
         outline: none;
         background-color: $sClr3;

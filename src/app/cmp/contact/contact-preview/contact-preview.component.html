@@ -1,14 +1,14 @@
 <li>
   <a [routerLink]="[contact._id]" class="contact">
     <img
-    src="https://robohash.org/set_set5/{{contact._id}}.png"
+      src="https://robohash.org/set_set5/{{ contact._id }}.png"
       class="contact__img"
       alt=""
     />
 
     <section class="contact__info">
-      {{ contact.name }}
+      <span>{{ contact.name }}</span>
+      <span class="phone">{{ contact.phone }}</span>
     </section>
   </a>
 </li>
-

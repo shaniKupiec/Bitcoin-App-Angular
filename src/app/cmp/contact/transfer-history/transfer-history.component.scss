@@ -5,11 +5,11 @@
 .details {
     @include flex(row, space-between);
     padding: 20px;
-    background-color: $sClr3;
+
 
     &__left {
         @include flex();
-        gap: rem(80px);
+        gap: rem(160px);
         &__left {
             @include flex();
             gap: rem(40px);

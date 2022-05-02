@@ -3,10 +3,12 @@
 
 .over-contacts {
     @include flex(row, space-between);
+    padding: 20px;
     i {
         font-size: 30px;
         padding: 2px 9px;
         border: 1px solid $sClr2;
         color: $sClr2;
+        padding-bottom: 5px;
     }
 }

@@ -50,17 +50,17 @@ input {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  // background: $pClr2;
+  background: lighten($sClr1, 10%);
   border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  // background: darken($clr2, 20%);
+  background: lighten($sClr2, 10%);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  // background: $clr2;
+  background: $pClr3;
 }
