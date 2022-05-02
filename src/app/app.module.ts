@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
+import { NgChartsModule } from 'ng2-charts';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ContactDetailsPageComponent } from './pages/contact-details-page/contact-details-page.component';
@@ -56,6 +57,7 @@ export function playerFactory() {
     FormsModule,
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory }),
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

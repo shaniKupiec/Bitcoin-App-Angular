@@ -1,5 +1,5 @@
 <section class="details-cmp">
-  <section class="contact">
+  <section class="contact round">
     <div class="contact__actions">
       <i class="fa-solid fa-arrow-left" title="Back" (click)="onBack()"></i>
       <a [routerLink]="['/contact', 'edit', contact._id]">
@@ -31,13 +31,13 @@
   </section>
 
   <transfer-fund
-    class="transfer-fund"
+    class="transfer-fund round"
     [contact]="contact"
     [loggedInUser]="loggedInUser"
     (onTransfer)="onTransfer($event)"
   ></transfer-fund>
 
-  <section class="transfer-history">
+  <section class="transfer-history round">
     <ul>
       <transfer-history
         class="transfer-history__cmp"

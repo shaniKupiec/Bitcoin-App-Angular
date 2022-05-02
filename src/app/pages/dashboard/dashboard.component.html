@@ -1,4 +1,116 @@
 <!-- {{ loggedInUser$ | json }} -->
-<div>{{ loggedInUser.name }}</div>
+<!-- <div>{{ loggedInUser.name }}</div>
 <div>{{ loggedInUser.coins }} coins</div>
-<div>{{ rate }} </div>
+<div>{{ rate }}</div> -->
+
+<section class="dash">
+  <section class="wallet">
+    <div class="wallet__trans">
+      <span>{{ loggedInUser.moves.length }}</span>
+      Transactions
+    </div>
+    <div class="wallet__balance">
+      Current Balance
+      <span>{{ loggedInUser.coins }}</span>
+    </div>
+  </section>
+
+  <section
+    class="coin-data"
+    [class.open]="this.openedRate === 'btc'"
+    (click)="this.onOpenedRate('btc')"
+  >
+    <span class="coin-data__short">btc</span>
+    <img
+      src="https://res.cloudinary.com/trellox/image/upload/v1651511375/simple%20coin/b-coin_hneefw.png"
+      alt=""
+    />
+    <div class="coin-data__bottom">
+      <span class="coin-data__bottom__name">Bitcoin</span>
+      <span class="coin-data__bottom__rate">{{ btcRate }}</span>
+    </div>
+  </section>
+
+  <section
+    class="coin-data"
+    [class.open]="this.openedRate === 'eth'"
+    (click)="this.onOpenedRate('eth')"
+  >
+    <span class="coin-data__short">eth</span>
+    <img
+      src="https://res.cloudinary.com/trellox/image/upload/v1651505774/simple%20coin/e-icon_c8dgvy.png"
+      alt=""
+    />
+    <div class="coin-data__bottom">
+      <span class="coin-data__bottom__name">Ethereum</span>
+      <span class="coin-data__bottom__rate">{{ btcRate }}</span>
+    </div>
+  </section>
+
+  <section
+    class="coin-data"
+    [class.open]="this.openedRate === 'ltc'"
+    (click)="this.onOpenedRate('ltc')"
+  >
+    <span class="coin-data__short">ltc</span>
+    <img
+      src="https://res.cloudinary.com/trellox/image/upload/v1651505774/simple%20coin/l-icon_qppbxk.png"
+      alt=""
+    />
+    <div class="coin-data__bottom">
+      <span class="coin-data__bottom__name">Litecoin</span>
+      <span class="coin-data__bottom__rate">{{ btcRate }}</span>
+    </div>
+  </section>
+
+  <section class="percents">
+    <div class="canvas-container">
+      <canvas baseChart [data]="pieChartData" [type]="pieChartType"> </canvas>
+    </div>
+    <ul class="percents__list">
+      <li class="item">
+        90%
+        <span class="item__name">Bitcoin</span>
+      </li>
+      <li class="item">
+        7%
+        <span class="item__name">Ethereum</span>
+      </li>
+      <li class="item">
+        3%
+        <span class="item__name">Litecoin</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="bitcoin-chart">
+    <canvas
+      baseChart
+      [data]="financialChartData"
+      [options]="financialChartOptions"
+      [type]="financialChartType"
+      [plugins]="financialChartPlugins"
+    >
+    </canvas>
+  </section>
+
+  <!-- <section class="trans">trans</section> -->
+
+  <section class="news"></section>
+  <section class="news"></section>
+  <section class="news"></section>
+  <section class="news"></section>
+  <section class="news"></section>
+
+  <section class="ani">
+    <ng-lottie [options]="options"></ng-lottie>
+  </section>
+</section>
+<!-- <canvas
+  baseChart
+  width="400"
+  height="400"
+  [data]="lineChartData"
+  [type]="lineChartType"
+></canvas> -->
+<!-- [options]="lineChartOptions" -->

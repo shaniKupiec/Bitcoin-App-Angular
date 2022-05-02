@@ -1,5 +1,6 @@
 <section class="trans">
   <input
+    class="round"
     type="number"
     min="0"
     max="{loggedInUser.coins}"
@@ -8,9 +9,11 @@
   <button
     (click)="transfer()"
     [class.disable]="this.amount > loggedInUser.coins || this.amount <= 0"
+    class="round"
   >
     Transfer
   </button>
   <span>max coins available to transfer: {{ loggedInUser.coins }}</span>
   <a [routerLink]="['/trans']" *ngIf="transMsg">Check Transfer</a>
+  <ng-lottie *ngIf="transAni" [options]="options"></ng-lottie>
 </section>

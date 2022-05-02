@@ -1,0 +1,123 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+@import "../../../assets/styles/functions";
+
+.dash {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-auto-rows: 100px;
+    // grid-auto-rows: repeat(auto-fit, minmax(80px, 1fr));
+    grid-auto-flow: dense;
+    gap: 20px;
+    min-height: 80vh;
+    & > * {
+        background-color: $sClr2;
+        padding: 15px;
+        border-radius: 2px;
+    }
+
+    .wallet {
+        grid-row: span 2;
+        grid-column: span 1;
+        font-size: rem(12px);
+        @include flex(column, space-around, center);
+        gap: 10px;
+
+        &__trans {
+            @include flex(column, center, flex-start);
+            color: $sClr1;
+            span {
+                font-size: rem(34px);
+                color: $pClr1;
+            }
+        }
+
+        &__balance {
+            @include flex(column, center, flex-start);
+            color: $sClr3;
+            span {
+                font-size: rem(48px);
+                color: $pClr1;
+            }
+        }
+    }
+
+    .coin-data {
+        @include flex(row, space-between, flex-start);
+        flex-wrap: wrap;
+        cursor: pointer;
+
+        &__short {
+            text-transform: uppercase;
+            font-size: rem(12px);
+            font-weight: bold;
+            color: $sClr3;
+        }
+
+        img {
+            width: 35px;
+        }
+
+        &__bottom {
+            flex-basis: 100%;
+            align-self: flex-end;
+            display: flex;
+            justify-content: space-between;
+            &__rate {
+                display: none;
+            }
+        }
+
+        &.open {
+            background-color: $pClr3;
+            grid-column: span 2;
+            .coin-data__short {
+                color: darken($pClr3, 10%);
+            }
+            .coin-data__bottom {
+                &__rate {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .percents {
+        grid-row: span 3;
+        grid-column: span 4;
+        font-size: rem(24px);
+        @include flex();
+        background-color: $sClr1;
+        .canvas-container {
+            width: 300px;
+        }
+        &__list {
+            @include flex(column, space-around, flex-start);
+            .item {
+                @include flex(row, flex-start, center);
+                gap: 10px;
+                &__name {
+                    font-size: rem(12px);
+                    color: $sClr3;
+                }
+            }
+        }
+    }
+
+    .bitcoin-chart {
+        grid-row: span 3;
+        grid-column: span 7;
+        background-color: $sClr3;
+    }
+
+    .trans {
+        grid-row: span 2;
+        grid-column: span 4;
+    }
+
+    .ani {
+        // grid-row: span 2;
+        // grid-column: span 2;
+        color: #d70fff;
+    }
+}

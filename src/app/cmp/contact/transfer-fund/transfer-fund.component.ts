@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Contact } from 'src/app/models/contact.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'transfer-fund',
@@ -13,20 +14,27 @@ export class TransferFundComponent implements OnInit {
   constructor(private userService: UserService) {}
   @Input() contact!: Contact;
   @Input() loggedInUser!: User;
-  @Output() onTransfer = new EventEmitter<number>()
+  @Output() onTransfer = new EventEmitter<number>();
   amount: number = 0;
   transMsg: boolean = false;
-  amountMsg: boolean = false;
+  transAni: boolean = false;
 
-  ngOnInit(): void {
-  }
+  options: AnimationOptions = {
+    path: '../../../assets/animations/ani5.json',
+  };
+
+  ngOnInit(): void {}
 
   transfer() {
-    this.onTransfer.emit(this.amount)
-    this.amount = 0;
-    this.transMsg = true;
+    this.transAni = true;
     setTimeout(() => {
-      this.transMsg = false;
-    }, 3000);
+      this.onTransfer.emit(this.amount);
+      this.amount = 0;
+      this.transAni = false;
+      this.transMsg = true;
+      setTimeout(() => {
+        this.transMsg = false;
+      }, 3000);
+    }, 6000);
   }
 }

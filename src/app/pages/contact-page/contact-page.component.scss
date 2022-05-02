@@ -3,7 +3,7 @@
 
 .over-contacts {
     @include flex(row, space-between);
-    padding: 20px;
+    padding-bottom: 20px;
     i {
         font-size: 30px;
         padding: 2px 9px;
