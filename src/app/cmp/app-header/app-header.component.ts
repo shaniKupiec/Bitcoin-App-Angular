@@ -27,6 +27,9 @@ export class AppHeaderComponent implements OnInit {
           case 'trans':
             this.currentCmpName = 'Transactions';
             break;
+          case 'rate':
+            this.currentCmpName = 'Rates';
+            break;
           default:
             this.currentCmpName = 'Unknown';
             break;

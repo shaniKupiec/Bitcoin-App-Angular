@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
-import { BitcoinService } from 'src/app/services/bitcoin.service';
+import { CryptoService } from 'src/app/services/crypto.service';
 import { UserService } from 'src/app/services/user.service';
 import { AnimationOptions } from 'ngx-lottie';
 import {
@@ -31,7 +31,7 @@ import {
 export class DashboardComponent implements OnInit {
   constructor(
     private userService: UserService,
-    private bitcoinService: BitcoinService
+    private cryptoService: CryptoService 
   ) {
     Chart.register(
       CandlestickController,
@@ -57,11 +57,11 @@ export class DashboardComponent implements OnInit {
       this.loggedInUser = data;
     });
 
-    this.bitcoinService.getRates().subscribe((res: any) => {
+    this.cryptoService.getRates().subscribe((res: any) => {
       this.rates = res;
     });
 
-    // this.bitcoinService
+    // this.cryptoService
     //   .getMarketPrice(this.currPeriod)
     //   .subscribe((res: any) => {
     //     this.marketPriceData = res;
