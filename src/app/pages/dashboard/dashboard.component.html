@@ -1,8 +1,3 @@
-<!-- {{ loggedInUser$ | json }} -->
-<!-- <div>{{ loggedInUser.name }}</div>
-<div>{{ loggedInUser.coins }} coins</div>
-<div>{{ rate }}</div> -->
-
 <section class="dash">
   <section class="wallet">
     <div class="wallet__trans">
@@ -89,7 +84,6 @@
       [data]="financialChartData"
       [options]="financialChartOptions"
       [type]="financialChartType"
-      [plugins]="financialChartPlugins"
     >
     </canvas>
   </section>
@@ -106,11 +100,3 @@
     <ng-lottie [options]="options"></ng-lottie>
   </section>
 </section>
-<!-- <canvas
-  baseChart
-  width="400"
-  height="400"
-  [data]="lineChartData"
-  [type]="lineChartType"
-></canvas> -->
-<!-- [options]="lineChartOptions" -->

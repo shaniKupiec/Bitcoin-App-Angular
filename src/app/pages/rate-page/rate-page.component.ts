@@ -14,7 +14,7 @@ export class RatePageComponent implements OnInit {
   rates!: any
 
   ngOnInit(): void {
-    this.cryptoService.getRates().subscribe((res: any) => {
+    this.cryptoService.rates().subscribe((res: any) => {
       this.rates = res;
     });
 

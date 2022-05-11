@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { CryptoService } from 'src/app/services/crypto.service';
@@ -57,15 +57,14 @@ export class DashboardComponent implements OnInit {
       this.loggedInUser = data;
     });
 
-    this.cryptoService.getRates().subscribe((res: any) => {
+    this.cryptoService.rates().subscribe((res: any) => {
       this.rates = res;
     });
 
-    // this.cryptoService
-    //   .getMarketPrice(this.currPeriod)
-    //   .subscribe((res: any) => {
-    //     this.marketPriceData = res;
-    //   });
+    this.cryptoService.fullHistoryBTC().subscribe((res: any) => {
+      this.financialChartData.datasets[0].data = res.slice(0, 60)
+      this.chart?.update();
+    });
   }
 
   onOpenedRate(coin: string) {
@@ -88,14 +87,15 @@ export class DashboardComponent implements OnInit {
   public pieChartType: ChartType = 'pie';
 
   //Financial
-  barCount = 60;
-  initialDateStr = '2017-04-01T00:00:00';
+  public financialChartLegend = true;
+  public financialChartType: ChartType = 'candlestick';
 
   public financialChartData: ChartConfiguration['data'] = {
     datasets: [
       {
         label: 'Bitcoin Market Price',
-        data: this.getRandomData(this.initialDateStr, this.barCount),
+        // data: [],
+        data: this.getRandomData('2017-04-01T00:00:00', 60),
         borderColor: '#ffffff',
       },
     ],
@@ -120,10 +120,6 @@ export class DashboardComponent implements OnInit {
       },
     },
   };
-
-  public financialChartLegend = true;
-  public financialChartType: ChartType = 'candlestick';
-  public financialChartPlugins = [];
 
   randomNumber(min: number, max: number): number {
     return Math.random() * (max - min) + min;
@@ -164,9 +160,16 @@ export class DashboardComponent implements OnInit {
         data.push(this.randomBar(date, data[data.length - 1].c));
       }
     }
+    console.log('data',data)
     return data;
   }
+
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+
 }
+
+
+
 // public lineChartData: ChartConfiguration['data'] = {
 //   datasets: [
 //     {
