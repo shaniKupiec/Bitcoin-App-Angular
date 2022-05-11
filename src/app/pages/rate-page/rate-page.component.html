@@ -1,0 +1,11 @@
+<section class="rate-cmp">
+  <p>rate-page works!</p>
+  <canvas *ngIf="BTCHistory"
+    baseChart
+    width="400"
+    height="400"
+    [data]="lineChartData"
+    [options]="lineChartOptions"
+    [type]="lineChartType"
+  ></canvas>
+</section>

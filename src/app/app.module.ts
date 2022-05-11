@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { NgChartsModule } from 'ng2-charts';
+// import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ContactDetailsPageComponent } from './pages/contact-details-page/contact-details-page.component';
@@ -25,6 +26,7 @@ import { TransferFundComponent } from './cmp/contact/transfer-fund/transfer-fund
 import { TransactionListComponent } from './cmp/transactions/transaction-list/transaction-list.component';
 import { TransactionPreviewComponent } from './cmp/transactions/transaction-preview/transaction-preview.component';
 import { TransferHistoryComponent } from './cmp/contact/transfer-history/transfer-history.component';
+import { RatePageComponent } from './pages/rate-page/rate-page.component';
 
 export function playerFactory() {
   return player;
@@ -50,6 +52,7 @@ export function playerFactory() {
     TransactionPreviewComponent,
     TransferHistoryComponent,
     DashboardComponent,
+    RatePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,12 @@ export function playerFactory() {
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory }),
     NgChartsModule,
+    // ServiceWorkerModule.register('ngsw-worker.js', {
+    //   enabled: environment.production,
+    //   // Register the ServiceWorker as soon as the application is stable
+    //   // or after 30 seconds (whichever comes first).
+    //   registrationStrategy: 'registerWhenStable:30000'
+    // }),
   ],
   providers: [],
   bootstrap: [AppComponent],

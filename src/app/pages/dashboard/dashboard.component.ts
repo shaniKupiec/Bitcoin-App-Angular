@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
 
   loggedInUser!: User;
   loggedInUser$!: Observable<User>;
-  btcRate: any;
+  rates = { BTC: 0, ETH: 0, LTC: 0 };
   openedRate: string = 'btc';
   currPeriod: string = 'year';
   marketPriceData!: any;
@@ -57,15 +57,15 @@ export class DashboardComponent implements OnInit {
       this.loggedInUser = data;
     });
 
-    this.bitcoinService.getBtcRate().subscribe((res) => {
-      this.btcRate = res;
+    this.bitcoinService.getRates().subscribe((res: any) => {
+      this.rates = res;
     });
 
-    this.bitcoinService
-      .getMarketPrice(this.currPeriod)
-      .subscribe((res: any) => {
-        this.marketPriceData = res.values;
-      });
+    // this.bitcoinService
+    //   .getMarketPrice(this.currPeriod)
+    //   .subscribe((res: any) => {
+    //     this.marketPriceData = res;
+    //   });
   }
 
   onOpenedRate(coin: string) {

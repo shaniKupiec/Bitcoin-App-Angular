@@ -9,6 +9,7 @@ import { ContactResolverService } from './services/contact-resolver.service';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { RatePageComponent } from './pages/rate-page/rate-page.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'trans',
     component: TransactionsPageComponent,
+  },
+  {
+    path: 'rate',
+    component: RatePageComponent,
   },
   {
     path: 'contact/edit/:id',
