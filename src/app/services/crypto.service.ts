@@ -144,12 +144,11 @@ export class CryptoService {
             return {
               x: d.time * 1000,
               h: d.high,
-              c: d.low,
-              l: d.close,
+              c: d.close,
+              l: d.low,
               o: d.open,
             };
           });
-          console.log('res', res);
           storageService.saveToStorage(FULL_HISTORY_BTC, res);
           return res;
         })

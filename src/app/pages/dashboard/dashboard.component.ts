@@ -62,7 +62,8 @@ export class DashboardComponent implements OnInit {
     });
 
     this.cryptoService.fullHistoryBTC().subscribe((res: any) => {
-      this.financialChartData.datasets[0].data = res.slice(0, 60)
+      console.log('res',res)
+      this.financialChartData.datasets[0].data = res.slice(0, 100)
       this.chart?.update();
     });
   }
