@@ -62,8 +62,22 @@ export class DashboardComponent implements OnInit {
     });
 
     this.cryptoService.fullHistoryBTC().subscribe((res: any) => {
-      console.log('res',res)
-      this.financialChartData.datasets[0].data = res.slice(0, 100)
+      this.financialChartData.datasets[0].data = res
+      this.chart?.update();
+    });
+
+    this.cryptoService.exchangeHistoryBTC().subscribe((res: any) => {
+      this.lineChartData.datasets[0].data = res;
+      this.chart?.update();
+    });
+
+    this.cryptoService.exchangeHistoryETH().subscribe((res: any) => {
+      this.lineChartData.datasets[1].data = res;
+      this.chart?.update();
+    });
+    
+    this.cryptoService.exchangeHistoryLTC().subscribe((res: any) => {
+      this.lineChartData.datasets[2].data = res;
       this.chart?.update();
     });
   }
@@ -95,8 +109,7 @@ export class DashboardComponent implements OnInit {
     datasets: [
       {
         label: 'Bitcoin Market Price',
-        // data: [],
-        data: this.getRandomData('2017-04-01T00:00:00', 60),
+        data: [],
         borderColor: '#ffffff',
       },
     ],
@@ -122,50 +135,74 @@ export class DashboardComponent implements OnInit {
     },
   };
 
-  randomNumber(min: number, max: number): number {
-    return Math.random() * (max - min) + min;
-  }
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  randomBar(
-    date: Date,
-    lastClose: number
-  ): { c: number; x: number; h: number; l: number; o: number } {
-    const open = this.randomNumber(lastClose * 0.95, lastClose * 1.05);
-    const close = this.randomNumber(open * 0.95, open * 1.05);
-    const high = this.randomNumber(
-      Math.max(open, close),
-      Math.max(open, close) * 1.1
-    );
-    const low = this.randomNumber(
-      Math.min(open, close) * 0.9,
-      Math.min(open, close)
-    );
-    return {
-      x: +date,
-      o: open,
-      h: high,
-      l: low,
-      c: close,
-    };
-  }
+  public lineChartData: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        data: [],
+        label: 'Bitcoin Rate',
+        backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: '#F2921B',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+        fill: 'origin',
+      },
+      {
+        data: [],
+        label: 'Ethereum Rate',
+        backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: '#939ABE',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+        fill: 'origin',
+      },
+      {
+        data: [],
+        label: 'Litecoin Rate',
+        yAxisID: 'y-axis-1',
+        backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: '#838383',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+        fill: 'origin',
+      },
+    ],
+    labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
+  };
 
-  getRandomData(
-    dateStr: string,
-    count: number
-  ): { c: number; x: number; h: number; l: number; o: number }[] {
-    let date = parseISO(dateStr);
-    const data = [this.randomBar(date, 30)];
-    while (data.length < count) {
-      date = add(date, { days: 1 });
-      if (date.getDay() <= 5) {
-        data.push(this.randomBar(date, data[data.length - 1].c));
+  public lineChartOptions: ChartConfiguration['options'] = {
+    elements: {
+      line: {
+        tension: 0.5
+      }
+    },
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      x: {},
+      'y-axis-0':
+        {
+          position: 'left',
+        },
+      'y-axis-1': {
+        position: 'right',
+        grid: {
+          color: 'rgba(255,0,0,0.3)',
+        },
+        ticks: {
+          color: 'red'
+        }
       }
     }
-    console.log('data',data)
-    return data;
-  }
+  };
 
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+  public lineChartType: ChartType = 'line';
 
 }
 

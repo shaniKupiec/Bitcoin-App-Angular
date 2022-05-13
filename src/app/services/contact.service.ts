@@ -124,7 +124,6 @@ const CONTACTS = [
 ];
 
 const dev = true;
-// console.log('isDevMode',isDevMode)
 
 const BASE_URL = dev ? 'http://localhost:3030/api/contact/' : 'api/contact';
 

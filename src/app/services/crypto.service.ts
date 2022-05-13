@@ -104,6 +104,8 @@ export class CryptoService {
 
   public exchangeHistoryXRP() {
     if (this.gHistoryXRPCache) return from([this.gHistoryXRPCache]);
+    console.log('getting from http');
+    
     return this.http
       .get(
         `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=XRP&limit=120`
@@ -136,7 +138,7 @@ export class CryptoService {
     if (this.gFullHistoryBTCCache) return from([this.gFullHistoryBTCCache]);
     return this.http
       .get(
-        `https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=2000`
+        `https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=100`
       )
       .pipe(
         map((res: any) => {
