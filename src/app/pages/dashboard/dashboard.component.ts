@@ -175,7 +175,7 @@ export class DashboardComponent implements OnInit {
       },
     ],
     labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
-  };
+  }; //comment
 
   public lineChartOptions: ChartConfiguration['options'] = {
     elements: {
