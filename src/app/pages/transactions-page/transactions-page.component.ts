@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Move } from 'src/app/models/move.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'transactions-page',
@@ -14,7 +15,6 @@ export class TransactionsPageComponent implements OnInit {
   count: number = 50;
   loggedInUser!: User;
   loggedInUser$!: Observable<User>;
-  moves: Move[] = [];
   filterBy: string = 'all';
 
   ngOnInit(): void {
@@ -27,10 +27,26 @@ export class TransactionsPageComponent implements OnInit {
   get movesToDisplay(): Move[] {
     if (this.filterBy === 'all') {
       return this.loggedInUser.moves;
-    } else if(this.filterBy === 'sent'){
-      return this.loggedInUser.moves.filter(m => m.isToContact)
+    } else if (this.filterBy === 'sent') {
+      return this.loggedInUser.moves.filter((m) => m.isToContact);
     }
     //sort
-    return this.loggedInUser.moves.slice(0, 5)
+    return this.loggedInUser.moves.slice(0, 5);
+  }
+
+  // title = 'angular-app';
+  fileName = 'ExportHistory.xlsx';
+  userList = [];
+  exportExcel(): void {
+    /* pass here the table id */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
   }
 }

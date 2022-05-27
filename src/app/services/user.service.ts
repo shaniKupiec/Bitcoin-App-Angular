@@ -6,7 +6,7 @@ import { User } from '../models/user.model';
 
 const USERS: User[] = [
   {
-    name: 'table',
+    name: 'shani',
     coins: 100,
     moves: [
       {

@@ -2,6 +2,10 @@
 @import "../../../assets/styles/functions";
 @import "../../../assets/styles/variables";
 
+#excel-table{
+    display: none
+}
+
 .trans {
     &__data {
         @include flex(row, space-between);
