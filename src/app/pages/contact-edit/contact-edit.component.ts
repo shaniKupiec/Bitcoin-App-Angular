@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Contact } from 'src/app/models/contact.model';
 import { ContactService } from 'src/app/services/contact.service';
 
@@ -16,9 +17,10 @@ export class ContactEditComponent implements OnInit {
   ) {}
 
   contact!: Contact;
+  routerDataSub!: Subscription
 
   ngOnInit(): void {
-    this.route.data.subscribe(({ contact }) => {
+    this.routerDataSub = this.route.data.subscribe(({ contact }) => {
       this.contact = contact;
       // ? contact : this.contactService.getEmptyContact() as Contact;
     });
@@ -43,4 +45,8 @@ export class ContactEditComponent implements OnInit {
     this.contactService.saveContact(this.contact);
     this.onBack();
   }
+
+  ngOnDestroy(): void {
+    this.routerDataSub.unsubscribe()
+  };
 }

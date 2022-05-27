@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ContactFilter } from 'src/app/models/contact-filter.model';
 import { ContactService } from 'src/app/services/contact.service';
 
@@ -11,9 +12,10 @@ export class ContactFilterComponent implements OnInit {
   constructor(private contactService: ContactService) {}
 
   filterBy!: ContactFilter
+  contactFilterSub!: Subscription
 
   ngOnInit(): void {
-    this.contactService.contactFilter$.subscribe((filterBy) => {
+    this.contactFilterSub = this.contactService.contactFilter$.subscribe((filterBy) => {
       this.filterBy = filterBy;
     });
   }
@@ -21,4 +23,8 @@ export class ContactFilterComponent implements OnInit {
   onChangeFilter() {
     this.contactService.setFilterBy(this.filterBy)
   }
+
+  ngOnDestroy(): void {
+    this.contactFilterSub.unsubscribe()
+  };
 }

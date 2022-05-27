@@ -12,14 +12,19 @@ export class ContactPageComponent implements OnInit {
   constructor(private contactService: ContactService) {}
   contacts!: Contact[];
   contacts$!: Observable<Contact[]>;
+  contactServiceSub!: Subscription;
 
   ngOnInit(): void {
     this.contactService.query();
-    this.contactService.contacts$.subscribe(data =>{
+    this.contactServiceSub = this.contactService.contacts$.subscribe(data =>{
       this.contacts = data
     });
     // this.contactService
     //   .query()
     //   .subscribe((data: Contact[]) => (this.contacts = data));
   }
+
+  ngOnDestroy(): void {
+    this.contactServiceSub.unsubscribe()
+  };
 }

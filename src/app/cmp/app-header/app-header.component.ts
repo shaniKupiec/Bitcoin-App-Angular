@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Event } from '@angular/router';
 import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,10 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppHeaderComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
   currentCmpName!: string;
+  routerEventsSub!: Subscription;
 
   ngOnInit(): void {
-    this.router.events.subscribe((routerEvent: Event) => {
+    this.routerEventsSub = this.router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationEnd) {
         switch (routerEvent.url.split('/')[1]) {
           case '':
@@ -36,5 +38,9 @@ export class AppHeaderComponent implements OnInit {
         }
       }
     });
-  }
+  };
+
+  ngOnDestroy(): void {
+    this.routerEventsSub.unsubscribe()
+  };
 }

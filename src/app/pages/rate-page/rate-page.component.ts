@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { Subscription } from 'rxjs';
 import { CryptoService } from 'src/app/services/crypto.service';
 
 @Component({
@@ -12,33 +13,39 @@ export class RatePageComponent implements OnInit {
   constructor(private cryptoService: CryptoService) {}
 
   rates!: any
+  ratesSub!: Subscription
+  historyBTCSub!: Subscription
+  historyETHSub!: Subscription
+  historyLTCSub!: Subscription
+  historyXRPSub!: Subscription
+  historyDASHSub!: Subscription
 
   ngOnInit(): void {
-    this.cryptoService.rates().subscribe((res: any) => {
+    this.ratesSub = this.cryptoService.rates().subscribe((res: any) => {
       this.rates = res;
     });
 
-    this.cryptoService.exchangeHistoryBTC().subscribe((res: any) => {
+    this.historyBTCSub = this.cryptoService.exchangeHistoryBTC().subscribe((res: any) => {
       this.lineChartDataBTC.datasets[0].data = res;
       this.chart?.update();
     });
 
-    this.cryptoService.exchangeHistoryETH().subscribe((res: any) => {
+    this.historyETHSub = this.cryptoService.exchangeHistoryETH().subscribe((res: any) => {
       this.lineChartDataETH.datasets[0].data = res;
       this.chart?.update();
     });
     
-    this.cryptoService.exchangeHistoryLTC().subscribe((res: any) => {
+    this.historyLTCSub = this.cryptoService.exchangeHistoryLTC().subscribe((res: any) => {
       this.lineChartDataLTC.datasets[0].data = res;
       this.chart?.update();
     });
 
-    this.cryptoService.exchangeHistoryXRP().subscribe((res: any) => {
+    this.historyXRPSub = this.cryptoService.exchangeHistoryXRP().subscribe((res: any) => {
       this.lineChartDataXRP.datasets[0].data = res;
       this.chart?.update();
     });
 
-    this.cryptoService.exchangeHistoryDASH().subscribe((res: any) => {
+    this.historyDASHSub = this.cryptoService.exchangeHistoryDASH().subscribe((res: any) => {
       this.lineChartDataDASH.datasets[0].data = res;
       this.chart?.update();
     });
@@ -169,4 +176,13 @@ export class RatePageComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   public lineChartType: ChartType = 'line';
+
+  ngOnDestroy(): void {
+    this.ratesSub.unsubscribe()
+    this.historyBTCSub.unsubscribe()
+    this.historyETHSub.unsubscribe()
+    this.historyLTCSub.unsubscribe()
+    this.historyXRPSub.unsubscribe()
+    this.historyDASHSub.unsubscribe()
+  };
 }

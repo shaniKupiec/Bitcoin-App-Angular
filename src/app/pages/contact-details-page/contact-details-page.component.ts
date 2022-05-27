@@ -4,7 +4,7 @@ import { Contact } from 'src/app/models/contact.model';
 import { ContactService } from 'src/app/services/contact.service';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Move } from 'src/app/models/move.model';
 
 @Component({
@@ -23,14 +23,16 @@ export class ContactDetailsPageComponent implements OnInit {
   contact!: Contact;
   loggedInUser!: User;
   loggedInUser$!: Observable<User>;
+  routerDataSub! : Subscription;
+  userServiceSub! : Subscription;
 
   async ngOnInit() {
-    this.route.data.subscribe((data) => {
+    this.routerDataSub = this.route.data.subscribe((data) => {
       this.contact = data['contact'];
     });
-
+    
     this.userService.getLoggedInUser();
-    this.userService.loggedInUser$.subscribe((data) => {
+    this.userServiceSub = this.userService.loggedInUser$.subscribe((data) => {
       this.loggedInUser = data;
     });
   }
@@ -52,4 +54,9 @@ export class ContactDetailsPageComponent implements OnInit {
     var moves = this.loggedInUser.moves
     return moves.filter(m => m.contactId === this.contact._id)
   }
+
+  ngOnDestroy(): void {
+    this.routerDataSub.unsubscribe()
+    this.userServiceSub.unsubscribe()
+  };
 }

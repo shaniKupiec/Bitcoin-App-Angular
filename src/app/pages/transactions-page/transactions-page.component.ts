@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Move } from 'src/app/models/move.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -16,10 +16,11 @@ export class TransactionsPageComponent implements OnInit {
   loggedInUser!: User;
   loggedInUser$!: Observable<User>;
   filterBy: string = 'all';
+  userServicesSub!: Subscription;
 
   ngOnInit(): void {
     this.userService.getLoggedInUser();
-    this.userService.loggedInUser$.subscribe((data) => {
+    this.userServicesSub = this.userService.loggedInUser$.subscribe((data) => {
       this.loggedInUser = data;
     });
   }
@@ -49,4 +50,8 @@ export class TransactionsPageComponent implements OnInit {
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
   }
+
+  ngOnDestroy(): void {
+    this.userServicesSub.unsubscribe()
+  };
 }
