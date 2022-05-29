@@ -49,7 +49,7 @@ export class CryptoService {
       .pipe(
         map((res: any) => {
           for (const coin in res) {
-            res[coin] = res[coin]['USD'];
+            res[coin.toLowerCase()] = res[coin]['USD'];
           }
           storageService.saveToStorage(RATE_KEY, res);
           return res;

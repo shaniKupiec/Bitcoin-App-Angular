@@ -10,53 +10,19 @@
     </div>
   </section>
 
-  <section
-    class="coin-data"
-    [class.open]="this.openedRate === 'btc'"
-    (click)="this.onOpenedRate('btc')"
-  >
-    <span class="coin-data__short">btc</span>
-    <img
-      src="https://res.cloudinary.com/trellox/image/upload/v1651511375/cryptonites/b-coin_hneefw.png"
-      alt=""
-    />
-    <div class="coin-data__bottom">
-      <span class="coin-data__bottom__name">Bitcoin</span>
-      <span class="coin-data__bottom__rate">{{ rates["BTC"] }}</span>
-    </div>
-  </section>
-
-  <section
-    class="coin-data"
-    [class.open]="this.openedRate === 'eth'"
-    (click)="this.onOpenedRate('eth')"
-  >
-    <span class="coin-data__short">eth</span>
-    <img
-      src="https://res.cloudinary.com/trellox/image/upload/v1651505774/cryptonites/e-icon_c8dgvy.png"
-      alt=""
-    />
-    <div class="coin-data__bottom">
-      <span class="coin-data__bottom__name">Ethereum</span>
-      <span class="coin-data__bottom__rate">{{ rates["ETH"] }}</span>
-    </div>
-  </section>
-
-  <section
-    class="coin-data"
-    [class.open]="this.openedRate === 'ltc'"
-    (click)="this.onOpenedRate('ltc')"
-  >
-    <span class="coin-data__short">ltc</span>
-    <img
-      src="https://res.cloudinary.com/trellox/image/upload/v1651505774/cryptonites/l-icon_qppbxk.png"
-      alt=""
-    />
-    <div class="coin-data__bottom">
-      <span class="coin-data__bottom__name">Litecoin</span>
-      <span class="coin-data__bottom__rate">{{ rates["LTC"] }}</span>
-    </div>
-  </section>
+  <coin-data
+    *ngFor="let coinData of coinDatas"
+    key="coinData.fullName"
+    [img]="coinData.img"
+    [fullName]="coinData.fullName"
+    [shortName]="coinData.shortName"
+    [rate]="this.rates[coinData.shortName]"
+    [isOpened]="this.openedRate === coinData.shortName"
+    class="coin-data-cmp"
+    [class.open]="this.openedRate === coinData.shortName"
+    (onClick)="this.onOpenedRate(coinData.shortName)"
+    >
+  </coin-data>
 
   <section class="percents">
     <ngx-charts-pie-grid

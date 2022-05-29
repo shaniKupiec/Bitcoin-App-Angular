@@ -42,35 +42,11 @@
         }
     }
 
-    .coin-data {
-        @include flex(row, space-between, flex-start);
-        flex-wrap: wrap;
-        cursor: pointer;
-
-        &__short {
-            text-transform: uppercase;
-            font-size: rem(12px);
-            font-weight: bold;
-            color: $sClr3;
-        }
-
-        img {
-            width: 35px;
-        }
-
-        &__bottom {
-            flex-basis: 100%;
-            align-self: flex-end;
-            display: flex;
-            justify-content: space-between;
-            &__rate {
-                display: none;
-            }
-        }
-
+    .coin-data-cmp {
         &.open {
             background-color: $pClr3;
             grid-column: span 2;
+
             .coin-data__short {
                 color: darken($pClr3, 10%);
             }
@@ -106,14 +82,13 @@
         color: #d70fff;
     }
 
-    .rates-chart{
+    .rates-chart {
         grid-row: span 7;
         grid-column: span 7;
 
-        .canvas-container{
+        .canvas-container {
             width: 70%;
             height: 70%;
         }
-
     }
 }

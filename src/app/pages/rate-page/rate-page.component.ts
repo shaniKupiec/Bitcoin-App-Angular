@@ -13,11 +13,11 @@ export class RatePageComponent implements OnInit {
   constructor(private cryptoService: CryptoService) {}
 
   rates: any = {
-    BTC: 28862.95,
-    ETH: 1772.18,
-    LTC: 62.78,
-    XRP: 0.3888,
-    DASH: 56.26,
+    btc: 28862.95,
+    eth: 1772.18,
+    ltc: 62.78,
+    xrp: 0.3888,
+    dash: 56.26,
   };
   ratesSub!: Subscription;
   historyBTCSub!: Subscription;
@@ -198,7 +198,7 @@ export class RatePageComponent implements OnInit {
       img: 'https://res.cloudinary.com/trellox/image/upload/v1652273953/cryptonites/Group_zqaaoj.png',
       fullName: 'Bitcoin',
       shortName: 'btc',
-      rate: this.rates['BTC'],
+      rate: this.rates['btc'],
       lineChartData: this.lineChartDataBTC,
       lineChartOptions: this.lineChartOptions,
       lineChartType: this.lineChartType,

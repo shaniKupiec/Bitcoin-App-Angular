@@ -31,6 +31,7 @@ import { TransactionListComponent } from './cmp/transactions/transaction-list/tr
 import { TransactionPreviewComponent } from './cmp/transactions/transaction-preview/transaction-preview.component';
 import { TransferHistoryComponent } from './cmp/contact/transfer-history/transfer-history.component';
 import { RateComponent } from './cmp/rate/rate.component';
+import { CoinDataComponent } from './cmp/coin-data/coin-data.component';
 
 export function playerFactory() {
   return player;
@@ -58,6 +59,7 @@ export function playerFactory() {
     DashboardComponent,
     RatePageComponent,
     RateComponent,
+    CoinDataComponent,
   ],
   imports: [
     BrowserModule,

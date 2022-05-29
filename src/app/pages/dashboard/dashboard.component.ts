@@ -23,6 +23,7 @@ import {
   OhlcController,
   OhlcElement,
 } from 'chartjs-chart-financial';
+import { Rates } from 'src/app/models/rates.model';
 
 @Component({
   selector: 'dashboard',
@@ -37,13 +38,42 @@ export class DashboardComponent implements OnInit {
 
   loggedInUser!: User;
   loggedInUser$!: Observable<User>;
-  rates = { BTC: 0, ETH: 0, LTC: 0 };
+  rates: Rates = { btc: 0, eth: 0, ltc: 0, xrp: 0, dash: 0 };
   openedRate: string = 'btc';
   currPeriod: string = 'year';
   marketPriceData!: any;
   options: AnimationOptions = {
     path: '../../../assets/animations/ani3.json',
   };
+
+  // coin-data
+  coinDatas = [
+    {
+      img: 'https://res.cloudinary.com/trellox/image/upload/v1651511375/cryptonites/b-coin_hneefw.png',
+      fullName: 'Bitcoin',
+      shortName: 'btc',
+    },
+    {
+      img: 'https://res.cloudinary.com/trellox/image/upload/v1651505774/cryptonites/e-icon_c8dgvy.png',
+      fullName: 'Ethereum',
+      shortName: 'eth',
+    },
+    {
+      img: 'https://res.cloudinary.com/trellox/image/upload/v1651505774/cryptonites/l-icon_qppbxk.png',
+      fullName: 'Litecoin',
+      shortName: 'ltc',
+    },
+    {
+      img: 'https://res.cloudinary.com/trellox/image/upload/v1653822932/cryptonites/ripple_jlkddr.png',
+      fullName: 'Ripple',
+      shortName: 'xrp',
+    },
+    {
+      img: 'https://res.cloudinary.com/trellox/image/upload/v1653822932/cryptonites/dash_mhpaze.png',
+      fullName: 'Dash',
+      shortName: 'dash',
+    },
+  ];
 
   // percents
   percentsSize: [number, number] = [500, 400];
@@ -84,7 +114,7 @@ export class DashboardComponent implements OnInit {
           value: value,
         });
       });
-      this.percentsData = newData
+      this.percentsData = newData;
     });
 
     this.cryptoService.rates().subscribe((res: any) => {
@@ -114,6 +144,7 @@ export class DashboardComponent implements OnInit {
 
   onOpenedRate(coin: string) {
     this.openedRate = coin;
+    console.log('new coin opened',coin)
   }
 
   // //PIE
