@@ -46,31 +46,41 @@ export class DashboardComponent implements OnInit {
     path: '../../../assets/animations/ani3.json',
   };
 
+  helpArray: {
+    [key: string]: string,
+    btc: string;
+    eth: string;
+    ltc: string;
+    xrp: string;
+    dash: string;
+  } = {
+    btc: 'Bitcoin',
+    eth: 'Ethereum',
+    ltc: 'Litecoin',
+    xrp: 'Ripple',
+    dash: 'Dash',
+  };
+
   // coin-data
   coinDatas = [
     {
       img: 'https://res.cloudinary.com/trellox/image/upload/v1651511375/cryptonites/b-coin_hneefw.png',
-      fullName: 'Bitcoin',
       shortName: 'btc',
     },
     {
       img: 'https://res.cloudinary.com/trellox/image/upload/v1651505774/cryptonites/e-icon_c8dgvy.png',
-      fullName: 'Ethereum',
       shortName: 'eth',
     },
     {
       img: 'https://res.cloudinary.com/trellox/image/upload/v1651505774/cryptonites/l-icon_qppbxk.png',
-      fullName: 'Litecoin',
       shortName: 'ltc',
     },
     {
       img: 'https://res.cloudinary.com/trellox/image/upload/v1653822932/cryptonites/ripple_jlkddr.png',
-      fullName: 'Ripple',
       shortName: 'xrp',
     },
     {
       img: 'https://res.cloudinary.com/trellox/image/upload/v1653822932/cryptonites/dash_mhpaze.png',
-      fullName: 'Dash',
       shortName: 'dash',
     },
   ];
@@ -80,28 +90,7 @@ export class DashboardComponent implements OnInit {
   percentsColor: any = {
     domain: ['#F2921B', '#939ABE', '#838383', '#4A90E2', '#494AA7'],
   };
-  percentsData: any[] = [
-    {
-      name: 'Bitcoin',
-      value: 100,
-    },
-    {
-      name: 'Ethereum',
-      value: 20,
-    },
-    {
-      name: 'Litecoin',
-      value: 40,
-    },
-    {
-      name: 'Ripple',
-      value: 5,
-    },
-    {
-      name: 'Dash',
-      value: 40,
-    },
-  ];
+  percentsData!: any[];
 
   ngOnInit(): void {
     this.userService.getLoggedInUser();
@@ -110,7 +99,7 @@ export class DashboardComponent implements OnInit {
       var newData: any[] = [];
       Object.entries(data.coins).forEach(([key, value]) => {
         newData.push({
-          name: key,
+          name: this.helpArray[key],
           value: value,
         });
       });
@@ -144,7 +133,7 @@ export class DashboardComponent implements OnInit {
 
   onOpenedRate(coin: string) {
     this.openedRate = coin;
-    console.log('new coin opened',coin)
+    console.log('new coin opened', coin);
   }
 
   // //PIE

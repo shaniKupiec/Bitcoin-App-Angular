@@ -4,11 +4,11 @@ export class User {
   constructor(
     public name: string,
     public coins: {
-      Bitcoin: number;
-      Ethereum: number;
-      Litecoin: number;
-      Ripple: number;
-      Dash: number;
+      btc: number;
+      eth: number;
+      ltc: number;
+      xrp: number;
+      dash: number;
     },
     public total: number,
     public moves: Move[],

@@ -8,11 +8,11 @@ const USERS: User[] = [
   {
     name: 'shani',
     coins: {
-      Bitcoin: 100,
-      Ethereum: 20,
-      Litecoin: 5,
-      Ripple: 7,
-      Dash: 8,
+      btc: 100,
+      eth: 20,
+      ltc: 5,
+      xrp: 7,
+      dash: 8,
     },
     total: 140,
     moves: [
@@ -23,7 +23,7 @@ const USERS: User[] = [
         at: 1650274560000,
         amount: 7,
         isToContact: false,
-        type: 'Bitcoin',
+        type: 'btc',
       },
       {
         id: '567ujh',
@@ -32,7 +32,7 @@ const USERS: User[] = [
         at: 1650002760000,
         amount: 10,
         isToContact: false,
-        type: 'Bitcoin',
+        type: 'btc',
       },
       {
         id: '5rfg',
@@ -41,7 +41,7 @@ const USERS: User[] = [
         at: 1649603580000,
         amount: 5,
         isToContact: true,
-        type: 'Bitcoin',
+        type: 'btc',
       },
       {
         id: 'xfgnh',
@@ -50,7 +50,7 @@ const USERS: User[] = [
         at: 1649307312000,
         amount: 40,
         isToContact: true,
-        type: 'Bitcoin',
+        type: 'btc',
       },
       {
         id: '456yhg',
@@ -59,7 +59,7 @@ const USERS: User[] = [
         at: 1648981332000,
         amount: 20,
         isToContact: false,
-        type: 'Bitcoin',
+        type: 'btc',
       },
       {
         id: 'jhgv b',
@@ -68,7 +68,7 @@ const USERS: User[] = [
         at: 1648760400000,
         amount: 100,
         isToContact: true,
-        type: 'Bitcoin',
+        type: 'btc',
       },
     ],
   },
@@ -103,10 +103,10 @@ export class UserService {
       at: Date.now(),
       amount,
       isToContact: true,
-      type: 'Bitcoin',
+      type: 'btc',
     };
 
-    this._loggedInUser.coins['Bitcoin'] -= amount;
+    this._loggedInUser.coins['btc'] -= amount;
     this._loggedInUser.total -= amount;
     this._loggedInUser.moves.unshift(move);
 

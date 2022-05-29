@@ -23,7 +23,6 @@ import { AppComponent } from './cmp/app-root/app.component';
 import { ContactPreviewComponent } from './cmp/contact/contact-preview/contact-preview.component';
 import { ContactListComponent } from './cmp/contact/contact-list/contact-list.component';
 import { ContactFilterComponent } from './cmp/contact/contact-filter/contact-filter.component';
-import { CartComponent } from './cmp/cart/cart.component';
 import { AppHeaderComponent } from './cmp/app-header/app-header.component';
 import { SideNavComponent } from './cmp/side-nav/side-nav.component';
 import { TransferFundComponent } from './cmp/contact/transfer-fund/transfer-fund.component';
@@ -47,7 +46,6 @@ export function playerFactory() {
     ContactPreviewComponent,
     ContactListComponent,
     ContactFilterComponent,
-    CartComponent,
     AppHeaderComponent,
     SideNavComponent,
     ContactEditComponent,

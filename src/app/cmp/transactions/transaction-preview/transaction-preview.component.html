@@ -2,14 +2,10 @@
   <section class="details__left">
     <div class="details__left__left">
       <span>{{ move.at | date: "hh:mm, dd MMM YYYY" }}</span>
-      <!-- <span>{{move.at}}</span> -->
-      <img
-        src="https://res.cloudinary.com/trellox/image/upload/v1651413997/cryptonites/bitcoin-icon_hlx8lq.png"
-        alt=""
-      />
+      <img src="{{ imgSrc }}" alt="" />
     </div>
     <div class="details__left__center">
-        <img
+      <img
         *ngIf="move.isToContact"
         src="https://res.cloudinary.com/trellox/image/upload/v1651414215/cryptonites/red-arrow_nxwp7a.png"
         alt=""
@@ -23,7 +19,10 @@
     </div>
   </section>
   <div class="details__right">
-    <span class="amount">{{ move.amount }} BTC</span>
-    <img src="https://res.cloudinary.com/trellox/image/upload/v1651414621/cryptonites/complete_v9k0vc.png" alt="">
+    <span class="amount">{{ move.amount }} {{ move.type.toUpperCase() }}</span>
+    <img
+      src="https://res.cloudinary.com/trellox/image/upload/v1651414621/cryptonites/complete_v9k0vc.png"
+      alt=""
+    />
   </div>
 </li>

@@ -14,7 +14,7 @@
     *ngFor="let coinData of coinDatas"
     key="coinData.fullName"
     [img]="coinData.img"
-    [fullName]="coinData.fullName"
+    [fullName]="this.helpArray[coinData.shortName]"
     [shortName]="coinData.shortName"
     [rate]="this.rates[coinData.shortName]"
     [isOpened]="this.openedRate === coinData.shortName"
