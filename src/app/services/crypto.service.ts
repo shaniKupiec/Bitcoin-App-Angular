@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { storageService } from './storageService';
-
 const RATE_KEY = 'rates';
 const HISTORY_BTC = 'history-btc';
 const HISTORY_ETH = 'history-eth';
@@ -61,13 +60,22 @@ export class CryptoService {
     if (this.gHistoryBTCCache) return from([this.gHistoryBTCCache]);
     return this.http
       .get(
-        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=BTC&limit=120`
+        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=BTC&limit=4`
       )
       .pipe(
         map((res: any) => {
-          res = res.Data.map((d: { volume: any }) => Math.floor(d.volume));
-          storageService.saveToStorage(HISTORY_BTC, res);
-          return res;
+          res = res.Data.map((d: { time: number; volume: number }) => {
+            return {
+              name: new Date(d.time * 1000).toDateString(),
+              value: Math.floor(d.volume),
+            };
+          });
+          const data = {
+            name: 'Bitcoin exchange history',
+            series: res,
+          };
+          storageService.saveToStorage(HISTORY_BTC, data);
+          return data;
         })
       );
   }
@@ -105,7 +113,7 @@ export class CryptoService {
   public exchangeHistoryXRP() {
     if (this.gHistoryXRPCache) return from([this.gHistoryXRPCache]);
     console.log('getting from http');
-    
+
     return this.http
       .get(
         `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=XRP&limit=120`

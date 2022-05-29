@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Rates } from 'src/app/models/rates.model';
 import { CryptoService } from 'src/app/services/crypto.service';
 
 @Component({
@@ -12,13 +11,7 @@ import { CryptoService } from 'src/app/services/crypto.service';
 export class RatePageComponent implements OnInit {
   constructor(private cryptoService: CryptoService) {}
 
-  rates: any = {
-    btc: 28862.95,
-    eth: 1772.18,
-    ltc: 62.78,
-    xrp: 0.3888,
-    dash: 56.26,
-  };
+  rates!: Rates;
   ratesSub!: Subscription;
   historyBTCSub!: Subscription;
   historyETHSub!: Subscription;
@@ -26,8 +19,91 @@ export class RatePageComponent implements OnInit {
   historyXRPSub!: Subscription;
   historyDASHSub!: Subscription;
 
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
-  public lineChartType: ChartType = 'line';
+  helpArray: {
+    [key: string]: string;
+    btc: string;
+    eth: string;
+    ltc: string;
+    xrp: string;
+    dash: string;
+  } = {
+    btc: 'Bitcoin',
+    eth: 'Ethereum',
+    ltc: 'Litecoin',
+    xrp: 'Ripple',
+    dash: 'Dash',
+  };
+
+  shaniData = [
+    {
+      name: 'Bitcoin history',
+      series: [
+        {
+          name: '1990',
+          value: 62000000,
+        },
+        {
+          name: '2010',
+          value: 73000000,
+        },
+        {
+          name: '2011',
+          value: 89400000,
+        },
+      ],
+    },
+  ]
+
+  coinDatas = [
+    {
+      img: 'https://res.cloudinary.com/trellox/image/upload/v1652273953/cryptonites/Group_zqaaoj.png',
+      shortName: 'btc',
+      historyData: [
+        {
+          name: 'Bitcoin history',
+          series: [
+            {
+              name: '1990',
+              value: 62000000,
+            },
+            {
+              name: '2010',
+              value: 73000000,
+            },
+            {
+              name: '2011',
+              value: 89400000,
+            },
+          ],
+        },
+      ],
+      color: '#F2921B',
+    },
+    {
+      img: 'https://res.cloudinary.com/trellox/image/upload/v1652273940/cryptonites/Group_5_rvkdqt.png',
+      shortName: 'eth',
+      historyData: 5,
+      color: '#939ABE',
+    },
+    {
+      img: 'https://res.cloudinary.com/trellox/image/upload/v1652273946/cryptonites/Group_2_yu5m3j.png',
+      shortName: 'ltc',
+      historyData: 5,
+      color: '#838383',
+    },
+    {
+      img: 'https://res.cloudinary.com/trellox/image/upload/v1652279398/cryptonites/Group_4_y2hafp.png',
+      shortName: 'xrp',
+      historyData: 5,
+      color: '#4A90E2',
+    },
+    {
+      img: 'https://res.cloudinary.com/trellox/image/upload/v1652279394/cryptonites/Group_5-1_ybb9ki.png',
+      shortName: 'dash',
+      historyData: 5,
+      color: '#494AA7',
+    },
+  ];
 
   ngOnInit(): void {
     this.ratesSub = this.cryptoService.rates().subscribe((res: any) => {
@@ -37,173 +113,34 @@ export class RatePageComponent implements OnInit {
     this.historyBTCSub = this.cryptoService
       .exchangeHistoryBTC()
       .subscribe((res: any) => {
-        this.lineChartDataBTC.datasets[0].data = res;
-        this.chart?.update();
+        // this.coinDatas[0].historyData = res;
+        this.shaniData = res
       });
 
     this.historyETHSub = this.cryptoService
       .exchangeHistoryETH()
       .subscribe((res: any) => {
-        this.lineChartDataETH.datasets[0].data = res;
-        this.chart?.update();
+        this.coinDatas[1].historyData = res;
       });
 
     this.historyLTCSub = this.cryptoService
       .exchangeHistoryLTC()
       .subscribe((res: any) => {
-        this.lineChartDataLTC.datasets[0].data = res;
-        this.chart?.update();
+        this.coinDatas[2].historyData = res;
       });
 
     this.historyXRPSub = this.cryptoService
       .exchangeHistoryXRP()
       .subscribe((res: any) => {
-        this.lineChartDataXRP.datasets[0].data = res;
-        this.chart?.update();
+        this.coinDatas[3].historyData = res;
       });
 
     this.historyDASHSub = this.cryptoService
       .exchangeHistoryDASH()
       .subscribe((res: any) => {
-        this.lineChartDataDASH.datasets[0].data = res;
-        this.chart?.update();
+        this.coinDatas[4].historyData = res;
       });
   }
-
-  public lineChartDataBTC: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [],
-        label: 'Bitcoin Rate',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: '#F2921B',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      },
-    ],
-    labels: this.labels,
-  };
-
-  public lineChartDataETH: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [],
-        label: 'Ethereum Rate',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: '#939ABE',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      },
-    ],
-    labels: this.labels,
-  };
-
-  public lineChartDataLTC: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [],
-        label: 'Litecoin Rate',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: '#838383',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      },
-    ],
-    labels: this.labels,
-  };
-
-  public lineChartDataXRP: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [],
-        label: 'Ripple Rate',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: '#4A90E2',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      },
-    ],
-    labels: this.labels,
-  };
-
-  public lineChartDataDASH: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [],
-        label: 'Dash Rate',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: '#494AA7',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      },
-    ],
-    labels: this.labels,
-  };
-
-  private get labels() {
-    //WORKON
-    const months: string[] = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-    const start = new Date().getMonth() - 4;
-    return months.slice(start, start + 5);
-  }
-
-  public lineChartOptions: ChartConfiguration['options'] = {
-    elements: {
-      line: {
-        tension: 0.5,
-      },
-    },
-    responsive: true,
-    scales: {
-      x: {},
-      'y-axis-0': {
-        position: 'left',
-      },
-      'y-axis-1': {
-        position: 'right',
-      },
-    },
-  };
-
-  dataArray: any = [
-    {
-      img: 'https://res.cloudinary.com/trellox/image/upload/v1652273953/cryptonites/Group_zqaaoj.png',
-      fullName: 'Bitcoin',
-      shortName: 'btc',
-      rate: this.rates['btc'],
-      lineChartData: this.lineChartDataBTC,
-      lineChartOptions: this.lineChartOptions,
-      lineChartType: this.lineChartType,
-    },
-  ];
 
   ngOnDestroy(): void {
     this.ratesSub.unsubscribe();

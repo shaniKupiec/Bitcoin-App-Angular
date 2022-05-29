@@ -19,12 +19,14 @@
       <th>From</th>
       <th>At</th>
       <th>Amount</th>
+      <th>Type</th>
     </tr>
     <tr *ngFor="let move of loggedInUser.moves" key="move.id">
       <td>{{move.isToContact ? move.contactName : loggedInUser.name}}</td>
       <td>{{move.isToContact ? loggedInUser.name : move.contactName}}</td>
       <td>{{move.at | date: "hh:mm, dd MMM YYYY"}}</td>
       <td>{{move.amount}}</td>
+      <td>{{move.type}}</td>
     </tr>
   </table>
 </section>

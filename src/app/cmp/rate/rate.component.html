@@ -9,13 +9,15 @@
       <span class="left__rate">{{ rate }}</span>
     </div>
   </header>
-  <!-- <canvas
-    baseChart
-    width="340"
-    height="200"
-    [data]="lineChartData"
-    [options]="lineChartOptions"
-    [type]="lineChartType"
-  ></canvas> -->
+  <ngx-charts-line-chart
+  [view]="view"
+  [scheme]="colorScheme"
+  [legend]="legend"
+  [xAxis]="xAxis"
+  [yAxis]="yAxis"
+  [timeline]="timeline"
+  [results]="historyData"
+  >
+</ngx-charts-line-chart>
   <footer class="item__footer">footer</footer>
 </li>

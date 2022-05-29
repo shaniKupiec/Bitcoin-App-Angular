@@ -29,7 +29,7 @@ import { TransferFundComponent } from './cmp/contact/transfer-fund/transfer-fund
 import { TransactionListComponent } from './cmp/transactions/transaction-list/transaction-list.component';
 import { TransactionPreviewComponent } from './cmp/transactions/transaction-preview/transaction-preview.component';
 import { TransferHistoryComponent } from './cmp/contact/transfer-history/transfer-history.component';
-import { RateComponent } from './cmp/dashboard/rate/rate.component';
+import { RateComponent } from './cmp/rate/rate.component';
 import { CoinDataComponent } from './cmp/dashboard/coin-data/coin-data.component';
 
 export function playerFactory() {
