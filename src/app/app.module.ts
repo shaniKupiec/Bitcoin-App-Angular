@@ -5,7 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
-import { NgChartsModule } from 'ng2-charts';
+import { NgxChartsModule }from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { NgxChartsModule }from '@swimlane/ngx-charts';
+// import { NgChartsModule } from 'ng2-charts';
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -15,6 +18,7 @@ import { StatisticPageComponent } from './pages/statistic-page/statistic-page.co
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { RatePageComponent } from './pages/rate-page/rate-page.component';
 import { AppComponent } from './cmp/app-root/app.component';
 import { ContactPreviewComponent } from './cmp/contact/contact-preview/contact-preview.component';
 import { ContactListComponent } from './cmp/contact/contact-list/contact-list.component';
@@ -26,7 +30,7 @@ import { TransferFundComponent } from './cmp/contact/transfer-fund/transfer-fund
 import { TransactionListComponent } from './cmp/transactions/transaction-list/transaction-list.component';
 import { TransactionPreviewComponent } from './cmp/transactions/transaction-preview/transaction-preview.component';
 import { TransferHistoryComponent } from './cmp/contact/transfer-history/transfer-history.component';
-import { RatePageComponent } from './pages/rate-page/rate-page.component';
+import { RateComponent } from './cmp/rate/rate.component';
 
 export function playerFactory() {
   return player;
@@ -53,6 +57,7 @@ export function playerFactory() {
     TransferHistoryComponent,
     DashboardComponent,
     RatePageComponent,
+    RateComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,9 @@ export function playerFactory() {
     FormsModule,
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory }),
-    NgChartsModule,
+    BrowserAnimationsModule,
+    NgxChartsModule
+    // NgChartsModule,
     // ServiceWorkerModule.register('ngsw-worker.js', {
     //   enabled: environment.production,
     //   // Register the ServiceWorker as soon as the application is stable

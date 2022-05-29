@@ -5,4 +5,5 @@ export interface Move {
   at: any;
   amount: Number;
   isToContact: boolean;
+  type: string
 }

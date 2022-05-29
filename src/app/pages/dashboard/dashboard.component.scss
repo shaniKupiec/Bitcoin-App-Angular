@@ -83,25 +83,10 @@
     }
 
     .percents {
-        grid-row: span 3;
+        grid-row: span 4;
         grid-column: span 4;
-        font-size: rem(24px);
         @include flex();
         background-color: $sClr1;
-        .canvas-container {
-            width: 300px;
-        }
-        &__list {
-            @include flex(column, space-around, flex-start);
-            .item {
-                @include flex(row, flex-start, center);
-                gap: 10px;
-                &__name {
-                    font-size: rem(12px);
-                    color: $sClr3;
-                }
-            }
-        }
     }
 
     .bitcoin-chart {

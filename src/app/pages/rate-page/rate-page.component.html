@@ -1,4 +1,22 @@
-<ul class="rate-cmp-list">
+<ul class="rate-cmp-list" *ngIf="rates">
+  <!-- <rate 
+  *ngFor="let data of dataArray"
+  key="data.fullName"
+  [img]="data.img"
+  [fullName]="data.fullName"
+  [shortName]="data.shortName"
+  [rate]="data.rate"
+  [lineChartData]="data.lineChartData"
+  [lineChartOptions]="data.lineChartOptions"
+  [lineChartType]="data.lineChartType"
+  ></rate> -->
+  <!-- [img]="'https://res.cloudinary.com/trellox/image/upload/v1652273953/cryptonites/Group_zqaaoj.png'"
+  [fullName] = "'Bitcoin'"
+  [shortName] = "'btc'"
+  [rate] = 'rates["BTC"]'
+  [lineChartData] = "lineChartDataBTC"
+  [lineChartOptions] = "lineChartOptions"
+  [lineChartType] = "lineChartType" -->
   <li class="item">
     <header class="item__header">
       <div class="right">
@@ -14,14 +32,14 @@
         <span class="left__rate">{{ rates["BTC"] }}</span>
       </div>
     </header>
-    <canvas
+    <!-- <canvas
       baseChart
       width="340"
       height="200"
       [data]="lineChartDataBTC"
       [options]="lineChartOptions"
       [type]="lineChartType"
-    ></canvas>
+    ></canvas> -->
     <footer class="item__footer">footer</footer>
   </li>
   <li class="item">
@@ -39,14 +57,14 @@
         <span class="left__rate">{{ rates["ETH"] }}</span>
       </div>
     </header>
-    <canvas
+    <!-- <canvas
       baseChart
       width="340"
       height="200"
       [data]="lineChartDataETH"
       [options]="lineChartOptions"
       [type]="lineChartType"
-    ></canvas>
+    ></canvas> -->
     <footer class="item__footer">footer</footer>
   </li>
   <li class="item">
@@ -64,14 +82,14 @@
         <span class="left__rate">{{ rates["LTC"] }}</span>
       </div>
     </header>
-    <canvas
+    <!-- <canvas
       baseChart
       width="340"
       height="200"
       [data]="lineChartDataLTC"
       [options]="lineChartOptions"
       [type]="lineChartType"
-    ></canvas>
+    ></canvas> -->
     <footer class="item__footer">footer</footer>
   </li>
   <li class="item">
@@ -89,14 +107,14 @@
         <span class="left__rate">{{ rates["XRP"] }}</span>
       </div>
     </header>
-    <canvas
+    <!-- <canvas
       baseChart
       width="340"
       height="200"
       [data]="lineChartDataXRP"
       [options]="lineChartOptions"
       [type]="lineChartType"
-    ></canvas>
+    ></canvas> -->
     <footer class="item__footer">footer</footer>
   </li>
   <li class="item">
@@ -114,14 +132,14 @@
         <span class="left__rate">{{ rates["DASH"] }}</span>
       </div>
     </header>
-    <canvas
+    <!-- <canvas
       baseChart
       width="340"
       height="200"
       [data]="lineChartDataDASH"
       [options]="lineChartOptions"
       [type]="lineChartType"
-    ></canvas>
+    ></canvas> -->
     <footer class="item__footer">footer</footer>
   </li>
 </ul>

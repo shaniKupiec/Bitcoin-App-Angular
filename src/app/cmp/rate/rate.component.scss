@@ -1,0 +1,51 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+@import "../../../assets/styles/functions";
+
+.item {
+    // height: 300px;
+    width: 400px;
+    @include flex(column, space-between);
+    background-color: $sClr1;
+    padding: 28px 22px;
+    border-radius: 2px;
+
+    &__header {
+        @include flex(row, space-between);
+        width: 100%;
+
+        .right {
+            @include flex();
+            gap: 13px;
+            &__img {
+                width: 35px;
+            }
+
+            &__coin {
+                font-size: rem(20px);
+            }
+        }
+
+        .left {
+            @include flex(column, center, end);
+            &__type {
+                font-size: rem(12px);
+                font-weight: bold;
+                text-transform: uppercase;
+                color: $sClr3;
+            }
+
+            &__rate {
+                font-size: rem(35px);
+            }
+        }
+    }
+
+    &__footer{
+        background-color: $sClr2;
+        width: 100%;
+        text-align: center;
+        padding: 13px;
+        border-radius: 2px;
+    }
+}

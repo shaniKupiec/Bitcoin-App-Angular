@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user.model';
 import { CryptoService } from 'src/app/services/crypto.service';
 import { UserService } from 'src/app/services/user.service';
 import { AnimationOptions } from 'ngx-lottie';
+
 import {
   Chart,
   ChartConfiguration,
@@ -31,15 +32,8 @@ import {
 export class DashboardComponent implements OnInit {
   constructor(
     private userService: UserService,
-    private cryptoService: CryptoService 
-  ) {
-    Chart.register(
-      CandlestickController,
-      OhlcController,
-      CandlestickElement,
-      OhlcElement
-    );
-  }
+    private cryptoService: CryptoService
+  ) {}
 
   loggedInUser!: User;
   loggedInUser$!: Observable<User>;
@@ -51,10 +45,46 @@ export class DashboardComponent implements OnInit {
     path: '../../../assets/animations/ani3.json',
   };
 
+  // percents
+  percentsSize: [number, number] = [500, 400];
+  percentsColor: any = {
+    domain: ['#F2921B', '#939ABE', '#838383', '#4A90E2', '#494AA7'],
+  };
+  percentsData: any[] = [
+    {
+      name: 'Bitcoin',
+      value: 100,
+    },
+    {
+      name: 'Ethereum',
+      value: 20,
+    },
+    {
+      name: 'Litecoin',
+      value: 40,
+    },
+    {
+      name: 'Ripple',
+      value: 5,
+    },
+    {
+      name: 'Dash',
+      value: 40,
+    },
+  ];
+
   ngOnInit(): void {
     this.userService.getLoggedInUser();
     this.userService.loggedInUser$.subscribe((data) => {
       this.loggedInUser = data;
+      var newData: any[] = [];
+      Object.entries(data.coins).forEach(([key, value]) => {
+        newData.push({
+          name: key,
+          value: value,
+        });
+      });
+      this.percentsData = newData
     });
 
     this.cryptoService.rates().subscribe((res: any) => {
@@ -62,23 +92,23 @@ export class DashboardComponent implements OnInit {
     });
 
     this.cryptoService.fullHistoryBTC().subscribe((res: any) => {
-      this.financialChartData.datasets[0].data = res
-      this.chart?.update();
+      // this.financialChartData.datasets[0].data = res;
+      // this.chart?.update();
     });
 
     this.cryptoService.exchangeHistoryBTC().subscribe((res: any) => {
-      this.lineChartData.datasets[0].data = res;
-      this.chart?.update();
+      // this.lineChartData.datasets[0].data = res;
+      // this.chart?.update();
     });
 
     this.cryptoService.exchangeHistoryETH().subscribe((res: any) => {
-      this.lineChartData.datasets[1].data = res;
-      this.chart?.update();
+      // this.lineChartData.datasets[1].data = res;
+      // this.chart?.update();
     });
-    
+
     this.cryptoService.exchangeHistoryLTC().subscribe((res: any) => {
-      this.lineChartData.datasets[2].data = res;
-      this.chart?.update();
+      // this.lineChartData.datasets[2].data = res;
+      // this.chart?.update();
     });
   }
 
@@ -86,166 +116,120 @@ export class DashboardComponent implements OnInit {
     this.openedRate = coin;
   }
 
-  //PIE
-  public pieChartData: ChartData<'pie', number[], string | string[]> = {
-    labels: ['Bitcoin', 'Ethereum ', 'Litecoin'],
-    datasets: [
-      {
-        data: [90, 7, 3],
-        backgroundColor: ['#bebebe', '#639c29', '#1e2024'],
-        hoverBackgroundColor: ['#bebebe', '#639c29', '#1e2024'],
-        borderColor: '#868686',
-        hoverBorderColor: '#868686',
-      },
-    ],
-  };
-  public pieChartType: ChartType = 'pie';
+  // //PIE
+  // public pieChartData: ChartData<'pie', number[], string | string[]> = {
+  //   labels: ['Bitcoin', 'Ethereum ', 'Litecoin'],
+  //   datasets: [
+  //     {
+  //       data: [90, 7, 3],
+  //       backgroundColor: ['#bebebe', '#639c29', '#1e2024'],
+  //       hoverBackgroundColor: ['#bebebe', '#639c29', '#1e2024'],
+  //       borderColor: '#868686',
+  //       hoverBorderColor: '#868686',
+  //     },
+  //   ],
+  // };
+  // public pieChartType: ChartType = 'pie';
 
-  //Financial
-  public financialChartLegend = true;
-  public financialChartType: ChartType = 'candlestick';
+  // //Financial
+  // public financialChartLegend = true;
+  // public financialChartType: ChartType = 'candlestick';
 
-  public financialChartData: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        label: 'Bitcoin Market Price',
-        data: [],
-        borderColor: '#ffffff',
-      },
-    ],
-  };
+  // public financialChartData: ChartConfiguration['data'] = {
+  //   datasets: [
+  //     {
+  //       label: 'Bitcoin Market Price',
+  //       data: [],
+  //       borderColor: '#ffffff',
+  //     },
+  //   ],
+  // };
 
-  public financialChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        time: {
-          unit: 'day',
-        },
-        adapters: {
-          date: {
-            locale: enUS,
-          },
-        },
-        ticks: {
-          source: 'auto',
-        },
-      },
-    },
-  };
+  // public financialChartOptions: ChartConfiguration['options'] = {
+  //   responsive: true,
+  //   maintainAspectRatio: false,
+  //   scales: {
+  //     x: {
+  //       time: {
+  //         unit: 'day',
+  //       },
+  //       adapters: {
+  //         date: {
+  //           locale: enUS,
+  //         },
+  //       },
+  //       ticks: {
+  //         source: 'auto',
+  //       },
+  //     },
+  //   },
+  // };
 
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+  // @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  public lineChartData: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [],
-        label: 'Bitcoin Rate',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: '#F2921B',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      },
-      {
-        data: [],
-        label: 'Ethereum Rate',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: '#939ABE',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      },
-      {
-        data: [],
-        label: 'Litecoin Rate',
-        yAxisID: 'y-axis-1',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: '#838383',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      },
-    ],
-    labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
-  };
+  // public lineChartData: ChartConfiguration['data'] = {
+  //   datasets: [
+  //     {
+  //       data: [],
+  //       label: 'Bitcoin Rate',
+  //       backgroundColor: 'rgba(148,159,177,0.2)',
+  //       borderColor: '#F2921B',
+  //       pointBackgroundColor: 'rgba(148,159,177,1)',
+  //       pointBorderColor: '#fff',
+  //       pointHoverBackgroundColor: '#fff',
+  //       pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+  //       fill: 'origin',
+  //     },
+  //     {
+  //       data: [],
+  //       label: 'Ethereum Rate',
+  //       backgroundColor: 'rgba(148,159,177,0.2)',
+  //       borderColor: '#939ABE',
+  //       pointBackgroundColor: 'rgba(148,159,177,1)',
+  //       pointBorderColor: '#fff',
+  //       pointHoverBackgroundColor: '#fff',
+  //       pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+  //       fill: 'origin',
+  //     },
+  //     {
+  //       data: [],
+  //       label: 'Litecoin Rate',
+  //       yAxisID: 'y-axis-1',
+  //       backgroundColor: 'rgba(148,159,177,0.2)',
+  //       borderColor: '#838383',
+  //       pointBackgroundColor: 'rgba(148,159,177,1)',
+  //       pointBorderColor: '#fff',
+  //       pointHoverBackgroundColor: '#fff',
+  //       pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+  //       fill: 'origin',
+  //     },
+  //   ],
+  //   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  // };
 
-  public lineChartOptions: ChartConfiguration['options'] = {
-    elements: {
-      line: {
-        tension: 0.5
-      }
-    },
-    scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
-      x: {},
-      'y-axis-0':
-        {
-          position: 'left',
-        },
-      'y-axis-1': {
-        position: 'right',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
-        },
-        ticks: {
-          color: 'red'
-        }
-      }
-    }
-  };
+  // public lineChartOptions: ChartConfiguration['options'] = {
+  //   elements: {
+  //     line: {
+  //       tension: 0.5,
+  //     },
+  //   },
+  //   scales: {
+  //     // We use this empty structure as a placeholder for dynamic theming.
+  //     x: {},
+  //     'y-axis-0': {
+  //       position: 'left',
+  //     },
+  //     'y-axis-1': {
+  //       position: 'right',
+  //       grid: {
+  //         color: 'rgba(255,0,0,0.3)',
+  //       },
+  //       ticks: {
+  //         color: 'red',
+  //       },
+  //     },
+  //   },
+  // };
 
-  public lineChartType: ChartType = 'line';
-
+  // public lineChartType: ChartType = 'line';
 }
-
-
-
-// public lineChartData: ChartConfiguration['data'] = {
-//   datasets: [
-//     {
-//       data: [65, 59, 80, 81, 56, 55, 40],
-//       label: 'Series A',
-//       backgroundColor: 'rgba(148,159,177,0.2)',
-//       borderColor: 'rgba(148,159,177,1)',
-//       pointBackgroundColor: 'rgba(148,159,177,1)',
-//       pointBorderColor: '#fff',
-//       pointHoverBackgroundColor: '#fff',
-//       pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-//       fill: 'origin',
-//     },
-//     {
-//       data: [28, 48, 40, 19, 86, 27, 90],
-//       label: 'Series B',
-//       backgroundColor: 'rgba(77,83,96,0.2)',
-//       borderColor: 'rgba(77,83,96,1)',
-//       pointBackgroundColor: 'rgba(77,83,96,1)',
-//       pointBorderColor: '#fff',
-//       pointHoverBackgroundColor: '#fff',
-//       pointHoverBorderColor: 'rgba(77,83,96,1)',
-//       fill: 'origin',
-//     },
-//     {
-//       data: [180, 480, 770, 90, 1000, 270, 400],
-//       label: 'Series C',
-//       yAxisID: 'y-axis-1',
-//       backgroundColor: 'rgba(255,0,0,0.3)',
-//       borderColor: 'red',
-//       pointBackgroundColor: 'rgba(148,159,177,1)',
-//       pointBorderColor: '#fff',
-//       pointHoverBackgroundColor: '#fff',
-//       pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-//       fill: 'origin',
-//     },
-//   ],
-//   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-// };
-
-// public lineChartType: ChartType = 'line';

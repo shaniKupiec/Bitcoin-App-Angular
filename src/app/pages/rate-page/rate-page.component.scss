@@ -14,23 +14,23 @@
         background-color: $sClr1;
         padding: 28px 22px;
         border-radius: 2px;
-
+    
         &__header {
             @include flex(row, space-between);
             width: 100%;
-
+    
             .right {
                 @include flex();
                 gap: 13px;
                 &__img {
                     width: 35px;
                 }
-
+    
                 &__coin {
                     font-size: rem(20px);
                 }
             }
-
+    
             .left {
                 @include flex(column, center, end);
                 &__type {
@@ -39,13 +39,13 @@
                     text-transform: uppercase;
                     color: $sClr3;
                 }
-
+    
                 &__rate {
                     font-size: rem(35px);
                 }
             }
         }
-
+    
         &__footer{
             background-color: $sClr2;
             width: 100%;

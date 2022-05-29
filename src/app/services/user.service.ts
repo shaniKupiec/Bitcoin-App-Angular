@@ -7,7 +7,14 @@ import { User } from '../models/user.model';
 const USERS: User[] = [
   {
     name: 'shani',
-    coins: 100,
+    coins: {
+      Bitcoin: 100,
+      Ethereum: 20,
+      Litecoin: 5,
+      Ripple: 7,
+      Dash: 8,
+    },
+    total: 140,
     moves: [
       {
         id: 'ytrdvb',
@@ -16,6 +23,7 @@ const USERS: User[] = [
         at: 1650274560000,
         amount: 7,
         isToContact: false,
+        type: 'Bitcoin',
       },
       {
         id: '567ujh',
@@ -24,6 +32,7 @@ const USERS: User[] = [
         at: 1650002760000,
         amount: 10,
         isToContact: false,
+        type: 'Bitcoin',
       },
       {
         id: '5rfg',
@@ -32,6 +41,7 @@ const USERS: User[] = [
         at: 1649603580000,
         amount: 5,
         isToContact: true,
+        type: 'Bitcoin',
       },
       {
         id: 'xfgnh',
@@ -40,6 +50,7 @@ const USERS: User[] = [
         at: 1649307312000,
         amount: 40,
         isToContact: true,
+        type: 'Bitcoin',
       },
       {
         id: '456yhg',
@@ -48,6 +59,7 @@ const USERS: User[] = [
         at: 1648981332000,
         amount: 20,
         isToContact: false,
+        type: 'Bitcoin',
       },
       {
         id: 'jhgv b',
@@ -56,6 +68,7 @@ const USERS: User[] = [
         at: 1648760400000,
         amount: 100,
         isToContact: true,
+        type: 'Bitcoin',
       },
     ],
   },
@@ -90,9 +103,11 @@ export class UserService {
       at: Date.now(),
       amount,
       isToContact: true,
+      type: 'Bitcoin',
     };
 
-    this._loggedInUser.coins -= amount;
+    this._loggedInUser.coins['Bitcoin'] -= amount;
+    this._loggedInUser.total -= amount;
     this._loggedInUser.moves.unshift(move);
 
     const idx = this._usersDb.findIndex(
