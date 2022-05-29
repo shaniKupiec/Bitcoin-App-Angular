@@ -17,7 +17,7 @@ import { ContactPageComponent } from './pages/contact-page/contact-page.componen
 import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardComponent } from './pages/dashboard-page/dashboard.component';
 import { RatePageComponent } from './pages/rate-page/rate-page.component';
 import { AppComponent } from './cmp/app-root/app.component';
 import { ContactPreviewComponent } from './cmp/contact/contact-preview/contact-preview.component';
@@ -30,8 +30,8 @@ import { TransferFundComponent } from './cmp/contact/transfer-fund/transfer-fund
 import { TransactionListComponent } from './cmp/transactions/transaction-list/transaction-list.component';
 import { TransactionPreviewComponent } from './cmp/transactions/transaction-preview/transaction-preview.component';
 import { TransferHistoryComponent } from './cmp/contact/transfer-history/transfer-history.component';
-import { RateComponent } from './cmp/rate/rate.component';
-import { CoinDataComponent } from './cmp/coin-data/coin-data.component';
+import { RateComponent } from './cmp/dashboard/rate/rate.component';
+import { CoinDataComponent } from './cmp/dashboard/coin-data/coin-data.component';
 
 export function playerFactory() {
   return player;
