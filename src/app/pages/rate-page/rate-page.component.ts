@@ -34,76 +34,50 @@ export class RatePageComponent implements OnInit {
     dash: 'Dash',
   };
 
-  shaniData = [
-    {
-      name: 'Bitcoin history',
-      series: [
-        {
-          name: '1990',
-          value: 62000000,
-        },
-        {
-          name: '2010',
-          value: 73000000,
-        },
-        {
-          name: '2011',
-          value: 89400000,
-        },
-      ],
-    },
-  ]
-
   coinDatas = [
     {
       img: 'https://res.cloudinary.com/trellox/image/upload/v1652273953/cryptonites/Group_zqaaoj.png',
       shortName: 'btc',
-      historyData: [
-        {
-          name: 'Bitcoin history',
-          series: [
-            {
-              name: '1990',
-              value: 62000000,
-            },
-            {
-              name: '2010',
-              value: 73000000,
-            },
-            {
-              name: '2011',
-              value: 89400000,
-            },
-          ],
-        },
-      ],
+      historyData: [],
       color: '#F2921B',
+      period: 'year',
     },
     {
       img: 'https://res.cloudinary.com/trellox/image/upload/v1652273940/cryptonites/Group_5_rvkdqt.png',
       shortName: 'eth',
-      historyData: 5,
+      historyData: [],
       color: '#939ABE',
+      period: 'year',
     },
     {
       img: 'https://res.cloudinary.com/trellox/image/upload/v1652273946/cryptonites/Group_2_yu5m3j.png',
       shortName: 'ltc',
-      historyData: 5,
+      historyData: [],
       color: '#838383',
+      period: 'year',
     },
     {
       img: 'https://res.cloudinary.com/trellox/image/upload/v1652279398/cryptonites/Group_4_y2hafp.png',
       shortName: 'xrp',
-      historyData: 5,
+      historyData: [],
       color: '#4A90E2',
+      period: 'year',
     },
     {
       img: 'https://res.cloudinary.com/trellox/image/upload/v1652279394/cryptonites/Group_5-1_ybb9ki.png',
       shortName: 'dash',
-      historyData: 5,
+      historyData: [],
       color: '#494AA7',
+      period: 'year',
     },
   ];
+
+  changePeriod($event: { period: string; name: string }) {
+    const idx = this.coinDatas.findIndex(
+      (coinData) => coinData.shortName === $event.name
+    );
+    this.coinDatas[idx].period = $event.period;
+  }
 
   ngOnInit(): void {
     this.ratesSub = this.cryptoService.rates().subscribe((res: any) => {
@@ -113,8 +87,7 @@ export class RatePageComponent implements OnInit {
     this.historyBTCSub = this.cryptoService
       .exchangeHistoryBTC()
       .subscribe((res: any) => {
-        // this.coinDatas[0].historyData = res;
-        this.shaniData = res
+        this.coinDatas[0].historyData = res;
       });
 
     this.historyETHSub = this.cryptoService

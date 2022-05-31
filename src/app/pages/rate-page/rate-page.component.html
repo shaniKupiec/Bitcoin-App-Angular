@@ -1,20 +1,14 @@
 <ul class="rate-cmp-list" *ngIf="rates">
   <rate 
-  [img]="coinDatas[0].img"
-  [shortName]="coinDatas[0].shortName"
-  [color]="coinDatas[0].color"
-  [fullName]="helpArray[coinDatas[0].shortName]"
-  [rate]="rates[coinDatas[0].shortName]"
-  [historyData]="shaniData"
-  ></rate>
-  <!-- <rate 
   *ngFor="let coinData of coinDatas"
   key="data.fullName"
   [img]="coinData.img"
   [shortName]="coinData.shortName"
   [color]="coinData.color"
-  [fullName]="this.helpArray[coinData.shortName]"
-  [rate]="this.rates[coinData.shortName]"
+  [period]="coinData.period"
+  [fullName]="helpArray[coinData.shortName]"
+  [rate]="rates[coinData.shortName]"
   [historyData]="coinData.historyData"
-  ></rate> -->
+  (onChangePeriod)="changePeriod($event)"
+  ></rate>
 </ul>

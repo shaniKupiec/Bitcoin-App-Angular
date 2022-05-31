@@ -4,15 +4,18 @@ import { map } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { storageService } from './storageService';
 const RATE_KEY = 'rates';
+
 const HISTORY_BTC = 'history-btc';
 const HISTORY_ETH = 'history-eth';
 const HISTORY_LTC = 'history-ltc';
 const HISTORY_XRP = 'history-xrp';
 const HISTORY_DASH = 'history-dash';
+// const HISTORY_PERIOD = 'history-period';
+
 const FULL_HISTORY_BTC = 'full-history-btc';
 
-const MARKET_PRICES_KEY = 'market-prices';
-const CONF_TRANS_KEY = 'confirmed-transactions';
+// const MARKET_PRICES_KEY = 'market-prices';
+// const CONF_TRANS_KEY = 'confirmed-transactions';
 
 @Injectable({
   providedIn: 'root',
@@ -31,13 +34,16 @@ export class CryptoService {
     storageService.loadFromStorage(HISTORY_XRP) || null;
   private gHistoryDASHCache =
     storageService.loadFromStorage(HISTORY_DASH) || null;
+  // private gHistoryPERIODCache =
+  //   storageService.loadFromStorage(HISTORY_PERIOD) || null;
+
   private gFullHistoryBTCCache =
     storageService.loadFromStorage(FULL_HISTORY_BTC) || null;
 
-  private gMarketPricesCache =
-    storageService.loadFromStorage(MARKET_PRICES_KEY) || [];
-  private gConfirmedTransactionsCache =
-    storageService.loadFromStorage(CONF_TRANS_KEY) || [];
+  // private gMarketPricesCache =
+  //   storageService.loadFromStorage(MARKET_PRICES_KEY) || [];
+  // private gConfirmedTransactionsCache =
+  //   storageService.loadFromStorage(CONF_TRANS_KEY) || [];
 
   public rates() {
     if (this.gRatesCache) return from([this.gRatesCache]);
@@ -56,17 +62,34 @@ export class CryptoService {
       );
   }
 
+  // public exchangeHistoryPERIOD() {
+  //   if (this.gHistoryPERIODCache) return from([this.gHistoryPERIODCache]);
+  //   return this.http
+  //     .get(
+  //       `https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,XRP,DASH&tsyms=USD`
+  //     )
+  //     .pipe(
+  //       map((res: any) => {
+  //         for (const coin in res) {
+  //           res[coin.toLowerCase()] = res[coin]['USD'];
+  //         }
+  //         storageService.saveToStorage(RATE_KEY, res);
+  //         return res;
+  //       })
+  //     );
+  // }
+
   public exchangeHistoryBTC() {
     if (this.gHistoryBTCCache) return from([this.gHistoryBTCCache]);
     return this.http
       .get(
-        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=BTC&limit=4`
+        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=BTC&limit=1000`
       )
       .pipe(
         map((res: any) => {
           res = res.Data.map((d: { time: number; volume: number }) => {
             return {
-              name: new Date(d.time * 1000).toDateString(),
+              name: this.formatDate(d.time * 1000),
               value: Math.floor(d.volume),
             };
           });
@@ -88,9 +111,18 @@ export class CryptoService {
       )
       .pipe(
         map((res: any) => {
-          res = res.Data.map((d: { volume: any }) => Math.floor(d.volume));
-          storageService.saveToStorage(HISTORY_ETH, res);
-          return res;
+          res = res.Data.map((d: { time: number; volume: number }) => {
+            return {
+              name: this.formatDate(d.time * 1000),
+              value: Math.floor(d.volume),
+            };
+          });
+          const data = {
+            name: 'Ethereum exchange history',
+            series: res,
+          };
+          storageService.saveToStorage(HISTORY_ETH, data);
+          return data;
         })
       );
   }
@@ -103,9 +135,18 @@ export class CryptoService {
       )
       .pipe(
         map((res: any) => {
-          res = res.Data.map((d: { volume: any }) => Math.floor(d.volume));
-          storageService.saveToStorage(HISTORY_LTC, res);
-          return res;
+          res = res.Data.map((d: { time: number; volume: number }) => {
+            return {
+              name: this.formatDate(d.time * 1000),
+              value: Math.floor(d.volume),
+            };
+          });
+          const data = {
+            name: 'Litecoin exchange history',
+            series: res,
+          };
+          storageService.saveToStorage(HISTORY_LTC, data);
+          return data;
         })
       );
   }
@@ -120,9 +161,18 @@ export class CryptoService {
       )
       .pipe(
         map((res: any) => {
-          res = res.Data.map((d: { volume: any }) => Math.floor(d.volume));
-          storageService.saveToStorage(HISTORY_XRP, res);
-          return res;
+          res = res.Data.map((d: { time: number; volume: number }) => {
+            return {
+              name: this.formatDate(d.time * 1000),
+              value: Math.floor(d.volume),
+            };
+          });
+          const data = {
+            name: 'Ripple exchange history',
+            series: res,
+          };
+          storageService.saveToStorage(HISTORY_XRP, data);
+          return data;
         })
       );
   }
@@ -135,11 +185,32 @@ export class CryptoService {
       )
       .pipe(
         map((res: any) => {
-          res = res.Data.map((d: { volume: any }) => Math.floor(d.volume));
-          storageService.saveToStorage(HISTORY_DASH, res);
-          return res;
+          res = res.Data.map((d: { time: number; volume: number }) => {
+            return {
+              name: this.formatDate(d.time * 1000),
+              value: Math.floor(d.volume),
+            };
+          });
+          const data = {
+            name: 'Dash exchange history',
+            series: res,
+          };
+          storageService.saveToStorage(HISTORY_DASH, data);
+          return data;
         })
       );
+  }
+
+  private formatDate(date: number): string {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('-');
   }
 
   public fullHistoryBTC() {

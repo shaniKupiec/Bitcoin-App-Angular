@@ -10,14 +10,18 @@
     </div>
   </header>
   <ngx-charts-line-chart
-  [view]="view"
-  [scheme]="colorScheme"
-  [legend]="legend"
-  [xAxis]="xAxis"
-  [yAxis]="yAxis"
-  [timeline]="timeline"
-  [results]="historyData"
+    [view]="view"
+    [scheme]="colorScheme"
+    [legend]="legend"
+    [xAxis]="xAxis"
+    [yAxis]="yAxis"
+    [timeline]="timeline"
+    [results]="data"
   >
-</ngx-charts-line-chart>
-  <footer class="item__footer">footer</footer>
+  </ngx-charts-line-chart>
+  <ul class="item__footer">
+    <li class="period__item" [class.active]="period === 'week'" (click)="onChangePeriod.emit({period: 'week', name: shortName})">3 weeks</li>
+    <li class="period__item" [class.active]="period === 'month'" (click)="onChangePeriod.emit({period: 'month', name: shortName})">3 months</li>
+    <li class="period__item" [class.active]="period === 'year'" (click)="onChangePeriod.emit({period: 'year', name: shortName})">3 years</li>
+  </ul>
 </li>

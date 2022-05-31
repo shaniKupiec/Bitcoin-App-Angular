@@ -41,11 +41,28 @@
         }
     }
 
-    &__footer{
-        background-color: $sClr2;
+    &__footer {
         width: 100%;
         text-align: center;
         padding: 13px;
         border-radius: 2px;
+        margin-top: -60px;
+        @include flex(row, space-between);
+
+        .period__item {
+            border-radius: 2px;
+            background-color: $sClr2;
+            padding: 5px 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+
+            &:hover {
+                background-color: lighten($sClr2, 5%);
+            }
+
+            &.active{
+                background-color: $sClr3;
+            }
+        }
     }
 }
