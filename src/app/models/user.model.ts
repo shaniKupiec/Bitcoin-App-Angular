@@ -1,15 +1,10 @@
 import { Move } from './move.model';
+import { Rates } from './rates.model';
 
 export class User {
   constructor(
     public name: string,
-    public coins: {
-      btc: number;
-      eth: number;
-      ltc: number;
-      xrp: number;
-      dash: number;
-    },
+    public coins: Rates,
     public total: number,
     public moves: Move[],
   ) {}

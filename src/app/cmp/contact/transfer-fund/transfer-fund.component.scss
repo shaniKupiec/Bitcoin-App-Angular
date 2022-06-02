@@ -20,8 +20,15 @@
         }
     }
 
+    select {
+        @include input();
+        align-self: center;
+    }
+    
     button {
         @include btn();
+        max-width: 300px;
+        align-self: center;
     }
 
     span {

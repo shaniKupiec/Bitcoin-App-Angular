@@ -14,8 +14,9 @@ export class TransferFundComponent implements OnInit {
   constructor(private userService: UserService) {}
   @Input() contact!: Contact;
   @Input() loggedInUser!: User;
-  @Output() onTransfer = new EventEmitter<number>();
+  @Output() onTransfer = new EventEmitter<{amount: number, coinType: string}>();
   amount: number = 0;
+  coinType: 'btc' | 'eth' | 'ltc' | 'xrp' | 'dash' = 'btc';
   transMsg: boolean = false;
   transAni: boolean = false;
 
@@ -25,11 +26,18 @@ export class TransferFundComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  maxAmount(): number{
+    return this.loggedInUser.coins[this.coinType]
+  }
+
   transfer() {
     this.transAni = true;
+    const amount = this.amount
+    const coinType = this.coinType
+    this.amount = 0;
+    this.coinType = 'btc';
     setTimeout(() => {
-      this.onTransfer.emit(this.amount);
-      this.amount = 0;
+      this.onTransfer.emit({ amount, coinType });
       this.transAni = false;
       this.transMsg = true;
       setTimeout(() => {

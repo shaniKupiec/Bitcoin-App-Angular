@@ -28,7 +28,6 @@ import { SideNavComponent } from './cmp/side-nav/side-nav.component';
 import { TransferFundComponent } from './cmp/contact/transfer-fund/transfer-fund.component';
 import { TransactionListComponent } from './cmp/transactions/transaction-list/transaction-list.component';
 import { TransactionPreviewComponent } from './cmp/transactions/transaction-preview/transaction-preview.component';
-import { TransferHistoryComponent } from './cmp/contact/transfer-history/transfer-history.component';
 import { RateComponent } from './cmp/rate/rate.component';
 import { CoinDataComponent } from './cmp/dashboard/coin-data/coin-data.component';
 
@@ -53,7 +52,6 @@ export function playerFactory() {
     TransactionsPageComponent,
     TransactionListComponent,
     TransactionPreviewComponent,
-    TransferHistoryComponent,
     DashboardComponent,
     RatePageComponent,
     RateComponent,

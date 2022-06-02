@@ -1,20 +1,26 @@
 <section class="trans">
+  <select [(ngModel)]="coinType">
+    <option value="btc">Bitcoin</option>
+    <option value="eth">Ethereum</option>
+    <option value="ltc">Litecoin</option>
+    <option value="xrp">Ripple</option>
+    <option value="dash">Dash</option>
+  </select>
   <input
     class="round"
     type="number"
     min="0"
-    max="{loggedInUser.total}"
+    max="{maxAmount()}"
     [(ngModel)]="amount"
   />
-  <!-- change max -->
   <button
     (click)="transfer()"
-    [class.disable]="this.amount > loggedInUser.total || this.amount <= 0"
+    [class.disable]="this.amount > maxAmount() || this.amount <= 0"
     class="round"
   >
     Transfer
   </button>
-  <span>max coins available to transfer: {{ loggedInUser.total }}</span>
+  <span>max coins available to transfer: {{ maxAmount() }}</span>
   <a [routerLink]="['/trans']" *ngIf="transMsg">Check Transfer</a>
   <ng-lottie *ngIf="transAni" [options]="options"></ng-lottie>
 </section>

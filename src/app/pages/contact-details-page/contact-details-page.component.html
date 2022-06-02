@@ -38,13 +38,6 @@
   ></transfer-fund>
 
   <section class="transfer-history round">
-    <ul>
-      <transfer-history
-        class="transfer-history__cmp"
-        *ngFor="let move of movesForDisplay"
-        key="move.id"
-        [move]="move"
-      ></transfer-history>
-    </ul>
+    <transaction-list [moves]="movesForDisplay"></transaction-list>
   </section>
 </section>

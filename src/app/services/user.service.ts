@@ -113,7 +113,7 @@ export class UserService {
     this._loggedInUser$.next(loggedInUser);
   }
 
-  public transfer(contact: Contact, amount: number): void {
+  public transfer(contact: Contact, amount: number, type: string): void {
     const move: Move = {
       id: this._makeId(),
       contactId: contact._id,
@@ -121,10 +121,10 @@ export class UserService {
       at: Date.now(),
       amount,
       isToContact: true,
-      type: 'btc',
+      type,
     };
 
-    this._loggedInUser.coins['btc'] -= amount;
+    this._loggedInUser.coins[type] -= amount;
     this._loggedInUser.total -= amount;
     this._loggedInUser.moves.unshift(move);
 
