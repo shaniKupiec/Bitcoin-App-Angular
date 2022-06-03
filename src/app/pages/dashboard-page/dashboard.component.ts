@@ -17,13 +17,10 @@ import 'chartjs-chart-financial';
 import { BaseChartDirective } from 'ng2-charts';
 import { enUS } from 'date-fns/locale';
 import { add, parseISO } from 'date-fns';
-import {
-  CandlestickController,
-  CandlestickElement,
-  OhlcController,
-  OhlcElement,
-} from 'chartjs-chart-financial';
 import { Rates } from 'src/app/models/rates.model';
+import { OhlcElement, OhlcController, CandlestickElement, CandlestickController } from 'chartjs-chart-financial'
+
+Chart.register(OhlcElement, OhlcController, CandlestickElement, CandlestickController)
 
 @Component({
   selector: 'dashboard',
@@ -86,11 +83,16 @@ export class DashboardComponent implements OnInit {
   ];
 
   // percents
-  percentsSize: [number, number] = [500, 400];
   percentsColor: any = {
     domain: ['#F2921B', '#939ABE', '#838383', '#4A90E2', '#494AA7'],
   };
   percentsData!: any[];
+
+  // exchange-chart
+  exchangeData: any[] = [];
+  exchangeColor: any = {
+    domain: ['#F2921B', '#939ABE', '#838383', '#4A90E2', '#494AA7'],
+  };
 
   ngOnInit(): void {
     this.userService.getLoggedInUser();
@@ -111,145 +113,73 @@ export class DashboardComponent implements OnInit {
     });
 
     this.cryptoService.fullHistoryBTC().subscribe((res: any) => {
-      // this.financialChartData.datasets[0].data = res;
-      // this.chart?.update();
+      this.financialChartData.datasets[0].data = res;
+      this.chart?.update();
     });
 
     this.cryptoService.exchangeHistoryBTC().subscribe((res: any) => {
-      // this.lineChartData.datasets[0].data = res;
-      // this.chart?.update();
+      res.series = res.series.slice(-21)
+      this.exchangeData.push(res)
     });
-
+    
     this.cryptoService.exchangeHistoryETH().subscribe((res: any) => {
-      // this.lineChartData.datasets[1].data = res;
-      // this.chart?.update();
+      res.series = res.series.slice(-21)
+      this.exchangeData.push(res)
+    });
+    
+    this.cryptoService.exchangeHistoryLTC().subscribe((res: any) => {
+      res.series = res.series.slice(-21)
+      this.exchangeData.push(res)
+    });
+    
+    this.cryptoService.exchangeHistoryXRP().subscribe((res: any) => {
+      res.series = res.series.slice(-21)
+      // this.exchangeData.push(res)
     });
 
-    this.cryptoService.exchangeHistoryLTC().subscribe((res: any) => {
-      // this.lineChartData.datasets[2].data = res;
-      // this.chart?.update();
+    this.cryptoService.exchangeHistoryDASH().subscribe((res: any) => {
+      res.series = res.series.slice(-21)
+      this.exchangeData.push(res)
     });
   }
 
   onOpenedRate(coin: string) {
     this.openedRate = coin;
-    console.log('new coin opened', coin);
   }
 
-  // //PIE
-  // public pieChartData: ChartData<'pie', number[], string | string[]> = {
-  //   labels: ['Bitcoin', 'Ethereum ', 'Litecoin'],
-  //   datasets: [
-  //     {
-  //       data: [90, 7, 3],
-  //       backgroundColor: ['#bebebe', '#639c29', '#1e2024'],
-  //       hoverBackgroundColor: ['#bebebe', '#639c29', '#1e2024'],
-  //       borderColor: '#868686',
-  //       hoverBorderColor: '#868686',
-  //     },
-  //   ],
-  // };
-  // public pieChartType: ChartType = 'pie';
+  //Financial
+  public financialChartLegend = true;
+  public financialChartType: ChartType = 'candlestick';
 
-  // //Financial
-  // public financialChartLegend = true;
-  // public financialChartType: ChartType = 'candlestick';
+  public financialChartData: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        label: 'Bitcoin Market Price',
+        data: [],
+        borderColor: '#ffffff',
+      },
+    ],
+  };
 
-  // public financialChartData: ChartConfiguration['data'] = {
-  //   datasets: [
-  //     {
-  //       label: 'Bitcoin Market Price',
-  //       data: [],
-  //       borderColor: '#ffffff',
-  //     },
-  //   ],
-  // };
+  public financialChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        time: {
+          unit: 'day',
+        },
+        adapters: {
+          date: {
+            locale: enUS,
+          },
+        },
+        ticks: {
+          source: 'auto',
+        },
+      },
+    },
+  };
 
-  // public financialChartOptions: ChartConfiguration['options'] = {
-  //   responsive: true,
-  //   maintainAspectRatio: false,
-  //   scales: {
-  //     x: {
-  //       time: {
-  //         unit: 'day',
-  //       },
-  //       adapters: {
-  //         date: {
-  //           locale: enUS,
-  //         },
-  //       },
-  //       ticks: {
-  //         source: 'auto',
-  //       },
-  //     },
-  //   },
-  // };
-
-  // @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
-
-  // public lineChartData: ChartConfiguration['data'] = {
-  //   datasets: [
-  //     {
-  //       data: [],
-  //       label: 'Bitcoin Rate',
-  //       backgroundColor: 'rgba(148,159,177,0.2)',
-  //       borderColor: '#F2921B',
-  //       pointBackgroundColor: 'rgba(148,159,177,1)',
-  //       pointBorderColor: '#fff',
-  //       pointHoverBackgroundColor: '#fff',
-  //       pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-  //       fill: 'origin',
-  //     },
-  //     {
-  //       data: [],
-  //       label: 'Ethereum Rate',
-  //       backgroundColor: 'rgba(148,159,177,0.2)',
-  //       borderColor: '#939ABE',
-  //       pointBackgroundColor: 'rgba(148,159,177,1)',
-  //       pointBorderColor: '#fff',
-  //       pointHoverBackgroundColor: '#fff',
-  //       pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-  //       fill: 'origin',
-  //     },
-  //     {
-  //       data: [],
-  //       label: 'Litecoin Rate',
-  //       yAxisID: 'y-axis-1',
-  //       backgroundColor: 'rgba(148,159,177,0.2)',
-  //       borderColor: '#838383',
-  //       pointBackgroundColor: 'rgba(148,159,177,1)',
-  //       pointBorderColor: '#fff',
-  //       pointHoverBackgroundColor: '#fff',
-  //       pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-  //       fill: 'origin',
-  //     },
-  //   ],
-  //   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  // };
-
-  // public lineChartOptions: ChartConfiguration['options'] = {
-  //   elements: {
-  //     line: {
-  //       tension: 0.5,
-  //     },
-  //   },
-  //   scales: {
-  //     // We use this empty structure as a placeholder for dynamic theming.
-  //     x: {},
-  //     'y-axis-0': {
-  //       position: 'left',
-  //     },
-  //     'y-axis-1': {
-  //       position: 'right',
-  //       grid: {
-  //         color: 'rgba(255,0,0,0.3)',
-  //       },
-  //       ticks: {
-  //         color: 'red',
-  //       },
-  //     },
-  //   },
-  // };
-
-  // public lineChartType: ChartType = 'line';
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 }

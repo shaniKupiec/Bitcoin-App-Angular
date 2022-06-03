@@ -3,7 +3,6 @@
 @import "../../../assets/styles/functions";
 
 .item {
-    // height: 300px;
     width: 400px;
     @include flex(column, space-between);
     background-color: $sClr1;

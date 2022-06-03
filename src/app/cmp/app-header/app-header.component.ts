@@ -27,10 +27,10 @@ export class AppHeaderComponent implements OnInit {
             this.currentCmpName = 'My Contacts';
             break;
           case 'trans':
-            this.currentCmpName = 'Transactions';
+            this.currentCmpName = 'My Transactions';
             break;
           case 'rate':
-            this.currentCmpName = 'Rates';
+            this.currentCmpName = 'Transactions History By Coin Type';
             break;
           default:
             this.currentCmpName = 'Unknown';

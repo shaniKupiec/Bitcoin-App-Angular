@@ -8,12 +8,4 @@ export class User {
     public total: number,
     public moves: Move[],
   ) {}
-
-  // setCoins?(coins: number) {
-  //   this.coins = coins;
-  // }
-
-  // addMove?(move: Move) {
-  //   this.moves.unshift(move);
-  // }
 }

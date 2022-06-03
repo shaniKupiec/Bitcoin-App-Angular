@@ -7,6 +7,6 @@
   <img src="{{img}}" alt="" />
   <div class="coin-data__bottom">
     <span class="coin-data__bottom__name">{{ fullName }}</span>
-    <span class="coin-data__bottom__rate">{{ rate }}</span>
+    <span class="coin-data__bottom__rate">{{ rate | currency:'USD' }}</span>
   </div>
 </section>

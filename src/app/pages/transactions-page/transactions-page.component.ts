@@ -35,7 +35,6 @@ export class TransactionsPageComponent implements OnInit {
     return this.loggedInUser.moves.slice(0, 5);
   }
 
-  // title = 'angular-app';
   fileName = 'ExportHistory.xlsx';
   userList = [];
   exportExcel(): void {

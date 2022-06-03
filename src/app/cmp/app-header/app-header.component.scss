@@ -41,11 +41,6 @@ header {
 }
 
 @media (max-width: $break-narrow) {
-    // header {
-    //     .logo {
-    //         @include flex(row, center, stretch);
-    //     }
-    // }
 }
 
 @media (min-width: $break-normal) {

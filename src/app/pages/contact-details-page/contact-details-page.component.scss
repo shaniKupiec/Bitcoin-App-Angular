@@ -2,10 +2,6 @@
 @import "../../../assets/styles/mixins";
 
 .details-cmp {
-    // display: flex;
-    // flex-wrap: wrap;
-    // gap: 10px;
-
     grid-template-areas:
         "a a b"
         "a a b"
@@ -47,7 +43,6 @@
                 height: 100%;
 
                 .details__icon {
-                    // color: $hoverClr;
                     position: absolute;
                     left: -40px;
                     top: 3px;

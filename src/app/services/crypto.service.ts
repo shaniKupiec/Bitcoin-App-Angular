@@ -107,7 +107,7 @@ export class CryptoService {
     if (this.gHistoryETHCache) return from([this.gHistoryETHCache]);
     return this.http
       .get(
-        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=ETH&limit=120`
+        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=ETH&limit=1000`
       )
       .pipe(
         map((res: any) => {
@@ -131,7 +131,7 @@ export class CryptoService {
     if (this.gHistoryLTCCache) return from([this.gHistoryLTCCache]);
     return this.http
       .get(
-        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=LTC&limit=120`
+        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=LTC&limit=1000`
       )
       .pipe(
         map((res: any) => {
@@ -157,7 +157,7 @@ export class CryptoService {
 
     return this.http
       .get(
-        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=XRP&limit=120`
+        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=XRP&limit=1000`
       )
       .pipe(
         map((res: any) => {
@@ -181,7 +181,7 @@ export class CryptoService {
     if (this.gHistoryDASHCache) return from([this.gHistoryDASHCache]);
     return this.http
       .get(
-        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=DASH&limit=120`
+        `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=DASH&limit=1000`
       )
       .pipe(
         map((res: any) => {

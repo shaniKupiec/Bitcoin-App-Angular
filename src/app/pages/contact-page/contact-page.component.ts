@@ -19,9 +19,6 @@ export class ContactPageComponent implements OnInit {
     this.contactServiceSub = this.contactService.contacts$.subscribe(data =>{
       this.contacts = data
     });
-    // this.contactService
-    //   .query()
-    //   .subscribe((data: Contact[]) => (this.contacts = data));
   }
 
   ngOnDestroy(): void {

@@ -7,8 +7,7 @@ import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { NgxChartsModule }from '@swimlane/ngx-charts';
-// import { NgChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -64,8 +63,8 @@ export function playerFactory() {
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory }),
     BrowserAnimationsModule,
-    NgxChartsModule
-    // NgChartsModule,
+    NgxChartsModule,
+    NgChartsModule,
     // ServiceWorkerModule.register('ngsw-worker.js', {
     //   enabled: environment.production,
     //   // Register the ServiceWorker as soon as the application is stable
