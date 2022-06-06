@@ -1,12 +1,18 @@
 @import "../../../assets/styles/functions";
 @import "../../../assets/styles/variables";
 
-.left {
-    width: rem(90px);
-    background-color: $sClr1;
-}
+.main-layout {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
 
-.right {
-    width: calc(100% - rem(90px));
-    padding: $layoutPadding;
+    .left {
+        width: rem(90px);
+        background-color: $sClr1;
+    }
+
+    .right {
+        width: calc(100% - rem(90px));
+        padding: $layoutPadding;
+    }
 }

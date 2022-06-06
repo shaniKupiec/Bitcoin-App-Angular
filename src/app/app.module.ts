@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgChartsModule } from 'ng2-charts';
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ContactDetailsPageComponent } from './pages/contact-details-page/contact-details-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
@@ -18,6 +18,7 @@ import { ContactEditComponent } from './pages/contact-edit/contact-edit.componen
 import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
 import { DashboardComponent } from './pages/dashboard-page/dashboard.component';
 import { RatePageComponent } from './pages/rate-page/rate-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AppComponent } from './cmp/app-root/app.component';
 import { ContactPreviewComponent } from './cmp/contact/contact-preview/contact-preview.component';
 import { ContactListComponent } from './cmp/contact/contact-list/contact-list.component';
@@ -29,6 +30,7 @@ import { TransactionListComponent } from './cmp/transactions/transaction-list/tr
 import { TransactionPreviewComponent } from './cmp/transactions/transaction-preview/transaction-preview.component';
 import { RateComponent } from './cmp/rate/rate.component';
 import { CoinDataComponent } from './cmp/dashboard/coin-data/coin-data.component';
+import { SignInComponent } from './cmp/home/sign-in/sign-in.component';
 
 export function playerFactory() {
   return player;
@@ -37,7 +39,7 @@ export function playerFactory() {
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent,
+    AboutPageComponent,
     ContactDetailsPageComponent,
     ContactPageComponent,
     StatisticPageComponent,
@@ -55,6 +57,8 @@ export function playerFactory() {
     RatePageComponent,
     RateComponent,
     CoinDataComponent,
+    SignInComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
