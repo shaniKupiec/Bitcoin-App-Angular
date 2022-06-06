@@ -1,0 +1,38 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/functions";
+
+.info {
+    &__head {
+        padding-top: 86px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        &__line {
+            position: absolute;
+            width: 240px;
+            left: -130px;
+        }
+        &__title {
+            padding-left: 172px;
+            font-size: rem(12px);
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    &__seller{
+        font-size: rem(51px);
+        font-weight: lighter;
+        margin-top: 57px;
+    }
+    
+    &__btn{
+        padding: 21px 35px;
+        margin-top: 50px;
+        font-size: rem(11px);
+        border: 1px solid $pClr1;
+        background: none;
+        color: $pClr1;
+    }
+}

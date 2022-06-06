@@ -2,8 +2,8 @@
     <header class="home__header">
         <span class="home__header__name">Cryptonites</span>
         <div class="home__header__list">
-            <a href="" class="active">sign up</a>
-            <a href="">log in</a>
+            <a href="" routerLinkActive="active" [routerLink]="['signin']">sign up</a>
+            <a href="" routerLinkActive="active" [routerLink]="['login']">log in</a>
         </div>
     </header>
     <router-outlet></router-outlet>

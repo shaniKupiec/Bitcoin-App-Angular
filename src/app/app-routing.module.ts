@@ -13,6 +13,8 @@ import { RatePageComponent } from './pages/rate-page/rate-page.component';
 import { SignInComponent } from './cmp/home/sign-in/sign-in.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './cmp/home/login/login.component';
+import { InfoComponent } from './cmp/home/info/info.component';
 
 const routes: Routes = [
   {
@@ -20,8 +22,16 @@ const routes: Routes = [
     component: HomePageComponent,
     children: [
       {
-        path: 'signup',
+        path: '',
+        component: InfoComponent,
+      },
+      {
+        path: 'signin',
         component: SignInComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
       },
     ]
   },

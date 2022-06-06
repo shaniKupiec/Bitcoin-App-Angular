@@ -31,6 +31,8 @@ import { TransactionPreviewComponent } from './cmp/transactions/transaction-prev
 import { RateComponent } from './cmp/rate/rate.component';
 import { CoinDataComponent } from './cmp/dashboard/coin-data/coin-data.component';
 import { SignInComponent } from './cmp/home/sign-in/sign-in.component';
+import { LoginComponent } from './cmp/home/login/login.component';
+import { InfoComponent } from './cmp/home/info/info.component';
 
 export function playerFactory() {
   return player;
@@ -59,6 +61,8 @@ export function playerFactory() {
     CoinDataComponent,
     SignInComponent,
     HomePageComponent,
+    LoginComponent,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,
