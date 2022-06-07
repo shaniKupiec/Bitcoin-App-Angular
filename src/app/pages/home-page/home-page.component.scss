@@ -5,8 +5,9 @@
 .home {
     min-height: 100vh;
     min-width: 100vw;
-    background-image: url("https://res.cloudinary.com/trellox/image/upload/v1654523107/cryptonites/pexels-photo-2387818_wn3n1d.jpg");
+    background-image: url("https://res.cloudinary.com/trellox/image/upload/v1654580554/cryptonites/WhatsApp_Image_2022-06-07_at_8.41.38_AM_u94ucs.jpg");
     padding: 62px 113px;
+    background-size: cover;
 
     &__header {
         @include flex(row, space-between);
