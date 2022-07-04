@@ -1,7 +1,5 @@
 # Cyptonites Frontend
 
-Cyptonites Frontend
-
 ## Tech
 - Angular typescript
 - SCSS
@@ -15,5 +13,4 @@ Cyptonites Frontend
 - Allows transfer coins to saved contact
 - Watch preview transactions
 
-
-## <a href="https://cryptonites.herokuapp.com/#/" target="blank">Link to App</a>
+# <a href="https://cryptonites.herokuapp.com/#/" target="blank">Link to App</a>
