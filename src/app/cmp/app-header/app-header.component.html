@@ -2,10 +2,9 @@
   <span class="page-name">{{currentCmpName}}</span>
   <section class="user">
     <span class="user__name">shani</span>
-    <img
-      class="user__img"
-      src="https://res.cloudinary.com/trellox/image/upload/v1648629234/WhatsApp_Image_2022-03-26_at_21.47.47_rjqaqx.jpg"
-      alt=""
-    />
+    <div class="user__img" #toggleButton (click)="toggleModal()"></div>
+  </section>
+  <section class="user-modal" #modal [class.open-modal]="isModalOpen">
+    modal
   </section>
 </header>

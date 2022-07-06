@@ -1,5 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +13,26 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./app-header.component.scss'],
 })
 export class AppHeaderComponent implements OnInit {
-  constructor() {}
+  @ViewChild('toggleButton') toggleButton!: ElementRef;
+  @ViewChild('modal') modal!: ElementRef;
+
+  constructor(private renderer: Renderer2) {
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (
+        e.target !== this.toggleButton.nativeElement &&
+        e.target !== this.modal.nativeElement
+      ) {
+        this.isModalOpen = false;
+      }
+    });
+  }
+
   @Input() currentCmpName!: string;
+  isModalOpen: boolean = false;
 
-  ngOnInit(): void {
-  };
+  ngOnInit(): void {}
 
+  toggleModal() {
+    this.isModalOpen = !this.isModalOpen;
+  }
 }

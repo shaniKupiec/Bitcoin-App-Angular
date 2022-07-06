@@ -7,6 +7,7 @@ import { User } from '../models/user.model';
 const USERS: User[] = [
   {
     name: 'shani',
+    email: 'shani.kupiec@gmail.com',
     coins: {
       btc: 100,
       eth: 20,

@@ -5,10 +5,7 @@
 header {
     @include flex(row, space-between);
     padding: 20px 0;
-
-    img {
-        width: 50px;
-    }
+    position: relative;
 
     .logo {
         @include flex(row, center, stretch);
@@ -25,18 +22,41 @@ header {
     }
 
     .filter {
-        @include input()
+        @include input();
     }
 
     .user {
         @include flex();
         gap: 10px;
         &__img {
-            border-radius: 50%;
+            cursor: pointer;
+            border-radius: 2px;
             width: 40px;
             height: 40px;
             object-fit: cover;
+            background: url("https://res.cloudinary.com/trellox/image/upload/v1657115510/cryptonites/Group_5_1_pgpofm.png")
+                no-repeat;
+            &:hover {
+                background: url("https://res.cloudinary.com/trellox/image/upload/v1657115703/cryptonites/Group_5_1_ygysjj.png")
+                    no-repeat;
+            }
         }
+    }
+
+    .user-modal {
+        display: none;
+        position: absolute;
+        background-color: white;
+        right: 25px;
+        top: 25px;
+        border-radius: 2px;
+
+        &.open-modal {
+            display: block;
+        }
+
+        width: 200px;
+        height: 200px;
     }
 }
 
