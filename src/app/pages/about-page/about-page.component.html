@@ -1,1 +1,18 @@
-<img src="https://res.cloudinary.com/trellox/image/upload/v1651498530/cryptonites/About_Cyptonix_gmvkwi.png" alt="">
+<!-- <img src="https://res.cloudinary.com/trellox/image/upload/v1651498530/cryptonites/About_Cyptonix_gmvkwi.png" alt=""> -->
+<section class="home-cmp">
+  <header>
+    <div class="title">Our specialties</div>
+    <div class="subtitle">{{titles}}</div>
+  </header>
+  <main>
+    <section *ngFor="let data of dataArray" key="data.imgSrc" class="data">
+      <img src="{{ data.imgSrc }}" alt="" class="data__img" />
+      <div class="data__txt">
+        <span class="data__txt__title">{{ data.title }}</span>
+        <span class="data__txt__info">{{ data.info }}</span>
+        <a href="#/about" class="data__txt__read-more">read more</a>
+      </div>
+    </section>
+  </main>
+  <footer></footer>
+</section>

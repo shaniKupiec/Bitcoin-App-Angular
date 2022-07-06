@@ -123,7 +123,7 @@ const CONTACTS = [
   },
 ];
 
-const dev = false;
+const dev = true;
 
 const BASE_URL = dev ? 'http://localhost:3030/api/contact/' : 'api/contact';
 

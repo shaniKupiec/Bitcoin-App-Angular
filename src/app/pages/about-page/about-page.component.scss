@@ -1,8 +1,51 @@
-.home-cmp{
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+@import "../../../assets/styles/functions";
 
+.home-cmp{
+    // .ani-continuer{
+    //     width: 100%;
+    // }
+
+    header{
+        @include flex(column);
+        margin-top: rem(40px);
+        .title{
+            font-size: rem(51px);
+            margin-bottom: rem(39px);
+        }
+        .subtitle{
+            color: $sClr3;
+            margin-bottom: rem(96px);
+        }
+    }
     
-    .ani-continuer{
-        width: 100%;
+    main{
+        .data{
+            @include flex();
+            margin-bottom: rem(63px);
+            &__img{
+                width: 309px;
+            }
+            &__txt{
+                @include flex(column, center, flex-start);
+                width: 400px;
+                &__title{
+                    font-size: rem(20px);
+                    margin-bottom: rem(34px);
+                }
+                &__info{
+                    font-size: rem(15px);
+                    margin-bottom: rem(21px);
+                    color: $sClr3
+                }
+                &__read-more{
+                    font-size: rem(11px);
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+            }
+        }
     }
     
 }

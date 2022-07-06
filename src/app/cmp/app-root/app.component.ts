@@ -19,7 +19,7 @@ export class AppComponent {
       if (routerEvent instanceof NavigationEnd) {
         switch (routerEvent.url.split('/')[1]) {
           case 'about':
-            this.currentCmpName = 'About';
+            this.currentCmpName = '';
             this.isFullApp = true;
             break;
           case 'dashboard':
