@@ -1,10 +1,18 @@
 <header>
-  <span class="page-name">{{currentCmpName}}</span>
+  <span class="page-name">{{ currentCmpName }}</span>
   <section class="user">
     <span class="user__name">shani</span>
     <div class="user__img" #toggleButton (click)="toggleModal()"></div>
   </section>
   <section class="user-modal" #modal [class.open-modal]="isModalOpen">
-    modal
+    <img
+      src="https://res.cloudinary.com/trellox/image/upload/v1657115510/cryptonites/Group_5_1_pgpofm.png"
+      alt=""
+      class="user-modal__img"
+    />
+    <div class="user-modal__name">{{ loggedInUser.name }}</div>
+    <div class="user-modal__email">{{ loggedInUser.email }}</div>
+    <div class="user-modal__br"></div>
+    <button class="user-modal__btn">Sign out</button>
   </section>
 </header>
