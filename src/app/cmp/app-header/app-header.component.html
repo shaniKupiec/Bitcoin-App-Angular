@@ -1,7 +1,7 @@
 <header>
   <span class="page-name">{{ currentCmpName }}</span>
   <section class="user">
-    <span class="user__name">shani</span>
+    <span class="user__name">{{ loggedInUser.name }}</span>
     <div class="user__img" #toggleButton (click)="toggleModal()"></div>
   </section>
   <section class="user-modal" #modal [class.open-modal]="isModalOpen">

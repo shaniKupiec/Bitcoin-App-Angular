@@ -6,7 +6,7 @@
   </header>
   <main>
     <section *ngFor="let data of dataArray" key="data.imgSrc" class="data">
-      <img src="{{ data.imgSrc }}" alt="" class="data__img" />
+      <img [src]="data.imgSrc" alt="" class="data__img" />
       <div class="data__txt">
         <span class="data__txt__title">{{ data.title }}</span>
         <span class="data__txt__info">{{ data.info }}</span>

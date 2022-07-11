@@ -1,117 +1,46 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { Contact } from '../models/contact.model';
 import { Move } from '../models/move.model';
 import { User } from '../models/user.model';
 
-const USERS: User[] = [
-  {
-    name: 'shani',
-    email: 'shani.kupiec@gmail.com',
-    coins: {
-      btc: 100,
-      eth: 20,
-      ltc: 5,
-      xrp: 7,
-      dash: 8,
-    },
-    total: 140,
-    moves: [
-      {
-        id: 'ytrdvb',
-        contactId: '626e84d5cc2a3647230043ef',
-        contactName: 'Shana Pope',
-        at: 1650274560000,
-        amount: 7,
-        isToContact: false,
-        type: 'eth',
-      },
-      {
-        id: 'xcfghj',
-        contactId: '626e84d5cc2a3647230043ef',
-        contactName: 'Shana Pope',
-        at: 1650274560000,
-        amount: 10,
-        isToContact: false,
-        type: 'eth',
-      },
-      {
-        id: '567ujh',
-        contactId: '626e84d5cc2a3647230043ee',
-        contactName: 'Dominique Soto',
-        at: 1650002760000,
-        amount: 10,
-        isToContact: false,
-        type: 'ltc',
-      },
-      {
-        id: '5rfg',
-        contactId: '626e84d5cc2a3647230043ed',
-        contactName: 'Rachel Lowe',
-        at: 1649603580000,
-        amount: 5,
-        isToContact: true,
-        type: 'btc',
-      },
-      {
-        id: 'xfgnh',
-        contactId: '626e84d5cc2a3647230043ea',
-        contactName: 'Ochoa Hyde',
-        at: 1649307312000,
-        amount: 40,
-        isToContact: true,
-        type: 'eth',
-      },
-      {
-        id: '456yhg',
-        contactId: '626e84d5cc2a3647230043eb',
-        contactName: 'Hallie Mclean',
-        at: 1648981332000,
-        amount: 20,
-        isToContact: false,
-        type: 'btc',
-      },
-      {
-        id: 'jhgv b',
-        contactId: '626e84d5cc2a3647230043ec',
-        contactName: 'Parsons Norris',
-        at: 1648760400000,
-        amount: 100,
-        isToContact: true,
-        type: 'dash',
-      },
-      {
-        id: 'dfghj',
-        contactId: '626e84d5cc2a3647230043ec',
-        contactName: 'Parsons Norris',
-        at: 1648760600000,
-        amount: 5,
-        isToContact: false,
-        type: 'btc',
-      },
-    ],
-  },
-];
+const dev = true;
+
+const BASE_URL = dev ? 'http://localhost:3030/api' : 'api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   //mock the server
-  private _usersDb: User[] = USERS;
-  private _loggedInUser: User = USERS[0];
-
-  // private _users$ = new BehaviorSubject<User[]>([]);
-  // public users$ = this._users$.asObservable();
+  // private _usersDb: User[] = USERS;
+  // private _loggedInUser: User = USERS[0];
 
   private _loggedInUser$ = new BehaviorSubject<User>(<User>{});
   public loggedInUser$ = this._loggedInUser$.asObservable();
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  public getLoggedInUser(): void {
-    let loggedInUser = this._loggedInUser;
+  public async getLoggedInUser(): Promise<void> {
+    // let loggedInUser = this._loggedInUser;
+    // this._loggedInUser$.next(loggedInUser);
+
+    const loggedInUser = await this.http
+      .get<User>(`${BASE_URL}/auth`)
+      .toPromise();
+    console.log('loggedInUser', loggedInUser);
     this._loggedInUser$.next(loggedInUser);
+  }
+
+  public async login() {
+    const email = 'shanikupiec@gmail.com';
+    const password = '123';
+    console.log('loggin in ');
+    const body = { email, password };
+    // const options =  { body: new HttpParams().set('term', filterBy.term) };
+
+    return this.http.post<User>(`${BASE_URL}/auth/login`, body).toPromise();
   }
 
   public transfer(contact: Contact, amount: number, type: string): void {
@@ -125,14 +54,14 @@ export class UserService {
       type,
     };
 
-    this._loggedInUser.coins[type] -= amount;
-    this._loggedInUser.total -= amount;
-    this._loggedInUser.moves.unshift(move);
+    // this._loggedInUser.coins[type] -= amount;
+    // this._loggedInUser.total -= amount;
+    // this._loggedInUser.moves.unshift(move);
 
-    const idx = this._usersDb.findIndex(
-      (u) => u.name === this._loggedInUser.name
-    );
-    this._usersDb[idx] = this._loggedInUser;
+    // const idx = this._usersDb.findIndex(
+    //   (u) => u.name === this._loggedInUser.name
+    // );
+    // this._usersDb[idx] = this._loggedInUser;
   }
 
   private _makeId(length = 5) {

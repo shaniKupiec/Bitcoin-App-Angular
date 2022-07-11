@@ -87,6 +87,7 @@ export class RatePageComponent implements OnInit {
     this.historyBTCSub = this.cryptoService
       .exchangeHistoryBTC()
       .subscribe((res: any) => {
+        console.log('res',res)
         this.coinDatas[0].historyData = res;
       });
 

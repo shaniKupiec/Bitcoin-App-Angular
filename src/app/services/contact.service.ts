@@ -22,7 +22,7 @@ export class ContactService {
 
   constructor(private http: HttpClient) {}
 
-  public async query() {
+  public async query(): Promise<void> {
     const filterBy: ContactFilter = this._contactFilter$.getValue();
     const options = filterBy.term
       ? { params: new HttpParams().set('term', filterBy.term) }

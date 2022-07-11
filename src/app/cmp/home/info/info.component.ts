@@ -6,6 +6,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'info',
@@ -13,7 +14,7 @@ import {
   styleUrls: ['./info.component.scss'],
 })
 export class InfoComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   selectedSentence!: string;
   options: string[] = [
@@ -27,8 +28,10 @@ export class InfoComponent implements OnInit {
     this.selectedSentence = this.options[this.getRandomInt(0, 4)];
   }
 
-  tryDemo() {
+  async tryDemo() {
     // set demo user
+    const x = await this.userService.login()
+    console.log('x',x)
     this.router.navigate(['/about']);
   }
 

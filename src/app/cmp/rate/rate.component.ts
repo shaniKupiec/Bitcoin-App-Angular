@@ -31,9 +31,15 @@ export class RateComponent implements OnChanges {
     );
     console.log('this.data', this.data);
     if(this.period === 'month'){
+      console.log('month');
+      
       this.data[0].series = this.data[0]?.series.slice(-90)
     } else if(this.period === 'week'){
+      console.log('week');
       this.data[0].series = this.data[0]?.series.slice(-21)
+    } else {
+      console.log('noting chnaged');
+      
     }
   }
 }

@@ -1,12 +1,12 @@
 <li class="item">
   <header class="item__header">
     <div class="right">
-      <img class="right__img" src="{{ img }}" alt="" />
+      <img class="right__img" [src]="img" alt="" />
       <span class="right__coin">{{ fullName }}</span>
     </div>
     <div class="left">
       <span class="left__type">{{ shortName }}</span>
-      <span class="left__rate">{{ rate }}</span>
+      <span class="left__rate">{{ rate | currency:'USD' }}</span>
     </div>
   </header>
   <ngx-charts-line-chart

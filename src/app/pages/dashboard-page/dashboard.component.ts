@@ -97,7 +97,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getLoggedInUser();
     this.userService.loggedInUser$.subscribe((data) => {
+      console.log('data',data)
       this.loggedInUser = data;
+      
       var newData: any[] = [];
       Object.entries(data.coins).forEach(([key, value]) => {
         newData.push({
@@ -118,28 +120,32 @@ export class DashboardComponent implements OnInit {
     });
 
     this.cryptoService.exchangeHistoryBTC().subscribe((res: any) => {
-      res.series = res.series.slice(-21)
-      this.exchangeData.push(res)
+      let data = JSON.parse(JSON.stringify(res))
+      data.series = data.series.slice(-21)
+      this.exchangeData.push(data)
     });
     
     this.cryptoService.exchangeHistoryETH().subscribe((res: any) => {
-      res.series = res.series.slice(-21)
-      this.exchangeData.push(res)
+      let data = JSON.parse(JSON.stringify(res))
+      data.series = data.series.slice(-21)
+      this.exchangeData.push(data)
     });
     
     this.cryptoService.exchangeHistoryLTC().subscribe((res: any) => {
-      res.series = res.series.slice(-21)
-      this.exchangeData.push(res)
+      let data = JSON.parse(JSON.stringify(res))
+      data.series = data.series.slice(-21)
+      this.exchangeData.push(data)
     });
     
-    this.cryptoService.exchangeHistoryXRP().subscribe((res: any) => {
-      res.series = res.series.slice(-21)
+    // this.cryptoService.exchangeHistoryXRP().subscribe((res: any) => {
+      // res.series = res.series.slice(-21)
       // this.exchangeData.push(res)
-    });
+    // });
 
     this.cryptoService.exchangeHistoryDASH().subscribe((res: any) => {
-      res.series = res.series.slice(-21)
-      this.exchangeData.push(res)
+      let data = JSON.parse(JSON.stringify(res))
+      data.series = data.series.slice(-21)
+      this.exchangeData.push(data)
     });
   }
 

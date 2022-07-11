@@ -4,7 +4,7 @@
   (click)="this.onClick.emit(this.shortName);"
   >
   <span class="coin-data__short">{{ shortName }}</span>
-  <img src="{{img}}" alt="" />
+  <img [src]="img" alt="" />
   <div class="coin-data__bottom">
     <span class="coin-data__bottom__name">{{ fullName }}</span>
     <span class="coin-data__bottom__rate">{{ rate | currency:'USD' }}</span>

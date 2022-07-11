@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { storageService } from './storageService';
-const RATE_KEY = 'rates';
+const RATE_KEY = 'rates'; 
 
 const HISTORY_BTC = 'history-btc';
 const HISTORY_ETH = 'history-eth';
@@ -17,28 +17,25 @@ const FULL_HISTORY_BTC = 'full-history-btc';
 // const MARKET_PRICES_KEY = 'market-prices';
 // const CONF_TRANS_KEY = 'confirmed-transactions';
 
+const gRatesCache = storageService.loadFromStorage(RATE_KEY) || null;
+const gHistoryBTCCache = storageService.loadFromStorage(HISTORY_BTC) || null;
+const gHistoryETHCache = storageService.loadFromStorage(HISTORY_ETH) || null;
+const gHistoryLTCCache = storageService.loadFromStorage(HISTORY_LTC) || null;
+const gHistoryXRPCache = storageService.loadFromStorage(HISTORY_XRP) || null;
+const gHistoryDASHCache = storageService.loadFromStorage(HISTORY_DASH) || null;
+const gFullHistoryBTCCache =
+  storageService.loadFromStorage(FULL_HISTORY_BTC) || null;
+
+console.log('gHistoryBTCCache', gHistoryBTCCache);
+
 @Injectable({
   providedIn: 'root',
 })
 export class CryptoService {
   constructor(private http: HttpClient) {}
 
-  private gRatesCache = storageService.loadFromStorage(RATE_KEY) || null;
-  private gHistoryBTCCache =
-    storageService.loadFromStorage(HISTORY_BTC) || null;
-  private gHistoryETHCache =
-    storageService.loadFromStorage(HISTORY_ETH) || null;
-  private gHistoryLTCCache =
-    storageService.loadFromStorage(HISTORY_LTC) || null;
-  private gHistoryXRPCache =
-    storageService.loadFromStorage(HISTORY_XRP) || null;
-  private gHistoryDASHCache =
-    storageService.loadFromStorage(HISTORY_DASH) || null;
   // private gHistoryPERIODCache =
   //   storageService.loadFromStorage(HISTORY_PERIOD) || null;
-
-  private gFullHistoryBTCCache =
-    storageService.loadFromStorage(FULL_HISTORY_BTC) || null;
 
   // private gMarketPricesCache =
   //   storageService.loadFromStorage(MARKET_PRICES_KEY) || [];
@@ -46,7 +43,7 @@ export class CryptoService {
   //   storageService.loadFromStorage(CONF_TRANS_KEY) || [];
 
   public rates() {
-    if (this.gRatesCache) return from([this.gRatesCache]);
+    if (gRatesCache) return from([gRatesCache]);
     return this.http
       .get(
         `https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,XRP,DASH&tsyms=USD`
@@ -63,7 +60,7 @@ export class CryptoService {
   }
 
   // public exchangeHistoryPERIOD() {
-  //   if (this.gHistoryPERIODCache) return from([this.gHistoryPERIODCache]);
+  //   if (gHistoryPERIODCache) return from([gHistoryPERIODCache]);
   //   return this.http
   //     .get(
   //       `https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,XRP,DASH&tsyms=USD`
@@ -80,7 +77,11 @@ export class CryptoService {
   // }
 
   public exchangeHistoryBTC() {
-    if (this.gHistoryBTCCache) return from([this.gHistoryBTCCache]);
+    if (gHistoryBTCCache) {
+      console.log('getting from cash', gHistoryBTCCache);
+
+      return from([gHistoryBTCCache]);
+    }
     return this.http
       .get(
         `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=BTC&limit=1000`
@@ -104,7 +105,7 @@ export class CryptoService {
   }
 
   public exchangeHistoryETH() {
-    if (this.gHistoryETHCache) return from([this.gHistoryETHCache]);
+    if (gHistoryETHCache) return from([gHistoryETHCache]);
     return this.http
       .get(
         `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=ETH&limit=1000`
@@ -128,7 +129,7 @@ export class CryptoService {
   }
 
   public exchangeHistoryLTC() {
-    if (this.gHistoryLTCCache) return from([this.gHistoryLTCCache]);
+    if (gHistoryLTCCache) return from([gHistoryLTCCache]);
     return this.http
       .get(
         `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=LTC&limit=1000`
@@ -152,7 +153,7 @@ export class CryptoService {
   }
 
   public exchangeHistoryXRP() {
-    if (this.gHistoryXRPCache) return from([this.gHistoryXRPCache]);
+    if (gHistoryXRPCache) return from([gHistoryXRPCache]);
     console.log('getting from http');
 
     return this.http
@@ -178,7 +179,7 @@ export class CryptoService {
   }
 
   public exchangeHistoryDASH() {
-    if (this.gHistoryDASHCache) return from([this.gHistoryDASHCache]);
+    if (gHistoryDASHCache) return from([gHistoryDASHCache]);
     return this.http
       .get(
         `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=DASH&limit=1000`
@@ -214,7 +215,7 @@ export class CryptoService {
   }
 
   public fullHistoryBTC() {
-    if (this.gFullHistoryBTCCache) return from([this.gFullHistoryBTCCache]);
+    if (gFullHistoryBTCCache) return from([gFullHistoryBTCCache]);
     return this.http
       .get(
         `https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=100`
@@ -237,7 +238,7 @@ export class CryptoService {
   }
 
   // public getMarketPrice(period: string) {
-  //   if (this.gMarketPriceCache) return from([this.gMarketPriceCache]);
+  //   if (gMarketPriceCache) return from([gMarketPriceCache]);
   //   return this.http
   //     .get(
   //       `https://api.blockchain.info/charts/market-price?timespan=1${period}&format=json&cors=true`
