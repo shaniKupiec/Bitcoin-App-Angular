@@ -47,7 +47,7 @@ export class ContactDetailsPageComponent implements OnInit {
   }
 
   onTransfer($event: { amount: number; coinType: string }): void {
-    this.userService.transfer(this.contact, $event.amount, $event.coinType);
+    this.userService.transfer(this.contact, $event.amount, $event.coinType, this.loggedInUser);
   }
 
   get movesForDisplay(): Move[] {

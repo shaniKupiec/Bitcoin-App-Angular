@@ -5,7 +5,7 @@ import { Contact } from '../models/contact.model';
 import { Move } from '../models/move.model';
 import { User } from '../models/user.model';
 
-const dev = true;
+const dev = false;
 
 const BASE_URL = dev ? 'http://localhost:3030/api' : 'api';
 
@@ -41,7 +41,7 @@ export class UserService {
     return this.http.post<User>(`${BASE_URL}/auth/login`, body).toPromise();
   }
 
-  public transfer(contact: Contact, amount: number, type: string): void {
+  public async transfer(contact: Contact, amount: number, type: string, user: User) {
     const move: Move = {
       id: this._makeId(),
       contactId: contact._id,
@@ -51,15 +51,11 @@ export class UserService {
       isToContact: true,
       type,
     };
-
-    // this._loggedInUser.coins[type] -= amount;
-    // this._loggedInUser.total -= amount;
-    // this._loggedInUser.moves.unshift(move);
-
-    // const idx = this._usersDb.findIndex(
-    //   (u) => u.name === this._loggedInUser.name
-    // );
-    // this._usersDb[idx] = this._loggedInUser;
+    user.coins[type] -= amount;
+    user.total -= amount;
+    user.moves.unshift(move);
+    await this.http.put<User>(`${BASE_URL}/user`, user).toPromise();
+    this.getLoggedInUser();
   }
 
   private _makeId(length = 5) {
