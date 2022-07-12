@@ -29,14 +29,12 @@ export class UserService {
     const loggedInUser = await this.http
       .get<User>(`${BASE_URL}/auth`)
       .toPromise();
-    console.log('loggedInUser', loggedInUser);
     this._loggedInUser$.next(loggedInUser);
   }
 
   public async login() {
     const email = 'shanikupiec@gmail.com';
     const password = '123';
-    console.log('loggin in ');
     const body = { email, password };
     // const options =  { body: new HttpParams().set('term', filterBy.term) };
 

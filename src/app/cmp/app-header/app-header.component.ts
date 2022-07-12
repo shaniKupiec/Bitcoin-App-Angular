@@ -39,7 +39,6 @@ export class AppHeaderComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getLoggedInUser();
     this.userServicesSub = this.userService.loggedInUser$.subscribe((data) => {
-      console.log('data',data)
       this.loggedInUser = data;
     });
   }

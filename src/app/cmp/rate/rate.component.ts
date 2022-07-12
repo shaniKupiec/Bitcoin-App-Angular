@@ -29,17 +29,10 @@ export class RateComponent implements OnChanges {
     this.data = JSON.parse(
       JSON.stringify(this.historyData).replace(/^\{(.*)\}$/, '[ { $1 }]')
     );
-    console.log('this.data', this.data);
     if(this.period === 'month'){
-      console.log('month');
-      
       this.data[0].series = this.data[0]?.series.slice(-90)
     } else if(this.period === 'week'){
-      console.log('week');
       this.data[0].series = this.data[0]?.series.slice(-21)
-    } else {
-      console.log('noting chnaged');
-      
     }
   }
 }

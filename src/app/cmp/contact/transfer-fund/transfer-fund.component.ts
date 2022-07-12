@@ -27,6 +27,7 @@ export class TransferFundComponent implements OnInit {
   ngOnInit(): void {}
 
   maxAmount(): number{
+    // if(this.loggedInUser.coins) return 0;
     return this.loggedInUser.coins[this.coinType]
   }
 

@@ -97,7 +97,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getLoggedInUser();
     this.userService.loggedInUser$.subscribe((data) => {
-      console.log('data',data)
       this.loggedInUser = data;
       
       var newData: any[] = [];

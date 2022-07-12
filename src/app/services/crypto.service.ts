@@ -26,7 +26,6 @@ const gHistoryDASHCache = storageService.loadFromStorage(HISTORY_DASH) || null;
 const gFullHistoryBTCCache =
   storageService.loadFromStorage(FULL_HISTORY_BTC) || null;
 
-console.log('gHistoryBTCCache', gHistoryBTCCache);
 
 @Injectable({
   providedIn: 'root',
@@ -77,11 +76,7 @@ export class CryptoService {
   // }
 
   public exchangeHistoryBTC() {
-    if (gHistoryBTCCache) {
-      console.log('getting from cash', gHistoryBTCCache);
-
-      return from([gHistoryBTCCache]);
-    }
+    if (gHistoryBTCCache) return from([gHistoryBTCCache])
     return this.http
       .get(
         `https://min-api.cryptocompare.com/data/exchange/histoday?e=Coinbase&tsym=BTC&limit=1000`
@@ -154,7 +149,6 @@ export class CryptoService {
 
   public exchangeHistoryXRP() {
     if (gHistoryXRPCache) return from([gHistoryXRPCache]);
-    console.log('getting from http');
 
     return this.http
       .get(
