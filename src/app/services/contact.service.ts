@@ -7,7 +7,7 @@ import { HttpParams } from '@angular/common/http';
 
 const dev = false;
 
-const BASE_URL = dev ? 'http://localhost:3030/api/contact/' : 'api/contact/';
+const BASE_URL = dev ? 'http://localhost:3030/api/contact/' : '/api/contact/';
 
 @Injectable({
   providedIn: 'root',
