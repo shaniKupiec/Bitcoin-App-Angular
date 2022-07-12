@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
 
 const dev = false;
 
-const BASE_URL = dev ? 'http://localhost:3030/api' : 'api';
+const BASE_URL = dev ? 'http://localhost:3030/api' : 'api/';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +27,7 @@ export class UserService {
     // this._loggedInUser$.next(loggedInUser);
 
     const loggedInUser = await this.http
-      .get<User>(`${BASE_URL}/auth`)
+      .get<User>(`${BASE_URL}auth`)
       .toPromise();
     this._loggedInUser$.next(loggedInUser);
   }
@@ -38,7 +38,7 @@ export class UserService {
     const body = { email, password };
     // const options =  { body: new HttpParams().set('term', filterBy.term) };
 
-    return this.http.post<User>(`${BASE_URL}/auth/login`, body).toPromise();
+    return this.http.post<User>(`${BASE_URL}auth/login`, body).toPromise();
   }
 
   public async transfer(contact: Contact, amount: number, type: string, user: User) {
@@ -54,7 +54,7 @@ export class UserService {
     user.coins[type] -= amount;
     user.total -= amount;
     user.moves.unshift(move);
-    await this.http.put<User>(`${BASE_URL}/user`, user).toPromise();
+    await this.http.put<User>(`${BASE_URL}user`, user).toPromise();
     this.getLoggedInUser();
   }
 

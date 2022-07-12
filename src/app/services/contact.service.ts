@@ -7,7 +7,7 @@ import { HttpParams } from '@angular/common/http';
 
 const dev = false;
 
-const BASE_URL = dev ? 'http://localhost:3030/api/contact/' : 'api/contact';
+const BASE_URL = dev ? 'http://localhost:3030/api/contact/' : 'api/contact/';
 
 @Injectable({
   providedIn: 'root',
@@ -34,11 +34,11 @@ export class ContactService {
   }
 
   public getContactById(id: string): Observable<Contact> {
-    return this.http.get<Contact>(`${BASE_URL}/${id}`);
+    return this.http.get<Contact>(`${BASE_URL}${id}`);
   }
 
   public async deleteContact(id: string | undefined) {
-    await this.http.delete(`${BASE_URL}/${id}`).toPromise();
+    await this.http.delete(`${BASE_URL}${id}`).toPromise();
     this.query();
   }
 
@@ -62,7 +62,7 @@ export class ContactService {
   }
 
   private async _updateContact(contact: Contact) {
-    await this.http.put<Contact>(`${BASE_URL}/${contact._id}`, contact).toPromise();
+    await this.http.put<Contact>(`${BASE_URL}${contact._id}`, contact).toPromise();
     this.query();
   }
 
