@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 
 const dev = false;
-const i = 0;
 
 const BASE_URL = dev ? 'http://localhost:3030/api/contact/' : '/api/contact/';
 

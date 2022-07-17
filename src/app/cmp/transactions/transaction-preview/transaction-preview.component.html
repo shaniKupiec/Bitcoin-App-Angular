@@ -6,12 +6,12 @@
     </div>
     <div class="details__left__center">
       <img
-        *ngIf="move.isToContact"
+        [hidden]="!move.isToContact"
         src="https://res.cloudinary.com/trellox/image/upload/v1651414215/cryptonites/red-arrow_nxwp7a.png"
         alt=""
       />
       <img
-        *ngIf="!move.isToContact"
+      [hidden]="move.isToContact"
         src="https://res.cloudinary.com/trellox/image/upload/v1651414216/cryptonites/green-arrow_bgj2ws.png"
         alt=""
       />

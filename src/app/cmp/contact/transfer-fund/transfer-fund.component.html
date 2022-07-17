@@ -21,6 +21,6 @@
     Transfer
   </button>
   <span>max coins available to transfer: {{ maxAmount() }}</span>
-  <a [routerLink]="['/trans']" *ngIf="transMsg">Check Transfer</a>
-  <ng-lottie *ngIf="transAni" [options]="options"></ng-lottie>
+  <a [routerLink]="['/trans']" [hidden]="!transMsg">Check Transfer</a>
+  <ng-lottie [hidden]="!transAni" [options]="options"></ng-lottie>
 </section>
