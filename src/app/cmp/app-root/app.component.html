@@ -1,5 +1,5 @@
 <section class="main-layout">
-<section *ngIf="isFullApp" class="left">
+  <section *ngIf="isFullApp" class="left">
     <side-nav class="side-nav-cmp"></side-nav>
   </section>
   <section [class.right]="isFullApp">
@@ -12,4 +12,14 @@
       <router-outlet></router-outlet>
     </main>
   </section>
+  <div
+    class="user-msg"
+    [hidden]="!userMsg"
+    [class.success]="userMsg?.isSuccess"
+  >
+    <div class="user-msg__title">
+      {{ userMsg?.isSuccess ? "SUCCESS" : "ERROR" }}
+    </div>
+    {{ userMsg?.msg }}
+  </div>
 </section>

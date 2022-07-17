@@ -15,4 +15,27 @@
         width: calc(100% - rem(90px));
         padding: $layoutPadding;
     }
+
+    .user-msg {
+        position: absolute;
+        right: 150px;
+        bottom: 100px;
+        background-color: darken($pClr1, 10%);
+        z-index: 10;
+        padding: 20px;
+        width: 200px;
+        border-radius: 2px;
+        font-size: rem(20px);
+        color: $pClr2;
+        text-align: center;
+        box-shadow: 0px 0px 13px 6px rgb(255 0 0 / 60%);
+        
+        &.success{
+            box-shadow: 0px 0px 13px 6px rgb(139 195 74 / 60%);
+        }
+
+        &__title{
+            margin-bottom: 5px;
+        }
+    }
 }

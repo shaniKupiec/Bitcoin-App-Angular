@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { Contact } from '../models/contact.model';
 import { Move } from '../models/move.model';
+import { UserMsg } from '../models/user-msg.model';
 import { User } from '../models/user.model';
 
-const dev = false;
+const dev = true;
 
 const BASE_URL = dev ? 'http://localhost:3030/api/' : '/api/';
 
@@ -20,6 +21,9 @@ export class UserService {
   private _loggedInUser$ = new BehaviorSubject<User>(<User>{});
   public loggedInUser$ = this._loggedInUser$.asObservable();
 
+  private _userMsgr$ = new BehaviorSubject<UserMsg>(<UserMsg>{});
+  public userMsg$ = this._userMsgr$.asObservable();
+
   constructor(private http: HttpClient) {}
 
   public async getLoggedInUser(): Promise<void> {
@@ -30,6 +34,10 @@ export class UserService {
       .get<User>(`${BASE_URL}auth`)
       .toPromise();
     this._loggedInUser$.next(loggedInUser);
+  }
+
+  public setUserMsg(isSuccess: boolean, msg: string){
+    this._userMsgr$.next({isSuccess, msg});
   }
 
   public async login() {

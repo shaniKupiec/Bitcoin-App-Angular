@@ -27,11 +27,16 @@ export class TransferFundComponent implements OnInit {
   ngOnInit(): void {}
 
   maxAmount(): number{
-    // if(this.loggedInUser.coins) return 0;
     return this.loggedInUser.coins[this.coinType]
   }
 
   transfer() {
+
+    if(this.amount > this.maxAmount() || this.amount <= 0){
+      this.userService.setUserMsg(false, 'invalid amount try again')
+      this.amount = 0;
+      return
+    }
     this.transAni = true;
     const amount = this.amount
     const coinType = this.coinType
