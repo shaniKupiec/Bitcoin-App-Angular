@@ -6,6 +6,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -19,7 +20,7 @@ export class AppHeaderComponent implements OnInit {
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('modal') modal!: ElementRef;
 
-  constructor(private renderer: Renderer2, private userService: UserService) {
+  constructor(private renderer: Renderer2, private userService: UserService, private router: Router) {
     this.renderer.listen('window', 'click', (e: Event) => {
       if (
         e.target !== this.toggleButton.nativeElement &&
@@ -37,7 +38,6 @@ export class AppHeaderComponent implements OnInit {
   userServicesSub!: Subscription;
 
   ngOnInit(): void {
-    this.userService.getLoggedInUser();
     this.userServicesSub = this.userService.loggedInUser$.subscribe((data) => {
       this.loggedInUser = data;
     });
@@ -45,6 +45,11 @@ export class AppHeaderComponent implements OnInit {
 
   toggleModal() {
     this.isModalOpen = !this.isModalOpen;
+  }
+
+  async logout(){
+    await this.userService.logout()
+    this.router.navigate(['/']);
   }
 
   ngOnDestroy(): void {

@@ -19,7 +19,6 @@ export class TransactionsPageComponent implements OnInit {
   userServicesSub!: Subscription;
 
   ngOnInit(): void {
-    this.userService.getLoggedInUser();
     this.userServicesSub = this.userService.loggedInUser$.subscribe((data) => {
       this.loggedInUser = data;
     });

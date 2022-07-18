@@ -14,10 +14,6 @@ const BASE_URL = dev ? 'http://localhost:3030/api/' : '/api/';
   providedIn: 'root',
 })
 export class UserService {
-  //mock the server
-  // private _usersDb: User[] = USERS;
-  // private _loggedInUser: User = USERS[0];
-
   private _loggedInUser$ = new BehaviorSubject<User>(<User>{});
   public loggedInUser$ = this._loggedInUser$.asObservable();
 
@@ -26,18 +22,17 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  public async getLoggedInUser(): Promise<void> {
-    // let loggedInUser = this._loggedInUser;
-    // this._loggedInUser$.next(loggedInUser);
-
+  public async getLoggedInUser(): Promise<boolean> {
     const loggedInUser = await this.http
       .get<User>(`${BASE_URL}auth`)
       .toPromise();
+    console.log('loggedInUser', loggedInUser);
     this._loggedInUser$.next(loggedInUser);
+    return !!loggedInUser
   }
 
-  public setUserMsg(isSuccess: boolean, msg: string){
-    this._userMsgr$.next({isSuccess, msg});
+  public setUserMsg(isSuccess: boolean, msg: string) {
+    this._userMsgr$.next({ isSuccess, msg });
   }
 
   public async login() {
@@ -49,7 +44,17 @@ export class UserService {
     return this.http.post<User>(`${BASE_URL}auth/login`, body).toPromise();
   }
 
-  public async transfer(contact: Contact, amount: number, type: string, user: User) {
+  public async logout() {
+    await this.http.post<void>(`${BASE_URL}auth/logout`, {}).toPromise();
+    this.getLoggedInUser()
+  }
+
+  public async transfer(
+    contact: Contact,
+    amount: number,
+    type: string,
+    user: User
+  ) {
     const move: Move = {
       id: this._makeId(),
       contactId: contact._id,

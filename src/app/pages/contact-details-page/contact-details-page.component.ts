@@ -31,7 +31,6 @@ export class ContactDetailsPageComponent implements OnInit {
       this.contact = data['contact'];
     });
 
-    this.userService.getLoggedInUser();
     this.userServiceSub = this.userService.loggedInUser$.subscribe((data) => {
       this.loggedInUser = data;
     });

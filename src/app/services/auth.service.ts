@@ -9,9 +9,13 @@ const LOGGED_IN_KEY_KEY = 'user logged in'
 export class AuthService {
     constructor() { }
     
-    checkIsLoggedIn(): boolean {
+    async checkIsLoggedIn(): Promise<boolean> {
         const isLoggedIn = !!storageService.loadFromStorage(LOGGED_IN_KEY_KEY)
-        return true
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(true)
+            }, 0);
+        })
         // return isLoggedIn
     }
 }

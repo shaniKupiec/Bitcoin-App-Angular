@@ -30,7 +30,7 @@ export class InfoComponent implements OnInit {
 
   async tryDemo() {
     // set demo user
-    const x = await this.userService.login()
+    await this.userService.login()
     this.router.navigate(['/about']);
   }
 
