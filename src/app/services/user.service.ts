@@ -6,7 +6,7 @@ import { Move } from '../models/move.model';
 import { UserMsg } from '../models/user-msg.model';
 import { User } from '../models/user.model';
 
-const dev = true;
+const dev = false;
 
 const BASE_URL = dev ? 'http://localhost:3030/api/' : '/api/';
 

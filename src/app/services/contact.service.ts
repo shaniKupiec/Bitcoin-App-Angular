@@ -5,7 +5,7 @@ import { Contact } from '../models/contact.model';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 
-const dev = true;
+const dev = false;
 
 const BASE_URL = dev ? 'http://localhost:3030/api/contact/' : '/api/contact/';
 
