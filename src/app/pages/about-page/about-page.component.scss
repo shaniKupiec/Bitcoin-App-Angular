@@ -2,44 +2,40 @@
 @import "../../../assets/styles/mixins";
 @import "../../../assets/styles/functions";
 
-.home-cmp{
-    // .ani-continuer{
-    //     width: 100%;
-    // }
-
-    header{
+.home-cmp {
+    header {
         @include flex(column);
         margin-top: rem(40px);
-        .title{
+        .title {
             font-size: rem(51px);
             margin-bottom: rem(39px);
         }
-        .subtitle{
+        .subtitle {
             color: $sClr3;
             margin-bottom: rem(96px);
         }
     }
-    
-    main{
-        .data{
+
+    main {
+        .data {
             @include flex();
             margin-bottom: rem(63px);
-            &__img{
+            &__img {
                 width: 309px;
             }
-            &__txt{
+            &__txt {
                 @include flex(column, center, flex-start);
                 width: 400px;
-                &__title{
+                &__title {
                     font-size: rem(20px);
                     margin-bottom: rem(34px);
                 }
-                &__info{
+                &__info {
                     font-size: rem(15px);
                     margin-bottom: rem(21px);
-                    color: $sClr3
+                    color: $sClr3;
                 }
-                &__read-more{
+                &__read-more {
                     font-size: rem(11px);
                     font-weight: bold;
                     text-transform: uppercase;
@@ -47,5 +43,17 @@
             }
         }
     }
-    
+}
+
+@media (max-width: 700px) {
+    .home-cmp {
+        main {
+            .data {
+                flex-direction: column;
+                &__txt {
+                    width: 90%;
+                }
+            }
+        }
+    }
 }
