@@ -5,6 +5,7 @@ import { Contact } from '../models/contact.model';
 import { Move } from '../models/move.model';
 import { UserMsg } from '../models/user-msg.model';
 import { User } from '../models/user.model';
+import { guestPasswords } from '../../../passwords';
 
 const dev = false;
 
@@ -28,25 +29,37 @@ export class UserService {
       .toPromise();
     console.log('loggedInUser', loggedInUser);
     this._loggedInUser$.next(loggedInUser);
-    return !!loggedInUser
+    return !!loggedInUser;
   }
 
   public setUserMsg(isSuccess: boolean, msg: string) {
     this._userMsgr$.next({ isSuccess, msg });
   }
 
-  public async login() {
-    const email = 'shanikupiec@gmail.com';
-    const password = '123';
-    const body = { email, password };
-    // const options =  { body: new HttpParams().set('term', filterBy.term) };
+  public async login(
+    email: string = guestPasswords.email,
+    password: string = guestPasswords.password
+  ) {
+    try {
+      const body = { email, password };
+      return this.http.post<User>(`${BASE_URL}auth/login`, body).toPromise();
+    } catch (err) {
+      throw err;
+    }
+  }
 
-    return this.http.post<User>(`${BASE_URL}auth/login`, body).toPromise();
+  public async signIn(name: string, email: string, password: string) {
+    try {
+      const body = { name, email, password };
+      return this.http.post<User>(`${BASE_URL}auth/signup`, body).toPromise();
+    } catch (err) {
+      throw err;
+    }
   }
 
   public async logout() {
     await this.http.post<void>(`${BASE_URL}auth/logout`, {}).toPromise();
-    this.getLoggedInUser()
+    this.getLoggedInUser();
   }
 
   public async transfer(

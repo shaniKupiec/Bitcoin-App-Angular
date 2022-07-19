@@ -15,8 +15,7 @@
   />
   <button
     (click)="transfer()"
-    [class.disable]="this.amount > maxAmount() || this.amount <= 0"
-    class="round"
+    [disabled]="this.amount > maxAmount() || this.amount <= 0"
   >
     Transfer
   </button>

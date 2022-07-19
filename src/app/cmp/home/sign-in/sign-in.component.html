@@ -1,1 +1,39 @@
-<p>sign-in-page works!</p>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="sign-in-form">
+  <input
+    type="text"
+    ngModel
+    name="name"
+    placeholder="Name"
+    required
+    minlength="3"
+  />
+  <input type="email" ngModel name="email" placeholder="Email" required email />
+  <input
+    type="password"
+    ngModel
+    name="password"
+    placeholder="Password"
+    required
+    minlength="3"
+    #password="ngModel"
+  />
+  <input
+    type="password"
+    ngModel
+    name="confirmPassword"
+    placeholder="confirm Password"
+    #confirmPassword="ngModel"
+    [class.valid]="password.dirty && confirmPassword.dirty && password.value === confirmPassword.value"
+  />
+  <p
+    class="errors"
+    *ngIf="password.dirty && confirmPassword.dirty && password.value !== confirmPassword.value"
+  >
+    Passwords does not match
+  </p>
+  <div>
+    <button [disabled]="form.invalid || password.dirty && confirmPassword.dirty && password.value !== confirmPassword.value" md-button color="primary" type="submit">
+      SUBMIT
+    </button>
+  </div>
+</form>

@@ -1,0 +1,23 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/functions";
+
+.sign-in-form {
+    width: 70%;
+    @include flex(column);
+    gap: 20px;
+    input {
+        @include input($pClr2, $sClr2, $pClr1);
+        width: 100%;
+        height: auto;
+        padding: 15px;
+
+
+    }
+
+    button {
+        @include btn($sClr1);
+        font-weight: 100;
+        min-width: 40%;
+    }
+}

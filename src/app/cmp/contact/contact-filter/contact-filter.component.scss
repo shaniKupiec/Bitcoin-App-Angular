@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     input{
-        @include input()
+        @include input();
     }
     img{
         position: relative;

@@ -11,8 +11,7 @@
 
     &__header {
         @include flex(row, space-between);
-
-
+        margin-bottom: 86px;
         &__list {
             @include flex();
             gap: 25px;

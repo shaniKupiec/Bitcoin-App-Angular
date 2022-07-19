@@ -8,10 +8,8 @@
     padding: 10px;
     input {
         @include input();
-        background-color: $pClr2;
         width: 70%;
         margin: 0 auto;
-        background-color: $sClr3;
 
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
