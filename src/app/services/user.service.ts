@@ -42,6 +42,7 @@ export class UserService {
   ) {
     try {
       const body = { email, password };
+      console.log('body',body)
       return this.http.post<User>(`${BASE_URL}auth/login`, body).toPromise();
     } catch (err) {
       throw err;
