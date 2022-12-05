@@ -1,6 +1,7 @@
 @import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/functions";
 
 .trans-list{
     @include flex(column, center, stretch);
-    gap: 20px;
+    gap: rem(20px);
 }

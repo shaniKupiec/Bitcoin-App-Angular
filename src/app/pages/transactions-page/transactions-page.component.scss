@@ -12,13 +12,13 @@
 
         &__count {
             @include flex;
-            gap: 5px;
+            gap: rem(5px);
             span {
                 font-size: rem(50px);
             }
 
             button {
-                margin-inline-start: 20px;
+                margin-inline-start: rem(20px);
                 @include btn($sClr1);
             }
         }
@@ -26,7 +26,7 @@
         &__filter {
             @include flex();
             li {
-                margin-inline-end: 10px;
+                margin-inline-end: rem(10px);
                 color: $sClr1;
                 cursor: pointer;
                 

@@ -18,7 +18,7 @@ export class RateComponent implements OnChanges {
   @Output() onChangePeriod = new EventEmitter<{period: string, name: string}>();
 
   data!: any[];
-  view: [number, number] = [400, 300];
+  view: [number, number] = [280, 240];
 
   colorScheme: any = {
     domain: [],

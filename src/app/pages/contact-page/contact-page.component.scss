@@ -1,14 +1,15 @@
 @import "../../../assets/styles/mixins";
+@import "../../../assets/styles/functions";
 @import "../../../assets/styles/variables";
 
 .over-contacts {
     @include flex(row, space-between);
-    padding-bottom: 20px;
+    padding-bottom: rem(20px);
     i {
-        font-size: 30px;
-        padding: 2px 9px;
-        border: 1px solid $sClr2;
+        font-size: rem(30px);
+        padding: rem(2px) rem(9px);
+        border: rem(1px) solid $sClr2;
         color: $sClr2;
-        padding-bottom: 5px;
+        padding-bottom: rem(5px);
     }
 }

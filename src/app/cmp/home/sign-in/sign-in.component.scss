@@ -5,12 +5,12 @@
 .sign-in-form {
     width: 70%;
     @include flex(column);
-    gap: 20px;
+    gap: rem(20px);
     input {
         @include input($pClr2, $sClr2, $pClr1);
         width: 100%;
         height: auto;
-        padding: 15px;
+        padding: rem(15px);
 
 
     }

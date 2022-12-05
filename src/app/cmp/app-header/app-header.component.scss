@@ -4,7 +4,7 @@
 
 header {
     @include flex(row, space-between);
-    padding: 20px 0;
+    padding: rem(20px) 0;
     position: relative;
 
     .logo {
@@ -27,15 +27,16 @@ header {
 
     .user {
         @include flex();
-        gap: 10px;
+        gap: rem(10px);
         &__img {
             cursor: pointer;
-            border-radius: 2px;
-            width: 40px;
-            height: 40px;
+            border-radius: rem(2px);
+            width: rem(40px);
+            height: rem(40px);
             object-fit: cover;
             background: url("https://res.cloudinary.com/trellox/image/upload/v1657115510/cryptonites/Group_5_1_pgpofm.png")
                 no-repeat;
+            background-position: center;
             &:hover {
                 background: url("https://res.cloudinary.com/trellox/image/upload/v1657115703/cryptonites/Group_5_1_ygysjj.png")
                     no-repeat;
@@ -47,23 +48,23 @@ header {
         display: none;
         position: absolute;
         background-color: $sClr2;
-        border: 1px solid #0000004a;
-        right: 25px;
-        top: 25px;
-        border-radius: 2px;
-        padding: 20px 50px;
-        width: 305px;
+        border: rem(1px) solid #0000004a;
+        right: rem(25px);
+        top: rem(25px);
+        border-radius: rem(2px);
+        padding: rem(20px) rem(50px);
+        width: rem(305px);
         color: $pClr1;
-        gap: 5px;
+        gap: rem(5px);
         
         &.open-modal {
             @include flex(column);
         }
         
         &__img {
-            width: 70px;
-            border-radius: 2px;
-            margin-bottom: 15px;
+            width: rem(70px);
+            border-radius: rem(2px);
+            margin-bottom: rem(15px);
         }
         &__name {
             font-size: rem(25px);
@@ -71,13 +72,13 @@ header {
         }
         &__email {
             font-size: rem(20px);
-            margin-bottom: 10px;
+            margin-bottom: rem(10px);
         }
         
         &__br{
-            border-top: 1px solid #0000004a;
-            width: 305px;
-            margin-bottom: 10px;
+            border-top: rem(1px) solid #0000004a;
+            width: rem(305px);
+            margin-bottom: rem(10px);
         }
         
         &__btn {

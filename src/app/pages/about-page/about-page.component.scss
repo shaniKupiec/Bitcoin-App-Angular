@@ -21,11 +21,11 @@
             @include flex();
             margin-bottom: rem(63px);
             &__img {
-                width: 309px;
+                width: rem(309px);
             }
             &__txt {
                 @include flex(column, center, flex-start);
-                width: 400px;
+                width: rem(400px);
                 &__title {
                     font-size: rem(20px);
                     margin-bottom: rem(34px);

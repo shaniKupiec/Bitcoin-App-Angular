@@ -4,7 +4,7 @@
 
 .details {
     @include flex(row, space-between);
-    padding: 20px;
+    padding: rem(20px);
     background-color: $sClr3;
 
     &__left {

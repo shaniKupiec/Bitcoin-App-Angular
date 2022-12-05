@@ -1,5 +1,6 @@
 @import "../../../../assets/styles/variables";
 @import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/functions";
 
 .contact-filter{
     display: flex;
@@ -9,7 +10,7 @@
     }
     img{
         position: relative;
-        width: 18px;
-        left: -28px;
+        width: rem(18px);
+        left: rem(-28px);
     }
 }

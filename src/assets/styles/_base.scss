@@ -1,8 +1,11 @@
+@import "./functions";
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 html {
+  font-size: 11px;
 }
 
 body {
@@ -45,19 +48,19 @@ input {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 15px;
+  width: rem(15px);
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   background: lighten($sClr1, 10%);
-  border-radius: 10px;
+  border-radius: rem(10px);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: lighten($sClr2, 10%);
-  border-radius: 10px;
+  border-radius: rem(10px);
 }
 
 /* Handle on hover */

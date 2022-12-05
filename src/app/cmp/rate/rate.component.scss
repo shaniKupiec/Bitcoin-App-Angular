@@ -3,11 +3,11 @@
 @import "../../../assets/styles/functions";
 
 .item {
-    width: 400px;
+    width: rem(400px);
     @include flex(column, space-between);
     background-color: $sClr1;
-    padding: 28px 22px;
-    border-radius: 2px;
+    padding: rem(28px) rem(22px);
+    border-radius: rem(2px);
 
     &__header {
         @include flex(row, space-between);
@@ -15,9 +15,9 @@
 
         .right {
             @include flex();
-            gap: 13px;
+            gap: rem(13px);
             &__img {
-                width: 35px;
+                width: rem(35px);
             }
 
             &__coin {
@@ -43,15 +43,15 @@
     &__footer {
         width: 100%;
         text-align: center;
-        padding: 13px;
-        border-radius: 2px;
-        margin-top: -60px;
+        padding: rem(13px);
+        border-radius: rem(2px);
+        margin-top: rem(-60px);
         @include flex(row, space-between);
 
         .period__item {
-            border-radius: 2px;
+            border-radius: rem(2px);
             background-color: $sClr2;
-            padding: 5px 10px;
+            padding: rem(5px) rem(10px);
             cursor: pointer;
             text-transform: uppercase;
 

@@ -4,7 +4,7 @@
 
 .contact {
     @include flex(column);
-    padding: 20px;
+    padding: rem(20px);
     cursor: pointer;
     background-color: $sClr2;
     transition: 0.2s;
@@ -26,12 +26,12 @@
 @media (max-width: $break-narrow) {
     .contact {
         @include flex(row, flex-start);
-        padding: 5px 20px;
+        padding: rem(5px) rem(20px);
         width: 100%;
         
 
         &__img {
-            width: 50px;
+            width: rem(50px);
             box-shadow: none;
         }
 
@@ -51,7 +51,7 @@
 @media (min-width: $break-normal) {
     .contact {
         &__img {
-            width: 154px;
+            width: rem(154px);
         }
     }
 }
@@ -59,7 +59,7 @@
 @media (min-width: $break-wide) {
     .contact {
         &__img {
-            width: 228px;
+            width: rem(228px);
         }
     }
 }

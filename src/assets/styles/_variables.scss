@@ -1,3 +1,5 @@
+@import "./functions";
+
 // COLORS
 // primary
 $pClr1: #ffffff;
@@ -29,9 +31,9 @@ $cDASH: #494AA7;
 
 
 // // LAYOUT
-$layoutPadding: 20px;
+$layoutPadding: rem(20px);
 
 // LAYOUT BREAKPOINTS
-$break-narrow: 600px;
-$break-normal: 900px;
-$break-wide: 1200px;
+$break-narrow: rem(600px);
+$break-normal: rem(900px);
+$break-wide: rem(1200px);

@@ -1,3 +1,5 @@
+@import "./functions";
+
 // Flex
 .flex {
     display: flex;
@@ -48,7 +50,7 @@
 }
 
 .round {
-    border-radius: 2px;
+    border-radius: rem(2px);
 }
 
 /* SPACING */

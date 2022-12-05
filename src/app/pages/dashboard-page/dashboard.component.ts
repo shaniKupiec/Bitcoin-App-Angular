@@ -121,18 +121,23 @@ export class DashboardComponent implements OnInit {
       let data = JSON.parse(JSON.stringify(res))
       data.series = data.series.slice(-21)
       this.exchangeData.push(data)
+      console.log('push', this.exchangeData)
     });
     
     this.cryptoService.exchangeHistoryETH().subscribe((res: any) => {
       let data = JSON.parse(JSON.stringify(res))
       data.series = data.series.slice(-21)
       this.exchangeData.push(data)
+      console.log('push', this.exchangeData)
+
     });
     
     this.cryptoService.exchangeHistoryLTC().subscribe((res: any) => {
       let data = JSON.parse(JSON.stringify(res))
       data.series = data.series.slice(-21)
       this.exchangeData.push(data)
+      console.log('push', this.exchangeData)
+
     });
     
     // this.cryptoService.exchangeHistoryXRP().subscribe((res: any) => {
@@ -144,7 +149,13 @@ export class DashboardComponent implements OnInit {
       let data = JSON.parse(JSON.stringify(res))
       data.series = data.series.slice(-21)
       this.exchangeData.push(data)
+      console.log('push', this.exchangeData)
+
     });
+
+    setTimeout(() => {
+      console.log('setTimeout', this.exchangeData)
+    }, 1000)
   }
 
   onOpenedRate(coin: string) {

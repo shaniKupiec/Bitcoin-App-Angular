@@ -4,8 +4,8 @@
 
 .edit-cmp {
     @include flex(column);
-    padding: 40px;
-    gap: 20px;
+    padding: rem(40px);
+    gap: rem(20px);
     background-color: $sClr2;
 
     &__btns {
@@ -16,10 +16,10 @@
 
     .contact-det {
         @include flex();
-        gap: 60px;
+        gap: rem(60px);
 
         &__img {
-            width: 200px;
+            width: rem(200px);
             border-radius: 50%;
         }
 
@@ -31,11 +31,11 @@
             &__row {
                 display: flex;
                 flex-direction: column;
-                padding: 5px 0;
+                padding: rem(5px) 0;
 
                 input {
-                    margin-inline-start: 10px;
-                    width: 200px;
+                    margin-inline-start: rem(10px);
+                    width: rem(200px);
                     @include input();
                 }
 
@@ -47,9 +47,9 @@
             &__save {
                 align-self: flex-end;
                 @include btn();
-                width: 120px;
+                width: rem(120px);
                 align-self: center;
-                margin-top: 40px;
+                margin-top: rem(40px);
             }
         }
     }
@@ -62,11 +62,11 @@
             align-items: flex-start;
 
             &__img {
-                width: 100px;
+                width: rem(100px);
             }
 
             .edit {
-                padding-inline-start: 30px;
+                padding-inline-start: rem(30px);
             }
         }
     }
@@ -76,14 +76,14 @@
     .edit-cmp {
         .contact-det {
             &__img {
-                width: 250px;
+                width: rem(250px);
             }
 
             .edit {
                 &__row {
                     flex-direction: row;
                     input {
-                        width: 300px;
+                        width: rem(300px);
                     }
                 }
             }
@@ -95,7 +95,7 @@
     .edit-cmp {
         .contact-det {
             &__img {
-                width: 300px;
+                width: rem(300px);
             }
         }
     }

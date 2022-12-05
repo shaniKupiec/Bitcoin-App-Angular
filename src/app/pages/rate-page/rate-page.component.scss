@@ -5,14 +5,14 @@
 .rate-cmp-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: rem(20px);
 
     .item {
-        width: 400px;
+        width: rem(400px);
         @include flex(column, space-between);
         background-color: $sClr1;
-        padding: 28px 22px;
-        border-radius: 2px;
+        padding: rem(28px) rem(22px);
+        border-radius: rem(2px);
     
         &__header {
             @include flex(row, space-between);
@@ -20,9 +20,9 @@
     
             .right {
                 @include flex();
-                gap: 13px;
+                gap: rem(13px);
                 &__img {
-                    width: 35px;
+                    width: rem(35px);
                 }
     
                 &__coin {
@@ -49,8 +49,8 @@
             background-color: $sClr2;
             width: 100%;
             text-align: center;
-            padding: 13px;
-            border-radius: 2px;
+            padding: rem(13px);
+            border-radius: rem(2px);
         }
     }
 }

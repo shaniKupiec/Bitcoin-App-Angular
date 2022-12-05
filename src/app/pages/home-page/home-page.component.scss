@@ -6,21 +6,21 @@
     min-height: 100vh;
     min-width: 100vw;
     background-image: url("https://res.cloudinary.com/trellox/image/upload/v1654580554/cryptonites/WhatsApp_Image_2022-06-07_at_8.41.38_AM_u94ucs.jpg");
-    padding: 62px 113px;
+    padding: rem(62px) rem(113px);
     background-size: cover;
 
     &__header {
         @include flex(row, space-between);
-        margin-bottom: 86px;
+        margin-bottom: rem(86px);
         &__list {
             @include flex();
-            gap: 25px;
+            gap: rem(25px);
             & > *{
-                padding: 10px;
+                padding: rem(10px);
                 &.active{
                     background-color: lighten($sClr3, 10%);
                     color: $pClr2;
-                    border-radius: 2px;
+                    border-radius: rem(2px);
                 }
             }
         }

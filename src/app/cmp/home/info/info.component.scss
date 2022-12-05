@@ -9,11 +9,11 @@
         align-items: center;
         &__line {
             position: absolute;
-            width: 240px;
-            left: -130px;
+            width: rem(240px);
+            left: rem(-130px);
         }
         &__title {
-            padding-left: 172px;
+            padding-left: rem(172px);
             font-size: rem(12px);
             display: flex;
             flex-direction: column;
@@ -23,14 +23,14 @@
     &__seller{
         font-size: rem(51px);
         font-weight: lighter;
-        margin-top: 57px;
+        margin-top: rem(57px);
     }
     
     &__btn{
-        padding: 21px 35px;
-        margin-top: 50px;
+        padding: rem(21px) rem(35px);
+        margin-top: rem(50px);
         font-size: rem(11px);
-        border: 1px solid $pClr1;
+        border: rem(1px) solid $pClr1;
         background: none;
         color: $pClr1;
     }
