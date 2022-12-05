@@ -7,7 +7,7 @@ import { UserMsg } from '../models/user-msg.model';
 import { User } from '../models/user.model';
 import { guestPasswords } from '../../../passwords';
 
-const dev = false;
+const dev = true;
 
 const BASE_URL = dev ? 'http://localhost:3030/api/' : '/api/';
 
