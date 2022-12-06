@@ -154,7 +154,9 @@ export class DashboardComponent implements OnInit {
     });
 
     setTimeout(() => {
-      console.log('setTimeout', this.exchangeData)
+      const x = JSON.parse(JSON.stringify(this.exchangeData))
+      this.exchangeData = []
+      this.exchangeData = JSON.parse(JSON.stringify(x))
     }, 1000)
   }
 
